@@ -17,7 +17,7 @@
 
 ## Publication location and commands
 
-Use the curated snapshot at `packages/PathSnap_Publication_Source/`, not this private development history. Exact initialization/push and logged-out verification steps are in `docs/PUBLICATION.md`. The previously prepared implementation commit is publicly verified; final documentation updates still need pushing. Do not put account tokens in README files, remote URLs or command history. The separate report is still required; confirm public redistribution permission for dataset-derived maps/report outputs.
+Use the curated snapshot at `packages/PathSnap_Publication_Source/`, not this private development history. Exact initialization/push and logged-out verification steps are in `docs/PUBLICATION.md`. The previously prepared implementation commit is publicly verified; final documentation updates still need pushing. Do not put account tokens in README files, remote URLs or command history. The user-authorized report, plots, Folium HTML and screenshots are now included in the repository. The separate report submission is still required, and raw inputs/caches remain excluded.
 
 ## Transfer to Laptop 2
 

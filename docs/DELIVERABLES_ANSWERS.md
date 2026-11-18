@@ -218,7 +218,7 @@ HMM decoding improves agreement and continuity over classifier-only predictions,
 
 ## 6. Folium geographical visualisation
 
-We generate an actual interactive Folium map using scripts/figures.py. It overlays original GPS observations, relevant directed road geometry, the supplied reference where available and the predicted route. Layers have distinguishable colours, a legend, appropriate fit bounds and toggle controls. The report embeds a representative screenshot of student-test trip 00000007. The code is public, so a generated HTML map can be regenerated from the legitimately supplied local data. Raw/location-bearing files are kept out of the curated public snapshot.
+We generate an actual interactive Folium map using scripts/figures.py. It overlays original GPS observations, relevant directed road geometry, the supplied reference where available and the predicted route. Layers have distinguishable colours, a legend, appropriate fit bounds and toggle controls. The report embeds a representative screenshot of student-test trip 00000007. The code is public, so a generated HTML map can be regenerated from the legitimately supplied local data. Raw supplied input files and cache arrays remain private. The user has now requested publication of the generated report, plots, map HTML and screenshots as project deliverables.
 
 The separate evaluator UI has an offline canvas: blue is the actual path from the supplied .route reference, green is the model prediction and orange dots are GPS. The reference is fetched separately AFTER prediction; it never affects classifier/decoder output. Actual means supplied reference, not independently verified physical truth. No reference means an unavailable layer, not a guessed actual path.
 

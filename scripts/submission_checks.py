@@ -11,6 +11,8 @@ EXCLUDE_PREFIXES=('data/','cache/','materials/','packages/','tmp/','submission_e
 EXCLUDE_FILES={'results/sample_response.json','results/dataset_inventory.csv','results/training_split_manifest.json',
  'results/figures/geographic_comparison.png','results/test_results.txt','results/critical_audit/clean_environment_tests.txt',
  'results/critical_audit/training_holdout_model.joblib','results/submission/final_tests.txt'}
+PUBLIC_REPORT='output/pdf/PathSnap_Technical_Report.pdf'
+PUBLIC_MEDIA_PREFIXES=('results/figures/','results/screenshots/','results/maps/')
 TOKEN_PATTERNS=[re.compile(p) for p in [r'gh[pousr]_[A-Za-z0-9]{20,}',r'github_pat_[A-Za-z0-9_]{30,}',
  r'sk-(?:proj-)?[A-Za-z0-9_-]{30,}',r'AKIA[A-Z0-9]{16}',r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----']]
 
@@ -22,6 +24,10 @@ def candidates():
     return sorted({n for n in names if n and (ROOT/n).is_file()})
 
 def public_allowed(name):
+    # Explicit user authorization includes the consolidated report and generated
+    # figures/maps/screenshots. Raw supplied data and private caches stay excluded.
+    if name==PUBLIC_REPORT:return True
+    if name.startswith(PUBLIC_MEDIA_PREFIXES) and Path(name).suffix.lower() in {'.png','.jpg','.jpeg','.svg','.html'}:return True
     return not(name.startswith(EXCLUDE_PREFIXES) or name in EXCLUDE_FILES or Path(name).suffix in {'.npz','.npy','.pdf','.zip','.db','.log'} or '__pycache__' in Path(name).parts)
 
 def canonical(name,data):
@@ -119,7 +125,7 @@ def main():
       'required_direct_dependencies_locked':True,'deployment_checks':package_check,
       'report_final_numbers_present':True,'report_pages':len(pdf),
       'final_tests_passed':int(summary.group(1)),
-      'publication_policy':'Curated snapshot excludes raw inputs, per-point arrays, location-bearing generated outputs and private development history.',
+      'publication_policy':'Includes the user-authorized technical report, generated figures, Folium map and UI/API screenshots. Excludes raw inputs, bulk cache/probability arrays, environments and private development history.',
       'public_publication_verified':False,'physical_two_laptop_verified':False}
     result_path=Path(sys.argv[1]) if len(sys.argv)>1 else out/'submission_checks.json'
     result_path.parent.mkdir(parents=True,exist_ok=True)

@@ -19,13 +19,15 @@ def main():
     (target/'SOURCE_COMMIT.txt').write_text(source+'\n',encoding='utf-8',newline='\n')
     info={'source_workspace_commit':source,'source_file_count':len(selected),'files':manifest,
           'private_history_included':False,'raw_dataset_included':False,'publication_verified':False,
-          'separate_pdf_submission':'The report is a separate deliverable and intentionally excluded pending publication permissions.'}
+          'generated_deliverables_included':[n for n in selected if n.startswith(('output/','results/figures/','results/maps/','results/screenshots/'))],
+          'separate_pdf_submission':'The technical report is included at output/pdf/PathSnap_Technical_Report.pdf and must also be submitted as the separate PDF deliverable.'}
     (target/'PUBLICATION_MANIFEST.json').write_text(json.dumps(info,indent=2),encoding='utf-8',newline='\n')
     archive=ROOT/'packages'/'PathSnap_Publication_Source.zip'
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
         for name in selected+['SOURCE_COMMIT.txt','PUBLICATION_MANIFEST.json']:z.write(target/name,name)
     with zipfile.ZipFile(archive) as z:
         assert z.testzip() is None
+        assert 'output/pdf/PathSnap_Technical_Report.pdf' in z.namelist()
         assert not any(n.startswith(('data/','cache/','.git/')) or n.endswith(('.route','.track','.nodes','.arcs','.npz','.npy')) for n in z.namelist())
     report={'source_workspace_commit':source,'archive':archive.name,'file_count':len(selected),
       'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'bytes':archive.stat().st_size,

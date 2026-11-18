@@ -4,7 +4,7 @@ Public access to https://github.com/Mukilskanda/ml_hackathon is verified: an ano
 
 ## Use the curated snapshot, not private development history
 
-Use `packages/PathSnap_Publication_Source/` on this laptop, or extract `PathSnap_Publication_Source.zip` elsewhere. The snapshot excludes raw inputs, cache/per-point outputs, detailed coordinate maps/screenshots, the separate PDF deliverable and all prior `.git` history. It retains source, required model artifacts, aggregate metrics/configurations, dependency pins and generation code.
+Use `packages/PathSnap_Publication_Source/` on this laptop, or extract `PathSnap_Publication_Source.zip` elsewhere. The snapshot includes the user-authorized report under `output/pdf/`, generated plots, Folium HTML, UI/API/map screenshots, documentation, source, model artifacts, aggregate results and dependencies. Raw supplied inputs, cache/probability arrays, environments, private console evidence and prior private `.git` history remain excluded.
 
 `SOURCE_COMMIT.txt` identifies the final private-workspace commit. Runtime/model members are checked against that commit by the submission verifier. The publication repository has its own commit history; its commit hash can differ without changing the implementation. Preserve the private development repository as the detailed audit trail.
 
@@ -12,7 +12,7 @@ Use `packages/PathSnap_Publication_Source/` on this laptop, or extract `PathSnap
 
 1. Review `docs/LICENSING_AND_DATA.md`, the inclusion manifest and secret/file-size scan. Confirm dataset-derived publication permissions with the organizer.
 2. Set the Git author name/email you intend to make public. You may use your GitHub-provided no-reply address; do not enter account passwords or tokens into project files.
-3. In GitHub, create an empty **public** repository under the correct team account. Avoid adding a remote README/license until the local files are ready. Select a source license only with team approval; none was inferred here.
+3. Use the existing public repository at https://github.com/Mukilskanda/ml_hackathon. If starting a different repository, create an empty public repository before adding its remote. Select a source license only with team approval; none was inferred here.
 4. Open PowerShell in the publication snapshot. If it was extracted from the ZIP and has no `.git` directory, initialize it:
 
 ```powershell
@@ -31,7 +31,7 @@ git push -u origin main
 Use Git's approved sign-in flow. Do not put a token in a remote URL. If `origin` already exists, inspect `git remote -v` and confirm it is the intended repository before changing or pushing.
 
 6. Open the repository URL while logged out/private browsing. Verify README, full source, model/configuration artifacts, dependencies, aggregate results and map-generation code are accessible. Record the URL and public commit hash.
-7. Submit the public URL and the single final PDF through the event's required channel. The publication snapshot deliberately omits the PDF/location-bearing outputs until their publication permissions are confirmed; separate report submission is still required.
+7. Submit the public URL and the single final PDF through the event's required channel. The publication snapshot now includes the PDF and generated maps/figures/screenshots at the user's request; separate report submission is still required.
 
 ## Size and hygiene checks
 

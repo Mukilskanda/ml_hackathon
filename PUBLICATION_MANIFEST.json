@@ -1,6 +1,6 @@
 {
-  "source_workspace_commit": "0aa8b36a92cbe4cd590d1ffd93a74c95a8b1b06d",
-  "source_file_count": 167,
+  "source_workspace_commit": "df50f187279685a504554b87bc08400ea7908eb5",
+  "source_file_count": 175,
   "files": [
     {
       "path": ".gitattributes",
@@ -12,7 +12,7 @@
     },
     {
       "path": "FINAL_HANDOFF.md",
-      "sha256": "2ff5322ce0aa4734516411b9f3d08ec46de8e6692fca0aed861994a2800de197"
+      "sha256": "91db3410a08b151c4df1240b1c489e7f3ce73cd15ea8b2fded5c95fd8eb5095b"
     },
     {
       "path": "FINAL_READINESS_AUDIT.md",
@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "5a76a9a92000d744a0dca464ffe44e0dfe9643eb1331862124cdc3c5df766212"
+      "sha256": "8815b5a5271449c77a72d1bb284b60eba8678dff9ee7ff94d78360eea465499a"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -100,7 +100,7 @@
     },
     {
       "path": "docs/DELIVERABLES_ANSWERS.md",
-      "sha256": "c5e14b83d775bf40b8b8e9339939640be179cfb94953ecacdaf17f3dc20dae2b"
+      "sha256": "fdbe2349bf5f04566a424c1b402005e46e3bb8b6f8c37de3de7be08e9939f465"
     },
     {
       "path": "docs/DELIVERABLES_FINAL_CHECK.md",
@@ -132,7 +132,7 @@
     },
     {
       "path": "docs/LICENSING_AND_DATA.md",
-      "sha256": "70c43e2d7c6325cc6df3b5b346bc7bcc1e3c53178277f31397d573c7cddef3fd"
+      "sha256": "f1308273b5d4b46779829b6267b7c376cd01a116b067c0ad2bf922dd231cdf1f"
     },
     {
       "path": "docs/METHODOLOGY.md",
@@ -144,7 +144,7 @@
     },
     {
       "path": "docs/PUBLICATION.md",
-      "sha256": "813be4685603b698026c15bc7be5ec612deb9a9f1d60b59cea595ca2921db435"
+      "sha256": "6324d9395ea3ab5579bc25c0b12e272ba4efd2d0a32e74b187d46f2180b4186d"
     },
     {
       "path": "docs/REQUIREMENTS_CHECKLIST.md",
@@ -152,11 +152,15 @@
     },
     {
       "path": "docs/SUBMISSION.md",
-      "sha256": "a099989c853da2fa96146114a7eb128830e1caaa593286bddb30a4501bcc9274"
+      "sha256": "79f1469a247591e4ce0b712a5119c7ba4ff2f73d99384624b72c9234bec9368f"
     },
     {
       "path": "docs/VIVA_GUIDE.md",
       "sha256": "6684b5af2edfd6f0e57e88e8cbeaeb02340f8eabd7db398c04777680e29d9865"
+    },
+    {
+      "path": "output/pdf/PathSnap_Technical_Report.pdf",
+      "sha256": "01b3476c2d3cfe545deab4b0d15adc1a042093ebfb3f6f52c19996cff78ce647"
     },
     {
       "path": "pathsnap/__init__.py",
@@ -427,6 +431,10 @@
       "sha256": "0d024f580caba23c8fb3460f7a5610f0bd0942f8fde14ed3c4002d9786c355c8"
     },
     {
+      "path": "results/figures/geographic_comparison.png",
+      "sha256": "39fb9c5e4f784b250f5e9cea1709083205f44736c3ba4a8a4c2f785a15351184"
+    },
+    {
       "path": "results/figures/log_loss.png",
       "sha256": "db65447e3cb2526936bb92f83afa548d2223b11470bb88e21220069b1ad97647"
     },
@@ -445,6 +453,10 @@
     {
       "path": "results/figures/route_comparison.png",
       "sha256": "d7a7ca7316acf64fb3ce64980bef7b77e8e56b2756338d18f60fd70403046b53"
+    },
+    {
+      "path": "results/maps/development_trip_00000007.html",
+      "sha256": "1a27add17233309730854313b9365bd1f08d7053e0c4b989714d31e7c3593a96"
     },
     {
       "path": "results/model_comparison.csv",
@@ -477,6 +489,26 @@
     {
       "path": "results/runtime_environment.json",
       "sha256": "2a3fda73335df5d443c895895a47af471dcf0e0c0eedf650bba6be7fb0330742"
+    },
+    {
+      "path": "results/screenshots/api_documentation.png",
+      "sha256": "344ee5f64657862507e1771fbf325382ad1bf213007a416ca603092021fd71c4"
+    },
+    {
+      "path": "results/screenshots/experiment_bench.png",
+      "sha256": "0027aaab65ae45a15d7dc950c0c4519301c547ab6f79694558518af186081663"
+    },
+    {
+      "path": "results/screenshots/folium_development_map.png",
+      "sha256": "ee3d3d9d95e040365ff31210e7da8aa2cac987a44b64d2c1c13ff2e1dbf500df"
+    },
+    {
+      "path": "results/screenshots/ui_desktop.png",
+      "sha256": "745646c41b267c39c649d865b8333ac6be0f4e287cf4434dcdaf4a92155f5e55"
+    },
+    {
+      "path": "results/screenshots/ui_mobile.png",
+      "sha256": "e1fcaac31f22a2162f6469ca95dcdd483cd5509bd23767f5b9622aa71c75fbe6"
     },
     {
       "path": "results/server_log_excerpt.txt",
@@ -576,7 +608,7 @@
     },
     {
       "path": "scripts/prepare_publication.py",
-      "sha256": "9dcc7ef4b73442b6173bc759b0cab119c9a5f90032c9471e1f9fb54fcd80fb86"
+      "sha256": "fa7b9be3240ef988ab84330230a80e7692d56393363c09668675450243ec54a9"
     },
     {
       "path": "scripts/promote_validated_decoder.py",
@@ -600,7 +632,7 @@
     },
     {
       "path": "scripts/submission_checks.py",
-      "sha256": "c4cc1998a99af3af92e5cca4743a4ff561008705e9dcfbe2d341479912330448"
+      "sha256": "f3dc890ca32dd44a15198b9b94c1fb5d66e9d1dbf0020975cf383b5bf028bc02"
     },
     {
       "path": "scripts/train.py",
@@ -674,5 +706,25 @@
   "private_history_included": false,
   "raw_dataset_included": false,
   "publication_verified": false,
-  "separate_pdf_submission": "The report is a separate deliverable and intentionally excluded pending publication permissions."
+  "generated_deliverables_included": [
+    "output/pdf/PathSnap_Technical_Report.pdf",
+    "results/figures/bayesian_history.png",
+    "results/figures/calibration.png",
+    "results/figures/candidate_coverage.png",
+    "results/figures/dataset_overview.png",
+    "results/figures/feature_ablation.png",
+    "results/figures/geographic_comparison.png",
+    "results/figures/log_loss.png",
+    "results/figures/mlp_loss.png",
+    "results/figures/model_comparison.png",
+    "results/figures/robustness.png",
+    "results/figures/route_comparison.png",
+    "results/maps/development_trip_00000007.html",
+    "results/screenshots/api_documentation.png",
+    "results/screenshots/experiment_bench.png",
+    "results/screenshots/folium_development_map.png",
+    "results/screenshots/ui_desktop.png",
+    "results/screenshots/ui_mobile.png"
+  ],
+  "separate_pdf_submission": "The technical report is included at output/pdf/PathSnap_Technical_Report.pdf and must also be submitted as the separate PDF deliverable."
 }

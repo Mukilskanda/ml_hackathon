@@ -9,10 +9,10 @@ The model, features and selected decoder are frozen. Do not run training, Bayesi
 | Laptop 1: backend/model | `packages/PathSnap_Laptop1_Backend.zip`, plus `packages/checksums.json` | 64-bit Python 3.13; locked Python packages in a virtual environment | Raw trip files and reference `.route` files stay here |
 | Laptop 2: frontend | `packages/PathSnap_Laptop2_UI.zip`, plus `packages/checksums.json` | Python 3 for the standard-library static server; modern browser; no pip packages | No model, GPS dataset or reference files are needed |
 | Public GitHub | Prepared folder `packages/PathSnap_Publication_Source/`, or `PathSnap_Publication_Source.zip` | Git and the team's GitHub authentication | Never upload backend/full-local ZIPs or push the private development repository's history |
-| Report submission | `output/pdf/PathSnap_Technical_Report.pdf` | PDF reader | Submit through the organizer's required channel; confirm any public redistribution permission |
+| Report submission | `output/pdf/PathSnap_Technical_Report.pdf` | PDF reader | Available in the public repository; also submit through the organizer's required channel |
 | Private backup only | `packages/PathSnap_Complete_Local.zip` | None | Contains supplied data and detailed experiment evidence; not a public release asset |
 
-The publication snapshot omits raw data, per-point arrays, coordinate-bearing generated maps/screenshots and the PDF. It retains source, required model artifacts, aggregate experiments, dependency notices and map/report generation code. The PDF remains the separate official deliverable. Public inclusion of location-bearing outputs can be decided after organizer permission; no permission was inferred from the absence of a license file.
+The publication snapshot now includes the user-authorized PDF, generated plots, interactive Folium map and screenshots, alongside source, model artifacts, aggregate results and dependency notices. Raw supplied inputs, cache/probability arrays, environments and private console evidence remain excluded. The PDF is also a separate official submission deliverable; publishing the report does not grant a redistribution license for the raw dataset.
 
 ## 1. Check archive integrity before copying
 

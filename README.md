@@ -4,9 +4,19 @@ An end-to-end candidate classifier and directed-road HMM for noisy GPS map match
 
 **For final deployment and submission, start with [FINAL_HANDOFF.md](FINAL_HANDOFF.md).** No further model tuning is required. It contains exact laptop commands, network/firewall prerequisites, expected logs, screenshot evidence and manual actions. All nine PARTIAL items have a local-preparation closeout in [docs/PARTIAL_REQUIREMENTS_CLOSEOUT.md](docs/PARTIAL_REQUIREMENTS_CLOSEOUT.md); external outcomes remain unverified.
 
-The refreshed interface includes a larger route canvas, trip diagnostics, readable model names, the selected-model badge, ordered decoder comparisons, and connection settings on mobile. Loading and failed-request states identify what is currently displayed; JSON export contains the actual server response. Browser checks cover live inference, export, connection recovery and 320Ã¢â‚¬â€œ1024 px layouts. This interface update changes no model, prediction logic, decoder settings or development experimental results. A separate comparison endpoint now serves supplied reference geometry after prediction. Reload with Ctrl+F5 after replacing the UI files.
+The refreshed interface includes a larger route canvas, trip diagnostics, readable model names, the selected-model badge, ordered decoder comparisons, and connection settings on mobile. Loading and failed-request states identify what is currently displayed; JSON export contains the actual server response. Browser checks cover live inference, export, connection recovery and 320-1024 px layouts. This interface update changes no model, prediction logic, decoder settings or development experimental results. A separate comparison endpoint now serves supplied reference geometry after prediction. Reload with Ctrl+F5 after replacing the UI files.
 
-**Publication boundary:** use the curated `packages/PathSnap_Publication_Source/` snapshot or its ZIP, following [docs/PUBLICATION.md](docs/PUBLICATION.md). Do not directly push private development history or upload deployment/full-local ZIPs. The curated snapshot omits raw/bulk per-point data and location-bearing generated outputs; the final PDF is a separate event deliverable. Omitted evidence can be regenerated with legitimately supplied data. See [dataset/source permissions](docs/LICENSING_AND_DATA.md) and [dependency notices](THIRD_PARTY_NOTICES.md).
+## Report, plots and submission documents
+
+- [Technical report PDF](output/pdf/PathSnap_Technical_Report.pdf)
+- [Complete answers to the deliverables questions](docs/DELIVERABLES_ANSWERS.md)
+- [Final deliverables checklist](docs/DELIVERABLES_FINAL_CHECK.md)
+- [Viva guide](docs/VIVA_GUIDE.md)
+- [Experiment plots](results/figures/)
+- [UI, API and map screenshots](results/screenshots/)
+- [Interactive Folium map](results/maps/development_trip_00000007.html) (download and open in a browser)
+
+**Publication boundary:** the prepared publication repository now includes the technical report, documentation, generated plots, Folium HTML and UI/API screenshots at the user's request. It retains all required source, model artifacts and aggregate experiment results. Raw supplied datasets, cache/probability arrays, environments, private console evidence and deployment ZIPs remain excluded. The report is still a separate official submission deliverable. See [publication instructions](docs/PUBLICATION.md), [source/data notes](docs/LICENSING_AND_DATA.md) and [dependency notices](THIRD_PARTY_NOTICES.md).
 
 **Read [FINAL_READINESS_AUDIT.md](FINAL_READINESS_AUDIT.md) before claiming evaluation readiness.** It contains the PASS/PARTIAL/FAIL table against all five PDFs. Local tests cannot establish physical two-laptop connectivity or official evaluator accuracy. All pointwise development scores use a documented alignment derived from supplied reference routes, not independent point labels.
 
