@@ -7,7 +7,8 @@ from pathsnap.core import ROOT
 def main():
     records=[]
     with httpx.Client(base_url='http://127.0.0.1:8000',timeout=180) as client:
-        trips=client.get('/api/trips').json()['trips']
+        listing=client.get('/api/trips').json();trips=listing['trips']
+        output=ROOT/'results'/('evaluator_api_verification.json' if listing['mode']=='evaluator' else 'api_verification.json')
         for trip in trips:
             started=time.perf_counter()
             response=client.post('/api/predict',json={'trip_id':trip['id']})
@@ -26,7 +27,7 @@ def main():
                 'inference_s':p['timings']['total_s'],'request_id':p['request_id']}
             records.append(record)
             print(json.dumps(record),flush=True)
-            (ROOT/'results'/'api_verification.json').write_text(json.dumps(records,indent=2))
+            output.write_text(json.dumps(records,indent=2))
             if trip['id']=='00000052':
                 (ROOT/'results'/'sample_response.json').write_text(json.dumps(p))
 

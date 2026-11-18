@@ -84,7 +84,9 @@ def test_inference_never_reads_reference(monkeypatch):
     assert len(d['arc_ids'])==len(trip.track)
     assert np.isfinite(p).all()
 
-def test_api_validation_and_no_reference_exposure():
+def test_api_validation_and_no_reference_exposure(monkeypatch):
+    from backend import app as api
+    monkeypatch.setattr(api,'trip_root',lambda:DATA/'student_test')
     from fastapi.testclient import TestClient
     from backend.app import app
     with TestClient(app) as client:

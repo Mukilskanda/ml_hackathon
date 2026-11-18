@@ -53,7 +53,7 @@ def banner(canvas,doc):
     canvas.drawString(43,hh-30,'PATHSNAP / TECHNICAL REPORT')
     canvas.drawRightString(w-43,hh-30,'18 NOVEMBER 2026 / AI-ASSISTED REVIEW DRAFT')
     canvas.setStrokeColor(colors.HexColor('#dce5dc'));canvas.line(43,40,w-43,40)
-    canvas.drawString(43,26,'Derived-reference development results; reserved evaluation not measured')
+    canvas.drawString(43,26,'Derived-reference scores; official evaluator scoring not verified')
     canvas.drawRightString(w-43,26,str(doc.page));canvas.restoreState()
 
 def main():
@@ -87,10 +87,10 @@ def main():
       ['Distributed application','FastAPI on model host; separate static browser UI','Ten live API requests and separate-origin browser QA'],
       ['Submission assets','One PDF plus organized Git-ready source and model artifacts','Audit, requirements checklist and handoff ZIPs']],[100,240,165])
     sub('Architecture and reference isolation')
-    p('<b>Laptop 2 UI</b> sends a trip ID to <b>Laptop 1 FastAPI</b>. The server loads GPS and graph files, builds features, runs the saved model, decodes the route, then optionally computes metrics with its internal reference. It returns predicted geometry and aggregate metrics. Reference route labels never enter inference or the UI transfer package.')
+    p('<b>Laptop 2 UI</b> sends a trip ID to <b>Laptop 1 FastAPI</b>. The server loads GPS and graph files, builds features, runs the saved model, decodes the route, then optionally computes metrics with its internal reference. It returns predicted geometry and aggregate metrics. Reference route labels never enter inference or the UI transfer package. A separate comparison endpoint can display the supplied reference geometry in blue after prediction; the predicted path remains green.')
     p('Every POST reruns inference and logs a request ID. No training or hardcoded prediction lookup occurs during a request. A unit test intercepts every inference load and fails if a .route file is opened.')
     sub('What is and is not independently established')
-    p('Local geometry, candidate generation, grouped experiments, saved-artifact reload, decoding, HTTP requests and browser behavior have execution evidence. A second physical machine was not available to this run. Reserved evaluator files were not supplied. No remote public GitHub URL was created. Those items must not be inferred from local success.')
+    p('Local geometry, candidate generation, grouped experiments, saved-artifact reload, decoding, HTTP requests and browser behavior have execution evidence. A second physical machine was not available to this run. The separately supplied evaluator files now have a frozen-model replay in the final appendix; no selection was performed on them. No remote public GitHub URL was created. Those items must not be inferred from local success.')
     page();h('2 / Dataset understanding and EDA')
     table(['Partition','Trips','GPS observations','Use'],[[part,len(s),int(s.observations.sum()),use] for part,use in [('train','Fit, CV, optimisation'),('student_test','Development comparison and decoder tuning')] for s in [inventory[inventory.partition==part]]],[110,55,110,230])
     table(['File','Columns / identifiers','Interpretation'],[
@@ -211,7 +211,7 @@ def main():
     page();h('8 / API and user interface')
     shot('ui_desktop.png','Actual separate-origin browser screenshot after a live API request. The UI shows predicted geometry, raw GPS, relative confidence, server metrics, latency and observation playback.',maxheight=420)
     p('The responsive UI includes ten actual active trip options, configurable model-server URL, loading/error states, zoom/pan, layer toggles, playback and downloadable prediction JSON. Experiment tables are served from measured result files. Incorrect-server recovery and a 390 px mobile layout were exercised in browser QA.')
-    p('The geographic canvas works without online basemap tiles. Reference route arrays are not included in the prediction response. Displayed confidence is a relative normalized model score, not an independently calibrated correctness guarantee.')
+    p('The geographic canvas works without online basemap tiles. Reference route arrays are not included in the prediction response. The browser separately requests supplied reference geometry for the blue actual-path comparison layer. Displayed confidence is a relative normalized model score, not an independently calibrated correctness guarantee.')
     page();h('8.1 / API execution evidence')
     table(['Trip','HTTP','Observations','Point accuracy','Inference time'],[[r['trip_id'],r['status'],r['observations'],pct(r['point_accuracy']),f'{r["inference_s"]:.3f} s'] for r in api],[100,55,110,125,115])
     p('These are actual HTTP requests against the locally running final server. Inference time includes loading, candidate generation, classifier scoring and graph decoding; HTTP wall time also includes geometry serialization and reference scoring. Local timing varies with machine load.')
@@ -230,7 +230,7 @@ def main():
     for check in browser['checks']:p('- '+escape(check),'SmallPS')
     p('Browser QA uses UI port 8080 and API port 8000 on the same machine. Cross-origin operation is real; physical cross-laptop reachability is not established. A detailed network/deployment checklist is included in docs/DEPLOYMENT.md.')
     sub('Pending before evaluation')
-    p('1. Physical two-laptop rehearsal and genuine receiving-console screenshot.<br/>2. Actual reserved evaluator data and confirmation of official scoring convention.<br/>3. Public GitHub publication through the team account, then URL verification.<br/>4. Replace placeholders, review AI-assisted explanations and add team interpretation.')
+    p('1. Physical two-laptop rehearsal and genuine receiving-console screenshot.<br/>2. Confirmation of the official scoring convention; supplied evaluator trips now have a separate frozen-model replay.<br/>3. Public GitHub publication through the team account, then URL verification.<br/>4. Replace placeholders, review AI-assisted explanations and add team interpretation.')
     page();h('9 / Final audit and team review')
     p('The source repository includes a requirement-by-requirement checklist mapped to all five PDFs. It records full implementation evidence, local verification limits and unresolved external requirements. The final manifest ties the chosen classifier, feature order and candidate strategy to the decoder configuration.')
     sub('Experiments actually executed')
@@ -278,6 +278,22 @@ def main():
             rows.append([f'M{i+1} / '+short(r.model),families[min(i,8)],configs[min(i,8)],pct(r.cv_macro_f1),pct(r.test_top1_accuracy),pct(continuity),pct(r.test_macro_f1),f'{r.test_log_loss:.4f}',f'{r.test_inference_s:.3f}s'])
         table(['Model','Family','Key configuration','CV F1','Test Top-1','Direct continuity','Test F1','Log loss','Inference'],rows,[73,55,101,46,46,46,46,46,46])
         p('Continuity is equal-trip mean for classifier-only outputs. Inference time is classifier prediction summed over ten trips, not total HTTP latency. Model-specific explanations and full source configurations appear earlier and in the repository. The final U-turn prior changes sequence decoding, not this classifier comparison.','SmallPS')
+    evaluator_path=ROOT/'results/evaluator_verification.json'
+    if evaluator_path.exists():
+        ev=json.loads(evaluator_path.read_text())
+        page();h('11 / Supplied evaluator replay')
+        p('After model selection was complete, a separate evaluator_test.zip containing ten trips and supplied .route references was received. The saved model, features, candidate profile and decoder settings were preserved. No evaluator result was used to select algorithms, features or hyperparameters, and no prediction was manually altered.')
+        table(['Measure','Verified value'],[
+          ['Evaluator trips / observations',f'{ev["trips"]} / {ev["observations"]:,}'],
+          ['Equal-trip derived point agreement',f'{100*ev["equal_trip_point_accuracy"]:.4f}%'],
+          ['Pooled derived point agreement',f'{100*ev["pooled_point_accuracy"]:.4f}%'],
+          ['Model artifact unchanged',str(ev['model_matches_audited_artifact'])],
+          ['Official evaluator scoring verified','No'],
+          ['Physical two-laptop execution verified','No']],[270,235])
+        table(['Trip','Observations','Derived agreement','Reference arcs'],[[r['trip_id'],r['observations'],f'{100*r["point_accuracy"]:.2f}%',r['reference_arcs']] for r in ev['records']],[110,120,140,135])
+        p('These percentages use the same documented monotone alignment to supplied route sequences; they are not official evaluator accuracy or independently verified physical ground truth. The original seven-model comparisons and development results remain unchanged.')
+        p('The UI now renders supplied actual-path geometry in blue and model-predicted geometry in green as independently toggleable layers. Reference geometry is loaded through GET /api/reference/{trip_id} after POST inference; it does not feed the classifier or decoder. Missing or malformed references leave inference functional. Set PATHSNAP_REFERENCE_DISPLAY=0 before starting the backend for a reference-free demonstration.')
+        p('Evidence: results/evaluator_inventory.json, results/evaluator_verification.json, results/browser_qa.json and tests/test_reference_display.py. Raw files remain private on Laptop 1 and are excluded from publication. The UI transfer ZIP contains no raw reference files.')
     doc=SimpleDocTemplate(str(OUT/'PathSnap_Technical_Report.pdf'),pagesize=(595.28,841.89),leftMargin=43,rightMargin=43,topMargin=53,bottomMargin=54,title='PathSnap Technical Report',author=team['team_name'])
     doc.build(story,onFirstPage=banner,onLaterPages=banner)
     print(OUT/'PathSnap_Technical_Report.pdf',flush=True)

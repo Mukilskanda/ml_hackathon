@@ -114,7 +114,7 @@ The UI completion message contains the same request ID. Values are generated dur
 
 ## 6. Reserved evaluation data
 
-Obtain the ten reserved trip folders from the organizer. Keep them **only on Laptop 1**, under `data/evaluator_test/<eight-digit-trip-id>/` with matching `.track`, `.nodes` and `.arcs` names. `.route` is optional for inference and used only server-side for scoring if legitimately provided. Actual trip directories activate evaluator mode; health/menu warnings identify incomplete folders. Refresh the UI and verify ten complete evaluator options.
+The supplied `evaluator_test.zip` has now been imported and all ten trips have passed local inference and exact reference-overlay checks. The refreshed Laptop 1 ZIP includes these private evaluator files. For a fresh source checkout, run `python scripts/import_evaluator.py C:/Users/mukil/Downloads/evaluator_test.zip`. Keep them **only on Laptop 1**, under `data/evaluator_test/<eight-digit-trip-id>/` with matching `.track`, `.nodes` and `.arcs` names. `.route` is optional for inference; supplied references support separate scoring and actual-path comparison after inference. Actual trip directories activate evaluator mode; health/menu warnings identify incomplete folders. Refresh the UI and verify ten complete evaluator options.
 
 Do not train, tune or manually repair predictions using reserved references. Confirm whether the organizer supplies point labels or a specific official route scorer. The current scorer uses a documented derived monotone alignment; its displayed percentage must not be presented as official evaluator accuracy.
 
@@ -131,7 +131,7 @@ Follow `docs/CONSOLE_SCREENSHOT_CHECKLIST.md`. Capture the actual receiving CMD/
 | Laptop 1 health works; Laptop 2 TCP fails | Correct adapter IPv4, same network, bind address, client isolation, owner/admin's inbound firewall permission |
 | TCP works but UI fails | Include `http://` and the backend port; check stored Settings; use the actual Laptop 1 address, not Laptop 2 localhost |
 | No/too few trip options | Read health `data_warnings`; check matching filenames and complete `.track/.nodes/.arcs` trip folders |
-| Wrong partition | Check for reserved trip directories and any `PATHSNAP_DATA_ROOT` override; development is expected before reserved data is supplied |
+| Wrong partition | Check for reserved trip directories and any `PATHSNAP_DATA_ROOT` override; EVALUATOR MODE is expected with the newly supplied files |
 | Startup schema/profile mismatch | Restore the model, manifest and decoder from the same verified backend ZIP; do not mix artifact versions |
 | Route returned but accuracy absent | Inspect receiving logs/reference data; malformed references do not invalidate inference; confirm official scorer |
 | Slow first request | Distinguish cold startup, inference, geometry/scoring and network time; retain the locked environment; do not retrain |
@@ -147,6 +147,11 @@ Before submission, replace team placeholders, review actual contributions and AI
 ## Manual actions that cannot be completed here
 
 1. Provide team names/USNs, confirm actual contributions/originality/AI disclosure, review the report and rehearse the viva.
-2. Ask organizers for reserved trips, the official scoring convention, first-phase schedule/scope and redistribution rules for dataset-derived outputs.
+2. Ask organizers for the official scoring convention, first-phase schedule/scope and redistribution rules for dataset-derived outputs.
 3. Perform the two-laptop network/firewall setup, run every trip, and capture genuine console/UI evidence.
 4. Publish the prepared clean repository through the team's account, verify public access, and submit its URL plus the final PDF.
+
+
+## Updated comparison UI
+
+After replacing both laptops' application files with the refreshed ZIPs, restart Laptop 1's backend and press Ctrl+F5 in Laptop 2's browser. EVALUATOR MODE now lists the supplied ten reserved trips. Reconstruct a trip and leave **Actual path · reference** (blue) and **Predicted path** (green) checked. Orange dots are GPS observations. Turn either route off to inspect it independently. Actual is the supplied reference, not independently verified physical truth. `PATHSNAP_REFERENCE_DISPLAY=0` disables the reference endpoint if a reference-free demonstration is required. Do not copy the raw evaluator ZIP into the public repository or Laptop 2.

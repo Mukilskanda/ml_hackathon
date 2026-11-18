@@ -4,9 +4,11 @@ An end-to-end candidate classifier and directed-road HMM for noisy GPS map match
 
 **For final deployment and submission, start with [FINAL_HANDOFF.md](FINAL_HANDOFF.md).** No further model tuning is required. It contains exact laptop commands, network/firewall prerequisites, expected logs, screenshot evidence and manual actions. All nine PARTIAL items have a local-preparation closeout in [docs/PARTIAL_REQUIREMENTS_CLOSEOUT.md](docs/PARTIAL_REQUIREMENTS_CLOSEOUT.md); external outcomes remain unverified.
 
+The refreshed interface includes a larger route canvas, trip diagnostics, readable model names, the selected-model badge, ordered decoder comparisons, and connection settings on mobile. Loading and failed-request states identify what is currently displayed; JSON export contains the actual server response. Browser checks cover live inference, export, connection recovery and 320â€“1024 px layouts. This interface update changes no model, prediction logic, decoder settings or development experimental results. A separate comparison endpoint now serves supplied reference geometry after prediction. Reload with Ctrl+F5 after replacing the UI files.
+
 **Publication boundary:** use the curated `packages/PathSnap_Publication_Source/` snapshot or its ZIP, following [docs/PUBLICATION.md](docs/PUBLICATION.md). Do not directly push private development history or upload deployment/full-local ZIPs. The curated snapshot omits raw/bulk per-point data and location-bearing generated outputs; the final PDF is a separate event deliverable. Omitted evidence can be regenerated with legitimately supplied data. See [dataset/source permissions](docs/LICENSING_AND_DATA.md) and [dependency notices](THIRD_PARTY_NOTICES.md).
 
-**Read [FINAL_READINESS_AUDIT.md](FINAL_READINESS_AUDIT.md) before claiming evaluation readiness.** It contains the PASS/PARTIAL/FAIL table against all five PDFs. Local tests cannot establish physical two-laptop connectivity or reserved evaluator accuracy. All pointwise development scores use a documented alignment derived from supplied reference routes, not independent point labels.
+**Read [FINAL_READINESS_AUDIT.md](FINAL_READINESS_AUDIT.md) before claiming evaluation readiness.** It contains the PASS/PARTIAL/FAIL table against all five PDFs. Local tests cannot establish physical two-laptop connectivity or official evaluator accuracy. All pointwise development scores use a documented alignment derived from supplied reference routes, not independent point labels.
 
 ## Quick demonstration on this laptop
 
@@ -33,8 +35,8 @@ Open <http://localhost:8080>, click the connection settings gear, and configure 
 3. Put both laptops on the same reachable network. Find Laptop 1's IPv4 address using `ipconfig` on that laptop. No particular LAN address is embedded in the project.
 4. Run the UI launcher on Laptop 2 and open its localhost URL. Configure `http://<Laptop1-IPv4>:<backend-port>` in the gear menu.
 5. Verify the health check and reconstruct **all ten** active trips. Confirm incoming request IDs in the console on Laptop 1. Follow `docs/DEPLOYMENT.md`.
-6. The app initially lists the supplied **student-test trips** and clearly says DEVELOPMENT. It does not invent reserved evaluator IDs.
-7. When organizers supply the reserved data, place trip folders at `data/evaluator_test/000000XX/000000XX.track`, `.nodes`, `.arcs`, and optionally `.route`. If that directory contains trips, it becomes the active partition. The backend reads only the three inference files until prediction finishes; `.route` is read by the separate server-side scorer. Never transfer reference files to Laptop 2.
+6. The supplied evaluator ZIP is now imported locally: the app lists **ten evaluator trips** and says EVALUATOR MODE. Without that private folder, it falls back to the ten student-test development trips.
+7. When organizers supply the reserved data, place trip folders at `data/evaluator_test/000000XX/000000XX.track`, `.nodes`, `.arcs`, and optionally `.route`. If that directory contains trips, it becomes the active partition. The backend reads only the three inference files until prediction finishes; `.route` is read by the separate scorer and comparison endpoint. Reference files remain on Laptop 1; the browser can display their geometry after prediction.
 
 The official evaluator's pointwise reference/scoring convention must be confirmed with organizers. The supplied `.route` files describe traversed arc sequences, not one label per GPS sample. Our derived alignment is explicitly described in `docs/METHODOLOGY.md`.
 
@@ -138,3 +140,10 @@ Replace placeholders in `team.json` and rerun `scripts/report.py`. The report is
 - [Folium documentation](https://python-visualization.github.io/folium/latest/).
 
 Project contributions are engineering improvements tested within this dataset; no claim of new research priority is made.
+
+
+## Supplied evaluator data and actual/predicted comparison
+
+The later-supplied evaluator ZIP has been imported locally and tested with the frozen pipeline: 10 trips, 19,674 observations, 95.4855% equal-trip and 95.1510% pooled **derived-reference agreement**. This is not official evaluator accuracy. The model and decoder match the audited artifacts; no tuning or manual prediction correction used these results. See `results/evaluator_verification.json`.
+
+In Route explorer, reconstruct a trip. **Blue is the actual path from the supplied `.route` reference; green is the predicted path; orange dots are raw GPS.** Use the independent layer checkboxes to inspect each. Where the routes overlap, the blue border remains visible around green. Actual means the supplied reference, not independently verified physical ground truth. The UI requests reference geometry separately after prediction; it never feeds the classifier or decoder. Missing or invalid references are shown as unavailable and do not block prediction. To disable comparison, set `PATHSNAP_REFERENCE_DISPLAY=0` before starting the server. Raw references remain on Laptop 1; Laptop 2 only receives comparison geometry at runtime.

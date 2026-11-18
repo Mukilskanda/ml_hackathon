@@ -8,13 +8,14 @@
   </head>
   <body>
     <aside>
-      <a class="brand" href="#"
+      <a class="brand" href="#" aria-label="PathSnap home"
         ><span class="brand-icon">⌁</span> PathSnap<span class="badge"
           >LAB</span
         ></a
       >
-      <div class="eyebrow">WORKSPACE</div>
-      <button class="nav active" data-view="map">⌖ &nbsp; Route explorer</button
+      <div class="eyebrow">YOUR WORKSPACE</div>
+      <button class="nav active" data-view="map" aria-current="page">
+        ⌖ &nbsp; Route explorer</button
       ><button class="nav" data-view="experiments">
         ▥ &nbsp; Experiment bench
       </button>
@@ -23,17 +24,19 @@
         ><span id="connection">Connecting</span
         ><button id="settings" aria-label="API settings">⚙</button
         ><small
-          >Distributed map matching<br />Classifier → directed HMM →
-          route</small
+          ><b>From signal to street.</b><br />GPS observations, learned
+          affinity<br />and graph-aware route decoding.</small
         >
       </div>
     </aside>
     <main>
       <header>
         <div>
-          <div class="eyebrow">GPS IN. CLARITY OUT.</div>
-          <h1 id="pageTitle">Every point has a path.</h1>
-          <p>Reconstruct the journey behind noisy observations.</p>
+          <div class="eyebrow">PATHSNAP / ROUTE INTELLIGENCE</div>
+          <h1 id="pageTitle">Route explorer<span class="title-dot">.</span></h1>
+          <p id="pageSubtitle">
+            Turn noisy GPS observations into a connected journey.
+          </p>
         </div>
         <div class="header-meta">
           <span class="pill" id="partition">DEVELOPMENT</span>
@@ -43,38 +46,43 @@
       <section id="mapView">
         <div class="toolbar">
           <div class="select-group">
-            <label for="trip">TRAJECTORY</label
+            <label for="trip">01 &nbsp; SELECT A TRAJECTORY</label
             ><select id="trip">
               <option>Loading trips…</option>
             </select>
           </div>
-          <button class="primary" id="run">
+          <button class="primary" id="run" disabled>
             Reconstruct route <span>↗</span></button
           ><span class="toolbar-note" id="runNote"
-            >Live inference on the model server</span
+            >Live model inference · no precomputed routes</span
           >
         </div>
         <div class="metrics">
           <article>
-            <label>OBSERVATIONS</label><strong id="observations">—</strong
+            <label><span class="metric-icon">⌖</span> GPS OBSERVATIONS</label
+            ><strong id="observations">—</strong
             ><small>Raw GPS measurements</small>
           </article>
           <article>
             <label
-              >POINT ACCURACY
+              ><span class="metric-icon">◎</span> ROUTE AGREEMENT
               <span
                 title="Computed on the server from derived reference alignment"
                 >ⓘ</span
               ></label
             ><strong id="accuracy">—</strong
-            ><small id="accuracyNote">Reference-based development score</small>
+            ><small id="accuracyNote"
+              >Derived reference · development only</small
+            >
           </article>
           <article>
-            <label>NETWORK FEASIBILITY</label><strong id="continuity">—</strong
+            <label><span class="metric-icon">⇄</span> NETWORK FEASIBILITY</label
+            ><strong id="continuity">—</strong
             ><small>Directed paths with GPS jitter tolerance</small>
           </article>
           <article>
-            <label>INFERENCE TIME</label><strong id="latency">—</strong
+            <label><span class="metric-icon">◷</span> INFERENCE TIME</label
+            ><strong id="latency">—</strong
             ><small id="modelLabel">Awaiting reconstruction</small>
           </article>
         </div>
@@ -82,7 +90,7 @@
           <div class="map-panel">
             <div class="map-heading">
               <div>
-                <span class="live-dot"></span><b>Trajectory canvas</b
+                <span class="live-dot"></span><b>Route map</b
                 ><span id="tripTag">NO TRIP LOADED</span>
               </div>
               <div>
@@ -98,20 +106,39 @@
               ></canvas>
               <div class="empty" id="empty">
                 <div class="empty-symbol">⌁</div>
-                <h2>Find the road through the noise.</h2>
+                <span class="eyebrow">READY WHEN YOU ARE</span>
+                <h2>Every point has a path.</h2>
                 <p>
                   Select a trajectory and reconstruct its route.<br />Every
                   request runs the complete prediction pipeline.
                 </p>
               </div>
+              <div class="loading-overlay" id="loading" hidden role="status">
+                <span class="spinner" aria-hidden="true"></span>
+                <b>Reconstructing the journey</b>
+                <span
+                  >Running candidates, classifier and sequence decoding…</span
+                >
+              </div>
+              <span class="north" aria-hidden="true">N<br />↑</span>
               <div class="map-chip">
-                GEOGRAPHIC CANVAS <span>·</span> Works offline
+                OFFLINE CANVAS <span>·</span> Drag to pan · scroll to zoom
               </div>
               <div class="map-coordinates" id="coords">
                 LONGITUDE / LATITUDE
               </div>
             </div>
             <div class="legend">
+              <label
+                id="referenceLayerLabel"
+                title="Supplied .route reference, loaded separately after prediction"
+                ><input
+                  type="checkbox"
+                  data-layer="reference"
+                  checked
+                  disabled
+                /><i class="reference"></i>Actual path · reference</label
+              >
               <label
                 ><input type="checkbox" data-layer="roads" checked /><i
                   class="road"
@@ -131,7 +158,7 @@
                 ><input type="checkbox" data-layer="route" checked /><i
                   class="route"
                 ></i
-                >Decoded route</label
+                >Predicted path</label
               ><label
                 ><input type="checkbox" data-layer="uncertainty" /><i
                   class="uncertainty"
@@ -139,10 +166,17 @@
                 >Uncertainty</label
               >
             </div>
+            <div id="referenceNote" class="reference-note" role="status">
+              Reconstruct a trip to compare its supplied actual path with the
+              prediction.
+            </div>
           </div>
           <div class="inspector">
-            <div class="eyebrow">RECONSTRUCTION NOTES</div>
-            <h2>Built for the<br />roads between points.</h2>
+            <div class="eyebrow">UNDER THE HOOD</div>
+            <h2>
+              One journey.<br />
+              Three intelligent steps.
+            </h2>
             <div class="pipeline-step">
               <span>01</span>
               <div>
@@ -169,6 +203,7 @@
               </div>
             </div>
             <div class="inspector-stats">
+              <h3>Trip diagnostics</h3>
               <div>
                 <span>Ambiguous observations</span><b id="uncertain">—</b>
               </div>
@@ -182,7 +217,7 @@
               evaluator trips are loaded separately on the server.
             </div>
             <button id="export" class="secondary" disabled>
-              Download prediction JSON ↓
+              Export prediction <span>↓ JSON</span>
             </button>
           </div>
         </div>
@@ -194,6 +229,7 @@
           <button id="play" disabled aria-label="Play trajectory">▶</button
           ><input
             id="scrub"
+            aria-label="Observation playback position"
             type="range"
             min="0"
             max="100"
@@ -205,10 +241,12 @@
       </section>
       <section id="experimentsView" hidden>
         <div class="section-heading">
-          <h2>Evidence before selection.</h2>
+          <div class="eyebrow">MODEL COMPARISON</div>
+          <h2>Evidence behind every decision.</h2>
           <p>
-            Measured experiments, grouped by trip. Scores use derived point
-            references.
+            Trip-grouped cross-validation compares candidate classifiers. Test
+            Top-1 is pooled across observations; route scores below give each
+            trip equal weight.
           </p>
         </div>
         <div class="experiment-card">
@@ -220,8 +258,8 @@
                   <th>MODEL</th>
                   <th>CV MACRO F1</th>
                   <th>CV TOP-1</th>
-                  <th>TEST MACRO F1</th>
-                  <th>TEST TOP-1</th>
+                  <th>DEV TEST F1</th>
+                  <th>DEV TEST TOP-1</th>
                   <th>LOG LOSS</th>
                   <th>INFERENCE</th>
                 </tr>
@@ -231,7 +269,8 @@
           </div>
         </div>
         <div class="experiment-card">
-          <h2>Sequence decoding / ablation</h2>
+          <div class="eyebrow">FROM CANDIDATES TO CONNECTED ROUTES</div>
+          <h2>What sequence decoding adds</h2>
           <div id="ablations"></div>
           <p class="notice">
             Decoder settings are selected on the ten permitted student-test

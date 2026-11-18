@@ -4,11 +4,11 @@ os.environ.setdefault('OPENBLAS_NUM_THREADS',os.environ.get('PATHSNAP_THREADS','
 from pathlib import Path
 from contextlib import asynccontextmanager
 import joblib
-from fastapi import FastAPI,HTTPException,Request
+from fastapi import FastAPI,HTTPException,Request,Path as APIPath
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel,Field
-from pathsnap.core import ROOT,DATA,FEATURES,reference_labels
+from pathsnap.core import ROOT,DATA,FEATURES,reference_labels,load_trip,load_indices
 from pathsnap.service import predict_trip,serialize_prediction
 from pathsnap.metrics import route_metrics,classification_metrics
 
@@ -78,6 +78,33 @@ def experiments():
     return {'models':table.to_dict(orient='records'),
             'routes':json.loads(route.groupby('method').mean(numeric_only=True).to_json(orient='index')),
             'manifest':state['manifest'],'decoder':state['decoder']}
+
+@app.get('/api/reference/{trip_id}')
+def reference(trip_id:str=APIPath(pattern=r'^[0-9]{8}$',min_length=8,max_length=8)):
+    """Explicit comparison overlay; never called by model inference.
+
+    Return the supplied arcs exactly, without inventing connecting roads or
+    deriving point labels. Disable for a reference-free official demonstration.
+    """
+    if os.environ.get('PATHSNAP_REFERENCE_DISPLAY','1')=='0':
+        return {'available':False,'reason':'Reference display is disabled on this server.'}
+    path=trip_root()/trip_id
+    if not path.is_dir():raise HTTPException(404,'Trip not found in active evaluation partition')
+    route_path=path/f'{trip_id}.route'
+    if not route_path.is_file():
+        return {'available':False,'reason':'No supplied .route reference for this trip.'}
+    try:
+        trip=load_trip(path)
+        indices=load_indices(route_path,1).ravel()
+        if indices.max()>=len(trip.arcs):raise ValueError('Invalid reference arc index')
+        arcs=trip.arcs[indices]
+        return {'available':True,'trip_id':trip_id,'source':'Supplied .route reference',
+                'geometry':trip.nodes[arcs].tolist(),'route_arc_count':len(indices),
+                'disconnected_joins':int(__import__('numpy').sum(arcs[:-1,1]!=arcs[1:,0])),
+                'note':'Actual path means the supplied route reference; it is not an independent per-point GPS label or official evaluator score.'}
+    except (ValueError,OSError,IndexError):
+        log.exception('Reference comparison unavailable for trip=%s',trip_id)
+        return {'available':False,'reason':'Supplied reference is invalid; prediction remains independent.'}
 
 def execute(trip_id,request_id):
     started=time.perf_counter()

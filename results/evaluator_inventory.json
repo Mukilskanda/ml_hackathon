@@ -1,0 +1,77 @@
+{
+  "source_zip_sha256": "a425b35e6e6f8d3a919690c5df3a9a7df2f7c2de7343a01c50ccd6ecb45178a7",
+  "trips": [
+    {
+      "trip_id": "00000015",
+      "observations": 6854,
+      "arcs": 3225,
+      "reference_arcs": 136,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000017",
+      "observations": 1346,
+      "arcs": 76425,
+      "reference_arcs": 795,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000023",
+      "observations": 458,
+      "arcs": 10596,
+      "reference_arcs": 59,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000030",
+      "observations": 654,
+      "arcs": 24218,
+      "reference_arcs": 337,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000049",
+      "observations": 2642,
+      "arcs": 47542,
+      "reference_arcs": 410,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000059",
+      "observations": 1031,
+      "arcs": 24024,
+      "reference_arcs": 455,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000067",
+      "observations": 916,
+      "arcs": 4485,
+      "reference_arcs": 82,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000073",
+      "observations": 1144,
+      "arcs": 25631,
+      "reference_arcs": 238,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000087",
+      "observations": 1399,
+      "arcs": 107451,
+      "reference_arcs": 455,
+      "reference_available": true
+    },
+    {
+      "trip_id": "00000094",
+      "observations": 3230,
+      "arcs": 14931,
+      "reference_arcs": 604,
+      "reference_available": true
+    }
+  ],
+  "model_retrained": false,
+  "purpose": "Untuned inference and reference comparison only"
+}

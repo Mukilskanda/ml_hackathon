@@ -1,6 +1,6 @@
 # Publish the prepared source repository
 
-Public publication is **not verified**. No remote URL or account authentication has been supplied to this task.
+Public publication is **not verified**. The supplied remote is https://github.com/Mukilskanda/ml_hackathon; publication and account access have not been verified.
 
 ## Use the curated snapshot, not private development history
 

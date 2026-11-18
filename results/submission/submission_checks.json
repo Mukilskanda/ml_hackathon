@@ -5,7 +5,6 @@
     "artifacts/manifest.json",
     "artifacts/model.joblib",
     "backend/__init__.py",
-    "backend/app.py",
     "pathsnap/__init__.py",
     "pathsnap/calibration.py",
     "pathsnap/core.py",
@@ -15,16 +14,20 @@
     "requirements.lock.txt",
     "run_backend.cmd",
     "run_ui.cmd",
-    "setup_backend.cmd",
-    "ui/app.js",
-    "ui/index.html",
-    "ui/style.css"
+    "setup_backend.cmd"
   ],
-  "model_and_runtime_unchanged": true,
+  "prediction_pipeline_unchanged": true,
+  "original_api_functions_ast_unchanged": true,
+  "authorized_reference_display_endpoint_sha256": "9ee324cc8e1ada5badd74a88fadf965d5f56d851af8a3376c128a090376f93d1",
+  "authorized_ui_refresh": {
+    "ui/app.js": "986f4c5779f208d2c7528c6cfe2641b5affbac5a4208f45261e54be8cd1e3aba",
+    "ui/index.html": "c9591bad780970514a73e62acba88cda7fc09b18c680933ca8adfa2e9c2fc20d",
+    "ui/style.css": "097a70b43125cffb6d7ad9040d72598f379d2e20aeb9526d5cc91f1ebbf32ab8"
+  },
   "working_text_secret_findings": [],
   "sensitive_filename_findings": [],
   "history_scan": {
-    "text_objects_scanned": 183,
+    "text_objects_scanned": 211,
     "credential_pattern_findings": [],
     "scope": "Heuristic recognizable-token/private-key scan; not a guarantee against all secrets."
   },
@@ -43,7 +46,7 @@
     },
     {
       "path": "output/pdf/PathSnap_Technical_Report.pdf",
-      "bytes": 1018505
+      "bytes": 1091629
     },
     {
       "path": "results/training_split_manifest.json",
@@ -102,7 +105,7 @@
         "setup_backend.cmd",
         "run_backend.cmd"
       ],
-      "matches_frozen_implementation": true
+      "matches_current_implementation": true
     },
     {
       "archive": "PathSnap_Laptop2_UI.zip",
@@ -112,12 +115,12 @@
         "ui/style.css",
         "run_ui.cmd"
       ],
-      "matches_frozen_implementation": true
+      "matches_current_implementation": true
     }
   ],
   "report_final_numbers_present": true,
-  "report_pages": 26,
-  "final_tests_passed": 28,
+  "report_pages": 27,
+  "final_tests_passed": 30,
   "publication_policy": "Curated snapshot excludes raw inputs, per-point arrays, location-bearing generated outputs and private development history.",
   "public_publication_verified": false,
   "physical_two_laptop_verified": false

@@ -11,7 +11,7 @@ def main():
     out=ROOT/'packages';out.mkdir(exist_ok=True)
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     provenance={'source_commit':commit,'model_sha256':hashlib.sha256((ROOT/'artifacts'/'model.joblib').read_bytes()).hexdigest(),
-                'implementation':'Frozen audited PathSnap; no training performed during packaging',
+                'implementation':'Audited prediction pipeline with refreshed UI and separate reference display; no training during packaging',
                 'public_publication_verified':False,'physical_two_laptop_verified':False}
     def stamp(z):
         z.writestr('SOURCE_COMMIT.txt',commit+'\n')
@@ -42,6 +42,7 @@ There is no model, raw data, reference route or ground-truth label in this archi
             if p.exists():z.write(p,'artifacts/'+name)
         for name in ['model_comparison.csv','route_comparison.csv']:z.write(ROOT/'results'/name,'results/'+name)
         add_tree(z,ROOT/'data'/'Student folder'/'student_test')
+        add_tree(z,ROOT/'data'/'evaluator_test')
         for name in ['README.md','FINAL_HANDOFF.md','FINAL_READINESS_AUDIT.md','THIRD_PARTY_NOTICES.md','requirements.lock.txt','setup_backend.cmd','run_backend.cmd']:
             z.write(ROOT/name,name)
         z.write(ROOT/'docs'/'LAPTOP1_SETUP.md','LAPTOP1_README.md')

@@ -8,7 +8,7 @@ This is an implementation guide to study and verify, not a substitute for unders
 
 1. **Why not classify directly into arc IDs?** Arc IDs are local row indexes and mean different roads across trips. Candidate scoring uses transferable geometric and motion features.
 2. **What is the target label?** A binary label for each candidate, derived by monotonically aligning GPS samples to the supplied reference arc sequence. The route file is not one label per GPS observation.
-3. **How do you avoid leakage?** Split by complete trip. Fit scalers only within training folds. Keep reference membership out of features. Use no reserved evaluator data. Load reference files only after inference on the server.
+3. **How do you avoid leakage?** Split by complete trip. Fit scalers only within training folds. Keep reference membership out of features. Use no evaluator data for training, feature selection or tuning. Evaluate the frozen model only after development; reference geometry is loaded separately for comparison after prediction.
 4. **What does Macro F1 mean here?** The average F1 for candidate negative/positive classes, threshold 0.5. It is distinct from observation Top-1 road-selection accuracy.
 5. **Why report candidate miss rate?** If the reference road is not proposed, no classifier or decoder can select it; this limits achievable pointwise accuracy.
 6. **Why five or more models?** To justify model selection experimentally across linear, probabilistic, tree, ensemble, boosting and neural approaches. Open the actual comparison CSV and explain its tradeoffs.
@@ -21,7 +21,7 @@ This is an implementation guide to study and verify, not a substitute for unders
 13. **What happens at a big gap or disconnected candidate sets?** Restart the sequence chunk and expose the reset. Never fabricate a road connection in the map.
 14. **Is confidence a calibrated probability?** The deployed model's normalized candidate score is a relative diagnostic. A sigmoid calibration experiment is retained separately; read its measured CV/log-loss outcome and caveat.
 15. **What is novel?** The tested combination and engineering decisions within this project: directional candidates, uncertainty-aware hybrid emissions, gap handling and jitter tolerance. Do not claim new research priority.
-16. **What are your limitations?** Derived-label circularity, anomalous references, candidate truncation, bounded shortest paths, severe-noise degradation, sampled training observations, development-selected decoder scores, and no measured reserved-evaluator performance.
+16. **What are your limitations?** Derived-label circularity, anomalous references, candidate truncation, bounded shortest paths, severe-noise degradation, sampled training observations, development-selected decoder scores, and no official scorer or independently verified point labels. The separately supplied evaluator trips now have an untuned derived-reference replay.
 17. **What has actually been tested?** Read `results/test_results.txt`, `results/api_verification.json`, `results/browser_qa.json`, and the final audit. Two physical laptops still require rehearsal.
 
 ## Suggested four-person review
@@ -78,7 +78,7 @@ Directed Dijkstra is the expensive graph stage. Pruning to the maximum physicall
 
 **What exactly was independently audited?** The original 95.25% result is 95.2489% as an equal-trip mean, but 94.0971% when observations are pooled (18,029/19,160). Raw candidates, features, labels and model probabilities were regenerated. All three CV folds cover disjoint whole trips, and all seven algorithms plus tuned/directional variants reproduced their stored metrics on replay. No identical track files or matching moving ten-point windows were found across train/student-test partitions; that check cannot prove absence of all semantic overlap.
 
-**Does this establish 95% true-road generalization?** No. The references are derived, some reference routes disagree with GPS, decoder settings were developed on student-test trips, and the final evaluator partition is unavailable. Leave-one-trip-out decoder reselection is a sensitivity diagnostic, not a completely nested unbiased pipeline test.
+**Does this establish 95% true-road generalization?** No. The references are derived, some reference routes disagree with GPS, decoder settings were developed on student-test trips, and the new evaluator replay still uses derived point alignment rather than an official independent point scorer. Leave-one-trip-out decoder reselection is a sensitivity diagnostic, not a completely nested unbiased pipeline test.
 
 **Why keep the new U-turn prior?** A classifier trained on 68 trips scored a fixed seeded 12-trip training holdout. The prior improved mean point agreement by about 0.315 percentage points. Eighteen noise/dropout cases on three of those held-out training trips passed the robustness gate; repeated decode cost stayed essentially unchanged. The prior was selected before examining its student-test results. Its student-test aggregate gain is negligible and one trip regresses; explain that honestly.
 
@@ -105,3 +105,10 @@ Directed Dijkstra is the expensive graph stage. Pruning to the maximum physicall
 Each member should run a complete request and open its matching server request ID, explain the 15-feature schema, derive the two dynamic programs, identify the selected artifact, and locate one actual failed experiment. Rotate questions so the API owner explains grouping and the model owner explains a missing-reference API response. Replace the placeholder contribution list with actual work before submission.
 
 Read `FINAL_READINESS_AUDIT.md` at the repository root and `docs/DEMO_SCRIPT.md` immediately before the demonstration. The current score is in `results/critical_audit/final_accuracy.json`; do not quote an old chat figure without its averaging and reference-label qualification.
+
+
+## Supplied evaluator data and actual/predicted comparison
+
+The later-supplied evaluator ZIP has been imported locally and tested with the frozen pipeline: 10 trips, 19,674 observations, 95.4855% equal-trip and 95.1510% pooled **derived-reference agreement**. This is not official evaluator accuracy. The model and decoder match the audited artifacts; no tuning or manual prediction correction used these results. See `results/evaluator_verification.json`.
+
+In Route explorer, reconstruct a trip. **Blue is the actual path from the supplied `.route` reference; green is the predicted path; orange dots are raw GPS.** Use the independent layer checkboxes to inspect each. Where the routes overlap, the blue border remains visible around green. Actual means the supplied reference, not independently verified physical ground truth. The UI requests reference geometry separately after prediction; it never feeds the classifier or decoder. Missing or invalid references are shown as unavailable and do not block prediction. To disable comparison, set `PATHSNAP_REFERENCE_DISPLAY=0` before starting the server. Raw references remain on Laptop 1; Laptop 2 only receives comparison geometry at runtime.

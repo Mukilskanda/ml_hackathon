@@ -1,0 +1,85 @@
+{
+  "isolated_archive_execution": true,
+  "isolated_python_environment": true,
+  "all_ten_packaged_trip_requests": [
+    {
+      "trip_id": "00000015",
+      "http_status": 200,
+      "observations": 6854,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000017",
+      "http_status": 200,
+      "observations": 1346,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000023",
+      "http_status": 200,
+      "observations": 458,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000030",
+      "http_status": 200,
+      "observations": 654,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000049",
+      "http_status": 200,
+      "observations": 2642,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000059",
+      "http_status": 200,
+      "observations": 1031,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000067",
+      "http_status": 200,
+      "observations": 916,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000073",
+      "http_status": 200,
+      "observations": 1144,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000087",
+      "http_status": 200,
+      "observations": 1399,
+      "matches_recorded_accuracy": true
+    },
+    {
+      "trip_id": "00000094",
+      "http_status": 200,
+      "observations": 3230,
+      "matches_recorded_accuracy": true
+    }
+  ],
+  "browser_checks": [
+    "Packaged backend UI auto-connects and infers on nondefault port 8001"
+  ],
+  "ui_archive_contains_no_model_or_dataset_or_reference": true,
+  "ui_archive_members": [
+    "ui/app.js",
+    "ui/index.html",
+    "ui/style.css",
+    "run_ui.cmd",
+    "LAPTOP2_README.md",
+    "docs/DEPLOYMENT.md",
+    "docs/LAPTOP2_SETUP.md",
+    "docs/DEMO_SCRIPT.md",
+    "FINAL_HANDOFF.md",
+    "SOURCE_COMMIT.txt",
+    "PROVENANCE.json"
+  ],
+  "physical_second_laptop_tested": false,
+  "model_sha256": "315aae44581e8c88ba900553aaac4747931951f8d7b209d1cd59f7d39b4e1225"
+}

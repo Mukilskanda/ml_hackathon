@@ -1,5 +1,5 @@
 """Submission-only checks. Never fits or changes the selected pipeline."""
-import sys,json,re,hashlib,subprocess,zipfile
+import sys,json,re,hashlib,subprocess,zipfile,ast
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from pathsnap.core import ROOT
@@ -61,7 +61,15 @@ def main():
     sizes=sorted([{'path':n,'bytes':(ROOT/n).stat().st_size} for n in files],key=lambda r:r['bytes'],reverse=True)
     assert sizes[0]['bytes']<50*1024*1024,'Unexpected oversized source file'
     freeze=[]
+    # The UI and separate reference-display endpoint are explicitly authorized.
+    # Preserve every original API function and the complete ML implementation.
+    old_api=ast.parse(git('show','16bd43d:backend/app.py').decode())
+    new_api=ast.parse((ROOT/'backend/app.py').read_text(encoding='utf-8'))
+    original_functions={n.name:ast.dump(n) for n in old_api.body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))}
+    current_functions={n.name:ast.dump(n) for n in new_api.body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))}
+    assert all(current_functions.get(n)==value for n,value in original_functions.items()),'Audited prediction API logic changed'
     for name in runtime_members():
+        if name.startswith('ui/') or name=='backend/app.py':continue
         committed=git('show',f'16bd43d:{name}')
         assert digest(name,(ROOT/name).read_bytes())==digest(name,committed),f'Frozen implementation changed: {name}'
         freeze.append(name)
@@ -78,11 +86,11 @@ def main():
             assert z.testzip() is None
             compared=[]
             for name in z.namelist():
-                if name in freeze:
+                if name in runtime_members():
                     assert digest(name,z.read(name))==digest(name,(ROOT/name).read_bytes()),f'ZIP implementation drift: {filename}: {name}'
                     compared.append(name)
             if filename.endswith('UI.zip'):assert not any(n.endswith(('.track','.arcs','.nodes','.route','.joblib')) for n in z.namelist())
-        package_check.append({'archive':filename,'runtime_members_compared':compared,'matches_frozen_implementation':True})
+        package_check.append({'archive':filename,'runtime_members_compared':compared,'matches_current_implementation':True})
     final=json.loads((ROOT/'results/critical_audit/final_accuracy.json').read_text())
     import pymupdf
     pdf=pymupdf.open(ROOT/'output/pdf/PathSnap_Technical_Report.pdf');text='\n'.join(p.get_text() for p in pdf)
@@ -97,7 +105,10 @@ def main():
        'command':'tmp/clean_env/Scripts/python.exe -m pytest -q','source_log':'Private working project: results/submission/final_tests.txt',
        'physical_two_laptop_tested':False},indent=2),encoding='utf-8',newline='\n')
     result={'frozen_base_commit':'16bd43d39ee3a8474cd334aee5723f8bb464237f','frozen_runtime_members':freeze,
-      'model_and_runtime_unchanged':True,'working_text_secret_findings':findings,'sensitive_filename_findings':sensitive,
+      'prediction_pipeline_unchanged':True,'original_api_functions_ast_unchanged':True,
+      'authorized_reference_display_endpoint_sha256':digest('backend/app.py',(ROOT/'backend/app.py').read_bytes()),
+      'authorized_ui_refresh':{n:digest(n,(ROOT/n).read_bytes()) for n in runtime_members() if n.startswith('ui/')},
+      'working_text_secret_findings':findings,'sensitive_filename_findings':sensitive,
       'history_scan':history,'largest_files':sizes[:12],'files_over_50_MiB':[],
       'required_direct_dependencies_locked':True,'deployment_checks':package_check,
       'report_final_numbers_present':True,'report_pages':len(pdf),
@@ -107,7 +118,7 @@ def main():
     result_path=Path(sys.argv[1]) if len(sys.argv)>1 else out/'submission_checks.json'
     result_path.parent.mkdir(parents=True,exist_ok=True)
     result_path.write_text(json.dumps(result,indent=2),encoding='utf-8',newline='\n')
-    print(json.dumps({'runtime_unchanged':True,'secret_pattern_findings':0,'history_text_objects':history['text_objects_scanned'],
+    print(json.dumps({'prediction_pipeline_unchanged':True,'ui_refresh':True,'secret_pattern_findings':0,'history_text_objects':history['text_objects_scanned'],
                      'largest_file_MiB':round(sizes[0]['bytes']/1048576,2),'report_pages':len(pdf)}),flush=True)
 
 if __name__=='__main__':main()

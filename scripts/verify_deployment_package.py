@@ -31,11 +31,15 @@ def main():
             else:raise RuntimeError('Isolated packaged server did not start')
             listing=client.get('/api/trips').json();assert len(listing['trips'])==10
             expected=pd.read_csv(ROOT/'results'/'route_comparison.csv',dtype={'trip_id':str});expected=expected[expected.method=='audited_hmm'].set_index('trip_id')
+            if listing['mode']=='evaluator':
+                expected=pd.DataFrame(json.loads((ROOT/'results/evaluator_verification.json').read_text())['records']).set_index('trip_id')
             for trip in listing['trips']:
                 response=client.post('/api/predict',json={'trip_id':trip['id']});assert response.status_code==200,response.text
                 p=response.json();assert abs(p['metrics']['point_accuracy']-expected.loc[trip['id'],'point_accuracy'])<1e-12
                 assert p['observations']==len(p['arc_ids'])
                 assert not {'labels','reference_route','ground_truth'}&p.keys()
+                ref=client.get('/api/reference/'+trip['id']).json()
+                assert ref['available'] and len(ref['geometry'])==ref['route_arc_count']
                 rows.append({'trip_id':trip['id'],'http_status':response.status_code,'observations':p['observations'],'matches_recorded_accuracy':True})
             assert client.get('/api/experiments').status_code==200
         # Optional global browser QA tool tests the isolated packaged app at a
@@ -46,8 +50,9 @@ def main():
                 browser=p.chromium.launch(headless=True);page=browser.new_page()
                 page.goto('http://127.0.0.1:8001',wait_until='domcontentloaded')
                 page.wait_for_function("document.querySelector('#connection').textContent==='Model server online'")
-                page.locator('#trip').select_option('00000052');page.locator('#run').click()
-                page.wait_for_function("document.querySelector('#observations').textContent==='262' && !document.querySelector('#run').disabled",timeout=90000)
+                page.locator('#trip').select_option(listing['trips'][0]['id']);page.locator('#run').click()
+                page.wait_for_function("document.querySelector('#observations').textContent!=='—' && !document.querySelector('#run').disabled",timeout=90000)
+                assert page.locator('[data-layer="reference"]').is_enabled()
                 browser_checks.append('Packaged backend UI auto-connects and infers on nondefault port 8001')
                 browser.close()
         except ImportError:browser_checks.append('Optional Playwright unavailable; browser portion not executed')

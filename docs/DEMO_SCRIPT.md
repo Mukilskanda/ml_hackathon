@@ -31,7 +31,7 @@ Open Experiment bench. Identify seven baseline algorithms, the grouped-CV select
 
 ## 2:30-3:00 — Integrity and limitations
 
-"The supplied .route is a sequence of traversed segments, so we document a separate monotone reference alignment. Labels never enter inference or the UI. We group CV by complete trip and keep evaluator data untouched during development. Severe added GPS noise remains a failure case. Official scoring and physical deployment evidence are reported only when actually verified."
+"The supplied .route is a sequence of traversed segments, so we document a separate monotone reference alignment. Reference labels never enter inference. A separate request displays the supplied actual-path geometry in blue after the model predicts the green route. We group CV by complete trip and keep evaluator data untouched during development. Severe added GPS noise remains a failure case. Official scoring and physical deployment evidence are reported only when actually verified."
 
 Offer the source, report, manifest, trial history and actual logs. Each member should answer questions across all components; use `VIVA_GUIDE.md` for preparation.
 

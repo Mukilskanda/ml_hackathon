@@ -5,7 +5,7 @@ No model changes are part of this closeout. Every local preparation below is com
 | ID | Locally resolved preparation | Remaining evidence / owner |
 |---|---|---|
 | MG07 | Separate-origin UI/API tests, isolated ZIP execution, exact IP/port/firewall instructions in `FINAL_HANDOFF.md` | Team: connect two actual laptops and verify requests |
-| MT16 | Reserved-partition loader, incomplete-file checks and ten-trip local replay | Organizer supplies reserved trips; team runs all ten without development tuning |
+| MT16 | Reserved-partition loader, incomplete-file checks and ten-trip local replay | RESOLVED LOCALLY: supplied ZIP imported; all ten frozen-model requests and reference overlays verified in results/evaluator_verification.json. Physical deployment remains MG07. |
 | MT17 | Isolated server-side derived scorer, malformed-reference handling and explicit metric basis | Organizer confirms point labels/official scoring convention; team verifies that scorer |
 | MT19 | Source/configuration/experiment traceability and comprehensive viva guide | Four members explain and attest to their actual work |
 | DL19 | Source-commit-to-ZIP hash verification and archive provenance prepared | Team uses that same version in the physical demonstration and records its commit/hash |
