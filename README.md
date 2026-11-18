@@ -150,3 +150,6 @@ In Route explorer, reconstruct a trip. **Blue is the actual path from the suppli
 
 
 The UI now displays **Route continuity** for the selected trip independently of reference availability. Experiment bench shows each decoder's equal-trip continuity, including the final 90.47% development mean. This differs from network feasibility. Full organizer-question answers are in [docs/DELIVERABLES_ANSWERS.md](docs/DELIVERABLES_ANSWERS.md); the final checklist is [docs/DELIVERABLES_FINAL_CHECK.md](docs/DELIVERABLES_FINAL_CHECK.md).
+
+
+For real HMM/Viterbi console diagnostics with the frozen model, run `python scripts/demo_hmm.py --partition student --trip 00000052`. See [the live HMM review guide](docs/HMM_DEMO.md) for logged one-trip/all-trip commands and stage explanations. This performs inference only and leaves saved artifacts unchanged.

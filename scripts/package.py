@@ -43,6 +43,7 @@ There is no model, raw data, reference route or ground-truth label in this archi
         for name in ['model_comparison.csv','route_comparison.csv']:z.write(ROOT/'results'/name,'results/'+name)
         add_tree(z,ROOT/'data'/'Student folder'/'student_test')
         add_tree(z,ROOT/'data'/'evaluator_test')
+        z.write(ROOT/'scripts'/'demo_hmm.py','scripts/demo_hmm.py')
         for name in ['README.md','FINAL_HANDOFF.md','FINAL_READINESS_AUDIT.md','THIRD_PARTY_NOTICES.md','requirements.lock.txt','setup_backend.cmd','run_backend.cmd']:
             z.write(ROOT/name,name)
         z.write(ROOT/'docs'/'LAPTOP1_SETUP.md','LAPTOP1_README.md')
@@ -60,6 +61,7 @@ There is no model, raw data, reference route or ground-truth label in this archi
     for p in [ui,backend]:
         with zipfile.ZipFile(p) as z:
             assert z.testzip() is None
+            assert len(z.namelist())==len(set(z.namelist())),'Duplicate archive members'
             manifest[p.name]=[{'path':n,'bytes':z.getinfo(n).file_size,'sha256':hashlib.sha256(z.read(n)).hexdigest()} for n in z.namelist()]
     (out/'transfer_manifest.json').write_text(json.dumps(manifest,indent=2))
     print(json.dumps(checksums),flush=True)

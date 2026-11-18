@@ -1,6 +1,6 @@
 {
-  "source_workspace_commit": "445630fc116b1cbe8946dc620f539488c5b9e479",
-  "source_file_count": 165,
+  "source_workspace_commit": "0aa8b36a92cbe4cd590d1ffd93a74c95a8b1b06d",
+  "source_file_count": 167,
   "files": [
     {
       "path": ".gitattributes",
@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "1bdf414109c80b4bca3a5c996b2332fa1599e443a53c7ece24572ea718f87109"
+      "sha256": "5a76a9a92000d744a0dca464ffe44e0dfe9643eb1331862124cdc3c5df766212"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -117,6 +117,10 @@
     {
       "path": "docs/FINAL_AUDIT.md",
       "sha256": "54b457d363b9126a9c75ef5f800d37c041ee7ad6cdb7de04fa1f4038a514a4fe"
+    },
+    {
+      "path": "docs/HMM_DEMO.md",
+      "sha256": "2db9ff77e5dc0ec2732c8f08ca54bfee88e07336e9009d2965ac5cf489a414d9"
     },
     {
       "path": "docs/LAPTOP1_SETUP.md",
@@ -539,6 +543,10 @@
       "sha256": "21772b2bd1a39cfdeb699645d22195eb579d5b79f5449d1c0d17cc5b9ef67717"
     },
     {
+      "path": "scripts/demo_hmm.py",
+      "sha256": "afb4d71c05816500b5331e51ba09b80d076904d086734c6acefe15e8260057ec"
+    },
+    {
       "path": "scripts/dependency_notices.py",
       "sha256": "bc491c9f5f804a3f19ed952f1d68a66c927ab3ab07d9ac4191791f8a2345eb97"
     },
@@ -560,7 +568,7 @@
     },
     {
       "path": "scripts/package.py",
-      "sha256": "c442acd3cfbb27b5b74b04ba7e40d6adff1e87b1c121f9def824fef473af2f1b"
+      "sha256": "f2260514693261d98b7969819cd2e7c0789438c0193bca6463143dec2341637f"
     },
     {
       "path": "scripts/prepare.py",
