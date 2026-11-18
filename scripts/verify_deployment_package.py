@@ -43,7 +43,9 @@ def main():
                     assert hashlib.sha256(np.asarray(p['arc_ids'],dtype='<i4').tobytes()).hexdigest()==expected.loc[trip['id'],'prediction_sha256'],'Predicted sequence changed'
                 assert not {'labels','reference_route','ground_truth'}&p.keys()
                 ref=client.get('/api/reference/'+trip['id']).json()
-                assert ref['available'] and len(ref['geometry'])==ref['route_arc_count']
+                if listing['mode']=='evaluator':
+                    assert not ref['available'] and 'geometry' not in ref
+                else:assert ref['available'] and len(ref['geometry'])==ref['route_arc_count']
                 rows.append({'trip_id':trip['id'],'http_status':response.status_code,'observations':p['observations'],'matches_recorded_accuracy':True})
             assert client.get('/api/experiments').status_code==200
         # Optional global browser QA tool tests the isolated packaged app at a
@@ -56,9 +58,10 @@ def main():
                 page.wait_for_function("document.querySelector('#connection').textContent==='Model server online'")
                 page.locator('#trip').select_option(listing['trips'][0]['id']);page.locator('#run').click()
                 page.wait_for_function("document.querySelector('#observations').textContent!=='—' && !document.querySelector('#run').disabled",timeout=90000)
-                assert page.locator('[data-layer="reference"]').is_enabled()
+                if listing['mode']=='evaluator':assert page.locator('[data-layer="reference"]').is_disabled()
+                else:assert page.locator('[data-layer="reference"]').is_enabled()
                 assert page.locator('#routeContinuity').inner_text()!='—'
-                browser_checks.append('Packaged backend UI auto-connects, infers and displays actual/predicted paths plus route continuity on nondefault port 8001')
+                browser_checks.append('Packaged UI auto-connects, infers and displays continuity; reserved reference geometry is withheld from the UI')
                 browser.close()
         except ImportError:browser_checks.append('Optional Playwright unavailable; browser portion not executed')
     finally:

@@ -19,16 +19,16 @@
   "original_api_functions_ast_unchanged": true,
   "prediction_and_geometry_functions_ast_unchanged": true,
   "response_addition": "Reference-free direct_arc_continuity for UI display",
-  "authorized_reference_display_endpoint_sha256": "9ee324cc8e1ada5badd74a88fadf965d5f56d851af8a3376c128a090376f93d1",
+  "authorized_reference_display_endpoint_sha256": "5f7413dc666d1d63d09880ac2cf9706a7fedc54f9667f2a7b12a6e4cac29a97c",
   "authorized_ui_refresh": {
-    "ui/app.js": "2813998c5a451fccfea1ae697f51b1c1d501066d213649e58fb091b81c2d253c",
+    "ui/app.js": "e107a0bb732f6d3e660df3193e94c7982efceecb623f4a06901bb5249e64db35",
     "ui/index.html": "9b21389b44aa9f551aeb3a75d05473a04acdf01198d2e8a56c1ceb8f0bceb55a",
     "ui/style.css": "849f9db5b341b711bbbae3448ea85797029ae8fb52990d21068ba40fb1f21a11"
   },
   "working_text_secret_findings": [],
   "sensitive_filename_findings": [],
   "history_scan": {
-    "text_objects_scanned": 239,
+    "text_objects_scanned": 276,
     "credential_pattern_findings": [],
     "scope": "Heuristic recognizable-token/private-key scan; not a guarantee against all secrets."
   },
@@ -47,7 +47,7 @@
     },
     {
       "path": "output/pdf/PathSnap_Technical_Report.pdf",
-      "bytes": 1098703
+      "bytes": 1513588
     },
     {
       "path": "results/training_split_manifest.json",
@@ -120,9 +120,9 @@
     }
   ],
   "report_final_numbers_present": true,
-  "report_pages": 28,
-  "final_tests_passed": 33,
-  "publication_policy": "Curated snapshot excludes raw inputs, per-point arrays, location-bearing generated outputs and private development history.",
+  "report_pages": 31,
+  "final_tests_passed": 34,
+  "publication_policy": "Includes the user-authorized technical report, generated figures, Folium map and UI/API screenshots. Excludes raw inputs, bulk cache/probability arrays, environments and private development history.",
   "public_publication_verified": false,
   "physical_two_laptop_verified": false
 }

@@ -1,10 +1,27 @@
 {
-  "team_name": "[TEAM NAME]",
+  "team_name": "RouteForge",
   "members": [
-    {"name": "[MEMBER 1]", "usn": "[USN 1]", "ownership": "Data and features"},
-    {"name": "[MEMBER 2]", "usn": "[USN 2]", "ownership": "Models and optimisation"},
-    {"name": "[MEMBER 3]", "usn": "[USN 3]", "ownership": "HMM and evaluation"},
-    {"name": "[MEMBER 4]", "usn": "[USN 4]", "ownership": "API, UI and integration"}
+    {
+      "name": "Mukil Skanda A",
+      "usn": "PES1UG24CS281",
+      "ownership": "Data validation, EDA and feature engineering; pipeline integration and final validation."
+    },
+    {
+      "name": "Mridhini MR",
+      "usn": "PES1UG24CS277",
+      "ownership": "Baseline model training, Bayesian optimisation and experiment comparison."
+    },
+    {
+      "name": "Affan Dumba",
+      "usn": "PES1UG24CS280",
+      "ownership": "Directed graph transitions, HMM/Viterbi decoding and route diagnostics."
+    },
+    {
+      "name": "Mrinmayi Raman",
+      "usn": "PES1UG24CS278",
+      "ownership": "FastAPI/UI integration, Folium visualisation and deployment documentation."
+    }
   ],
-  "note": "Suggested ownership; replace with actual contributions before submission."
+  "note": "Team name, member names and USNs were supplied by the user. Responsibilities describe assigned scope and require member review against completed work before submission.",
+  "ownership_status": "Assigned project responsibilities; team review required before submission."
 }

@@ -8,7 +8,7 @@ Reviewed the seven-page organizer PDF against the current report, source files, 
 - One consolidated report is present. It now includes all nine model-configuration write-ups, actual per-model fitting diagnoses, tuning inference-time comparisons, matching required section numbers, Folium/UI evidence and the separately measured evaluator replay.
 - Route continuity is implemented and now displayed on the UI, separately from network feasibility. Student-test final equal-trip direct continuity is 90.47%; individual trips have their own values.
 - Mandatory genuine receiving-laptop CMD screenshot: MISSING. Local log excerpts and browser API screenshots do not satisfy this.
-- Physical two-laptop execution, final demonstrated-version identity, team interpretation/viva understanding and first-phase attendance/scope need external/team evidence. Names remain placeholders as requested; no identities or actual contributions are invented.
+- Physical two-laptop execution, final demonstrated-version identity, team interpretation/viva understanding and first-phase attendance/scope need external/team evidence. RouteForge member names and USNs are supplied; assigned responsibilities are recorded. Individual understanding and review of completed work remain team responsibilities.
 - All percentages are explicitly qualified: Top-1 is observation-level; candidate Macro F1/log loss are binary candidate metrics; direct continuity, network feasibility and point agreement are distinct. Confirm the organizer's official scoring interpretation rather than calling derived alignment official accuracy.
 
 ## Requirement table
@@ -37,7 +37,7 @@ The report now uses required main sections 2–7: EDA, model comparison, Bayesia
 | DL18 | Deliverables p6 | Genuine successful receiving-laptop CMD screenshot | **FAIL** | `docs/DEPLOYMENT.md`<br>`results/server_log_excerpt.txt` | Real local logs exist; no CMD screenshot of the physical receiving laptop has been captured. |
 | DL19 | Deliverables p7 | Submitted source matches final demonstrated system | **PARTIAL** | `scripts/package.py`<br>`docs/SUBMISSION.md` | Local artifact/package consistency verified; team must use final commit at external demo. |
 | DL20 | Deliverables p1 | First-phase evaluation before lunch | **PARTIAL** | `docs/DEMO_SCRIPT.md` | Organizer schedule and phase scope are external; not invented. |
-| DL21 | Deliverables p7 | AI disclosure, original analysis and each member can defend claims | **PARTIAL** | `docs/VIVA_GUIDE.md`<br>`team.json`<br>`docs/SUBMISSION.md` | AI-assisted draft disclosed; team interpretation and names remain placeholders by request. |
+| DL21 | Deliverables p7 | AI disclosure, original analysis and each member can defend claims | **PARTIAL** | `docs/VIVA_GUIDE.md`<br>`team.json`<br>`docs/SUBMISSION.md` | AI-assisted draft disclosed; RouteForge names/USNs and assigned responsibilities are recorded; team interpretation and defence remain pending. |
 
 ## Current report section locations
 
@@ -60,21 +60,27 @@ The report now uses required main sections 2–7: EDA, model comparison, Bayesia
 | 5.3 / Robustness and failure cases | 19 |
 | 6 / Geographical visualization | 20 |
 | 7 / API and user interface | 21 |
-| 7.1 / API execution evidence | 22 |
-| 7.2 / Deployment and verification | 23 |
-| 8 / Final audit and team review | 24 |
-| 9 / Independent critical audit | 25 |
-| 9.1 / Validated changes and rejections | 26 |
-| 9.2 / Consolidated required comparison | 27 |
-| 10 / Supplied evaluator replay | 28 |
-| 10 / 19,674 | 28 |
+| 7.1 / Experiment comparison interface | 22 |
+| 7.2 / Reserved evaluator interface | 23 |
+| 7.3 / Mobile interface | 24 |
+| 7.4 / API execution evidence | 25 |
+| 7.5 / Deployment and verification | 26 |
+| 8 / Final audit and team review | 27 |
+| 9 / Independent critical audit | 28 |
+| 9.1 / Validated changes and rejections | 29 |
+| 9.2 / Consolidated required comparison | 30 |
+| 10 / Supplied evaluator replay | 31 |
+| 10 / 19,674 | 31 |
 
 ## Final manual actions
 
 1. Run the prepared backend and UI on two physical laptops. Test all ten active evaluator trips and capture the genuine receiving-CMD screenshot with the matching request ID and successful POST. Follow `docs/CONSOLE_SCREENSHOT_CHECKLIST.md`; add that real image to the consolidated report and rebuild/review it.
-2. Review the answers, team interpretation and AI assistance disclosure. Preserve or replace the requested name placeholders as appropriate for actual submission. Confirm the organizer's phase schedule and official scoring interpretation.
+2. Review the answers, team interpretation and AI assistance disclosure. Review the assigned responsibilities against actual completed work before final submission. Confirm the organizer's phase schedule and official scoring interpretation.
 3. Push the final publication-folder commit, verify the remote commit, and submit the public URL plus the single final PDF.
 
 Evidence summary: `results/deliverables_final_check.json`, `results/browser_qa.json`, `results/submission/final_tests.txt`, `results/evaluator_verification.json`, `results/evaluator_package_execution.json`. The final archive-to-source checks are generated under `packages/` after committing.
 
 Full question-by-question answers are in `docs/DELIVERABLES_ANSWERS.md`.
+
+
+Full five-document recheck: 34 tests passed; both development and reserved UI browser checks passed. Reserved reference geometry is now blocked server-side and client-side, while student-test comparison remains available. Full parameter snapshots cover all nine model configurations. The user confirmed the genuine receiving-CMD screenshot is not yet available; it remains FAIL, and physical two-laptop execution remains PARTIAL. See the current closeout section in FINAL_READINESS_AUDIT.md.

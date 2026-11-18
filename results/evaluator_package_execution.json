@@ -64,7 +64,7 @@
     }
   ],
   "browser_checks": [
-    "Packaged backend UI auto-connects, infers and displays actual/predicted paths plus route continuity on nondefault port 8001"
+    "Packaged UI auto-connects, infers and displays continuity; reserved reference geometry is withheld from the UI"
   ],
   "ui_archive_contains_no_model_or_dataset_or_reference": true,
   "ui_archive_members": [
@@ -76,6 +76,7 @@
     "docs/DEPLOYMENT.md",
     "docs/LAPTOP2_SETUP.md",
     "docs/DEMO_SCRIPT.md",
+    "docs/REMOTE_TWO_LAPTOP.md",
     "FINAL_HANDOFF.md",
     "SOURCE_COMMIT.txt",
     "PROVENANCE.json"

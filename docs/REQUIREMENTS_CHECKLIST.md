@@ -105,3 +105,8 @@ Status: **implemented/measured** means local source and execution evidence exist
 ## Additional user-requested experiments
 
 Adaptive directional candidate generation, gap/distance-aware transitions, hybrid geometric/ML emissions, group-aware sigmoid calibration, feature ablation, candidate-count coverage and seeded noise/dropout tests have execution outputs. Research originality is not claimed. Adoption/rejection decisions are recorded explicitly and the report states development-selection optimism.
+
+
+## Current strict evaluator boundary
+
+Models and Training p6 and Assessment p3 require evaluator ground truth to stay server-side. The current endpoint and UI block evaluator reference geometry; only student-test review may display a reference. Both partitions were checked in separate-origin browser runs. All five documents were re-read for the current audit, but each member's understanding, physical two-laptop execution and the receiving-CMD screenshot require genuine external evidence.

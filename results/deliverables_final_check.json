@@ -1,7 +1,7 @@
 {
   "source": "materials/Deliverables.pdf",
   "report": "output/pdf/PathSnap_Technical_Report.pdf",
-  "report_pages": 28,
+  "report_pages": 31,
   "requirement_counts": {
     "PASS": 17,
     "PARTIAL": 3,
@@ -16,7 +16,7 @@
   "physical_two_laptop_verified": false,
   "public_repository_access_verified": true,
   "later_changes_need_push": true,
-  "team_names_placeholders_by_request": true,
+  "team_names_placeholders_by_request": false,
   "sections": {
     "1 / System and evidence": 2,
     "2 / Dataset understanding and EDA": 3,
@@ -35,16 +35,54 @@
     "5.3 / Robustness and failure cases": 19,
     "6 / Geographical visualization": 20,
     "7 / API and user interface": 21,
-    "7.1 / API execution evidence": 22,
-    "7.2 / Deployment and verification": 23,
-    "8 / Final audit and team review": 24,
-    "9 / Independent critical audit": 25,
-    "9.1 / Validated changes and rejections": 26,
-    "9.2 / Consolidated required comparison": 27,
-    "10 / Supplied evaluator replay": 28,
-    "10 / 19,674": 28
+    "7.1 / Experiment comparison interface": 22,
+    "7.2 / Reserved evaluator interface": 23,
+    "7.3 / Mobile interface": 24,
+    "7.4 / API execution evidence": 25,
+    "7.5 / Deployment and verification": 26,
+    "8 / Final audit and team review": 27,
+    "9 / Independent critical audit": 28,
+    "9.1 / Validated changes and rejections": 29,
+    "9.2 / Consolidated required comparison": 30,
+    "10 / Supplied evaluator replay": 31,
+    "10 / 19,674": 31
   },
-  "automated_tests_passed": 33,
+  "automated_tests_passed": 34,
   "isolated_package_trips_passed": 10,
-  "all_ten_evaluator_predicted_sequences_match_frozen_recordings": true
+  "all_ten_evaluator_predicted_sequences_match_frozen_recordings": true,
+  "team_name": "RouteForge",
+  "confirmed_member_names": [
+    "Mukil Skanda A",
+    "Mridhini MR",
+    "Affan Dumba",
+    "Mrinmayi Raman"
+  ],
+  "usns_provided": true,
+  "actual_contributions_confirmed": false,
+  "assigned_responsibilities_recorded": true,
+  "all_five_guideline_pdfs_reread": true,
+  "evaluator_reference_ui_blocked": true,
+  "full_model_configuration_json_files": 9,
+  "full_guideline_status_counts": {
+    "PASS": 62,
+    "PARTIAL": 9,
+    "FAIL": 1
+  },
+  "full_guideline_review_sources": {
+    "Main Guidelines.pdf": 2,
+    "Dataset Exploration.pdf": 4,
+    "Models and Training Guidelines.pdf": 6,
+    "Deliverables.pdf": 7,
+    "Assessment and Plagiarism Policy.pdf": 3
+  },
+  "screenshots_in_report": [
+    "ui_desktop.png",
+    "experiment_bench.png",
+    "evaluator_ui_desktop.png",
+    "ui_mobile_top.png",
+    "ui_mobile_map.png",
+    "api_documentation.png",
+    "folium_development_map.png"
+  ],
+  "model_sha256": "315aae44581e8c88ba900553aaac4747931951f8d7b209d1cd59f7d39b4e1225"
 }

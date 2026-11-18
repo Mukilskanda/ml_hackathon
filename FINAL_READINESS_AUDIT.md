@@ -2,7 +2,7 @@
 
 Final critical audit, 18 November 2026. This supersedes the initial build audit. PASS means local evidence supports the stated scope; PARTIAL means external/human verification or an explicitly limited interpretation remains; FAIL means a mandatory external deliverable is currently absent, not that local inference is broken.
 
-**Status counts: 63 PASS / 8 PARTIAL / 1 FAIL.**
+**Status counts: 62 PASS / 9 PARTIAL / 1 FAIL.**
 
 ## Main findings
 
@@ -30,7 +30,7 @@ Final critical audit, 18 November 2026. This supersedes the initial build audit.
 1. Push the final report-generation/documentation changes. Public access and the previously prepared implementation commit are verified in `results/publication_verification.json`.
 2. Run the complete deployment on two physical laptops and capture the actual receiving CMD console.
 3. Confirm the organizer's reference-alignment/official scoring convention.
-4. Replace requested placeholders, review interpretation/actual contributions/AI disclosure, and rehearse the viva.
+4. Review assigned responsibilities, interpretation and AI disclosure, and rehearse the viva.
 5. Confirm the organizer's first-phase evaluation schedule and scope.
 
 ## Final submission closeout
@@ -44,7 +44,7 @@ Submission checks in `results/submission/submission_checks.json` verify that run
 | ID | Source | Requirement | Status | Evidence | Boundary / qualification |
 |---|---|---|---|---|---|
 | MG01 | Main Guidelines p1-2 | End-to-end noisy GPS to road reconstruction | **PASS** | `pathsnap/core.py`<br>`pathsnap/service.py`<br>`results/api_verification.json` |  |
-| MG02 | Main Guidelines p2 | Read/understand the five supplied documents | **PASS** | `docs/REQUIREMENTS_CHECKLIST.md`<br>`FINAL_READINESS_AUDIT.md` |  |
+| MG02 | Main Guidelines p2 | Read/understand the five supplied documents | **PARTIAL** | `docs/REQUIREMENTS_CHECKLIST.md`<br>`FINAL_READINESS_AUDIT.md` | All five were re-read for this audit; each member's understanding still needs team/viva confirmation. |
 | MG03 | Main Guidelines p2 | Independent processing, feature engineering and model comparison | **PASS** | `scripts/prepare.py`<br>`scripts/train.py`<br>`results/critical_audit/model_replay.json` |  |
 | MG04 | Main Guidelines p2 | Bayesian optimisation and saved artifacts | **PASS** | `results/bayesian_trials.csv`<br>`results/critical_audit/bayesian_log_verification.json`<br>`artifacts/model.joblib` |  |
 | MG05 | Main Guidelines p2 | HMM/Viterbi and candidate/road correspondence | **PASS** | `pathsnap/decoder.py`<br>`tests/test_critical_audit.py::test_viterbi_matches_exhaustive_path_enumeration` | Uses explicitly disclosed proportional transition potentials; stochastic row-normalized alternative tested and rejected. |
@@ -62,7 +62,7 @@ Submission checks in `results/submission/submission_checks.json` verify that run
 | DE09 | Dataset Exploration p2-3 | Physically meaningful geographic distances | **PASS** | `pathsnap/core.py`<br>`docs/METHODOLOGY.md` | Local equirectangular approximation; not a global survey projection. |
 | DE10 | Dataset Exploration p3 | Reference limitations and assumptions disclosed | **PASS** | `docs/METHODOLOGY.md`<br>`results/critical_audit/accuracy_audit.json` |  |
 | DE11 | Dataset Exploration p3 | Whole-trip partitions and training-only preprocessing fit | **PASS** | `scripts/train.py::cv_run`<br>`results/training_split_manifest.json`<br>`results/critical_audit/model_replay.json` |  |
-| DE12 | Dataset Exploration p3 | No evaluator data used for model/features/tuning | **PASS** | `scripts/train.py`<br>`scripts/decoder_improvement_audit.py` | Experiment inputs explicitly target supplied train/student-test only; no evaluator files supplied. |
+| DE12 | Dataset Exploration p3 | No evaluator data used for model/features/tuning | **PASS** | `scripts/train.py`<br>`scripts/decoder_improvement_audit.py` | Development inputs explicitly target train/student-test only. Later evaluator replay used the frozen model and selected no settings. |
 | DE13 | Dataset Exploration p3 | Keep evaluator ground truth separate from prediction | **PASS** | `tests/test_pipeline.py::test_inference_never_reads_reference`<br>`tests/test_critical_audit.py::test_reference_failure_does_not_destroy_prediction`<br>`backend/app.py` |  |
 | DE14 | Dataset Exploration p3-4 | Retain inventory, statistics, GPS/maps and quality decisions | **PASS** | `results/figures/dataset_overview.png`<br>`results/maps/development_trip_00000007.html`<br>`docs/METHODOLOGY.md` |  |
 | MT01 | Models and Training p1-3 | At least five distinct algorithms across families | **PASS** | `results/model_comparison.csv`<br>`results/critical_audit/model_replay.json` | Seven algorithms plus tuned and candidate variants. |
@@ -80,7 +80,7 @@ Submission checks in `results/submission/submission_checks.json` verify that run
 | MT13 | Models and Training p5 | One predicted road per relevant observation | **PASS** | `scripts/verify_api.py`<br>`results/api_verification.json` |  |
 | MT14 | Models and Training p5 | Classifier-only versus sequence decoding and continuity analysis | **PASS** | `results/route_comparison.csv`<br>`results/figures/route_comparison.png` |  |
 | MT15 | Models and Training p5 | Decoder tuning on permitted data only | **PASS** | `scripts/evaluate_routes.py`<br>`results/critical_audit/improvement_protocol.json` | Original decoder uses student-test development tuning; new prior uses training-only replay gates. |
-| MT16 | Models and Training p5-6 | All ten actual reserved evaluator trips work | **PASS** | `backend/app.py`<br>`docs/DEPLOYMENT.md` | All ten newly supplied evaluator trips passed frozen-model inference and exact reference geometry checks: `results/evaluator_verification.json`; physical execution remains covered by MG07. |
+| MT16 | Models and Training p5-6 | All ten actual reserved evaluator trips work | **PASS** | `backend/app.py`<br>`docs/DEPLOYMENT.md` | All ten supplied evaluator trips passed frozen-model inference and scoring checks: `results/evaluator_verification.json`; physical execution remains covered by MG07. |
 | MT17 | Models and Training p6 | Server computes accuracy with internal references | **PARTIAL** | `backend/app.py`<br>`results/api_verification.json` | Derived-alignment scorer verified; official pointwise reference/scorer convention unresolved. |
 | MT18 | Models and Training p6 | Live API calls/logs; no hardcoded outputs or bypass | **PASS** | `backend/app.py`<br>`results/server_log_excerpt.txt`<br>`results/api_verification.json` |  |
 | MT19 | Models and Training p6 | Independent implementation and artifact explanation | **PARTIAL** | `docs/VIVA_GUIDE.md`<br>`docs/SUBMISSION.md` | Experiments executed here; actual four-person understanding/ownership still requires team review. |
@@ -104,7 +104,7 @@ Submission checks in `results/submission/submission_checks.json` verify that run
 | DL18 | Deliverables p6 | Genuine successful receiving-laptop CMD screenshot | **FAIL** | `docs/DEPLOYMENT.md`<br>`results/server_log_excerpt.txt` | Real local logs exist; no CMD screenshot of the physical receiving laptop has been captured. |
 | DL19 | Deliverables p7 | Submitted source matches final demonstrated system | **PARTIAL** | `scripts/package.py`<br>`docs/SUBMISSION.md` | Local artifact/package consistency verified; team must use final commit at external demo. |
 | DL20 | Deliverables p1 | First-phase evaluation before lunch | **PARTIAL** | `docs/DEMO_SCRIPT.md` | Organizer schedule and phase scope are external; not invented. |
-| DL21 | Deliverables p7 | AI disclosure, original analysis and each member can defend claims | **PARTIAL** | `docs/VIVA_GUIDE.md`<br>`team.json`<br>`docs/SUBMISSION.md` | AI-assisted draft disclosed; team interpretation and names remain placeholders by request. |
+| DL21 | Deliverables p7 | AI disclosure, original analysis and each member can defend claims | **PARTIAL** | `docs/VIVA_GUIDE.md`<br>`team.json`<br>`docs/SUBMISSION.md` | AI-assisted draft disclosed; RouteForge member names and USNs are provided; assigned responsibilities are recorded. Team interpretation and contribution review remain pending. |
 | AP01 | Assessment p1 | Meaningful >=5-model experimentation, tuning and retained records | **PASS** | `results/critical_audit/model_replay.json`<br>`results/critical_audit/bayesian_log_verification.json` |  |
 | AP02 | Assessment p1 | Correctness, reproducibility, evidence beyond one high score | **PASS** | `results/critical_audit/accuracy_audit.json`<br>`results/critical_audit/clean_environment_tests.txt`<br>`docs/METHODOLOGY.md` |  |
 | AP03 | Assessment p2 | No fabricated experiments, graphs, claims or implementation details | **PASS** | `scripts/verify_experiments.py`<br>`results/critical_audit/experiment_replay_checks.json`<br>`scripts/report.py` | Claims are bounded to retained execution evidence; no universal originality certification. |
@@ -127,6 +127,17 @@ Submission checks in `results/submission/submission_checks.json` verify that run
 
 ## Supplied evaluator ZIP and comparison UI update
 
-The later-supplied evaluator ZIP contains ten complete trips and 19,674 observations, including supplied `.route` references. It is imported under `data/evaluator_test/`; raw files remain excluded from Git/publication. All ten frozen-model requests and exact reference-geometry checks passed (`results/evaluator_verification.json`). No model, feature, decoder or hyperparameter was selected using these results. The original prediction functions remain unchanged; `GET /api/reference/{trip_id}` is a separate display-only endpoint, requested after prediction. Set `PATHSNAP_REFERENCE_DISPLAY=0` to disable display.
+The later-supplied evaluator ZIP contains ten complete trips and 19,674 observations, including supplied `.route` references. It is imported under `data/evaluator_test/`; raw files remain excluded from Git/publication. All ten frozen-model requests and exact reference-geometry checks passed (`results/evaluator_verification.json`). No model, feature, decoder or hyperparameter was selected using these results. Prediction functions remain unchanged. The current reference endpoint serves student-test review only; evaluator geometry is blocked. PATHSNAP_REFERENCE_DISPLAY=0 additionally disables student-test comparison.
 
-Untuned evaluator replay: **95.4855% equal-trip / 95.1510% pooled derived-reference agreement**, not official evaluator accuracy. The thirty-test suite and responsive browser checks passed; see `tests/test_reference_display.py` and `results/browser_qa.json`. MT16 is now locally PASS; physical two-laptop execution and official scoring remain unverified. The original nine-item closeout document is retained as a historical checklist; eight requirements remain PARTIAL.
+Untuned evaluator replay: **95.4855% equal-trip / 95.1510% pooled derived-reference agreement**, not official evaluator accuracy. The thirty-test suite and responsive browser checks passed; see `tests/test_reference_display.py` and `results/browser_qa.json`. MT16 is now locally PASS; physical two-laptop execution and official scoring remain unverified. The original nine-item closeout document is retained as a historical checklist; The latest status counts and the new full-document closeout below supersede that historical checklist.
+
+
+## Full five-document closeout: RouteForge submission revision
+
+All five source PDFs were re-read (Main Guidelines 2 pages; Dataset Exploration 4; Models and Training 6; Deliverables 7; Assessment and Plagiarism Policy 3). The current report includes the four supplied names/USNs and assigned project responsibilities. Team review of actual work and viva understanding remains external.
+
+A previous comparison mode exposed supplied evaluator reference geometry after prediction. That did not affect inference, but it conflicted with Models and Training p6 and Assessment p3. The current server now refuses evaluator reference geometry even when development display is enabled, and the evaluator client does not request it. Only student-test review may display a reference. `tests/test_reference_display.py::test_reserved_reference_never_reaches_ui_even_when_display_enabled`, `results/evaluator_browser_qa.json` and the strict evaluator screenshot provide current evidence. No claim is made that the earlier preview behavior was compliant.
+
+The 34-test suite passes. Full parameter JSON snapshots now exist for all nine compared configurations, exported from unchanged saved artifacts; null estimator defaults remain valid settings. The report includes per-decoder exact full-sequence match counts, the experiment bench, a reserved-evaluator prediction-only view and two real mobile viewport captures. `results/browser_qa.json` and `results/evaluator_browser_qa.json` document local separate-origin tests; these are not physical two-laptop evidence.
+
+The mandatory genuine receiving-CMD screenshot is still absent: the user confirmed it has not been captured. A same-laptop simulation must be labelled as local rehearsal and does not satisfy physical deployment evidence. A real two-laptop run over a private VPN can be prepared using `docs/REMOTE_TWO_LAPTOP.md`; actual connectivity, screenshot capture and organizer acceptance remain unverified until performed.

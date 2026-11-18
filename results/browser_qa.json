@@ -1,12 +1,12 @@
 {
   "physical_two_laptops_tested": false,
   "origins": [
-    "http://127.0.0.1:8080",
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8082",
+    "http://127.0.0.1:8002"
   ],
   "checks": [
     "Separate UI origin loads ten actual active-partition trip options via API",
-    "Actual supplied reference and predicted route are separately toggleable; reference loaded after POST inference",
+    "Student-test reference and prediction independently toggle after inference",
     "Live POST inference, nonempty route/metrics, playback, zoom and keyboard map controls",
     "Loading overlay and disabled controls; actual JSON export; failed request preserves and identifies previous result",
     "Selected-trip direct continuity matches API; final decoder equal-trip benchmark displays 90.47% separately from network feasibility",
@@ -15,6 +15,6 @@
     "Incorrect API URL fails clearly; settings recover connection",
     "Generated Folium map loads Leaflet canvas and actual trajectory layers"
   ],
-  "partition": "evaluator",
+  "partition": "development",
   "javascript_errors": []
 }

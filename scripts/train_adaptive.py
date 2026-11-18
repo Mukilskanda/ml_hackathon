@@ -7,7 +7,7 @@ import numpy as np,pandas as pd,joblib
 from sklearn.base import clone
 from pathsnap.core import ROOT,DATA,load_trip,candidates
 from pathsnap.metrics import classification_metrics
-from scripts.train import cv_run,predict
+from scripts.train import cv_run,predict,json_safe
 
 def main():
     baseline=ROOT/'artifacts'/'baseline_manifest.json'
@@ -40,6 +40,9 @@ def main():
     (ROOT/'results'/'adaptive_training.json').write_text(json.dumps(record,indent=2))
     (ROOT/'results'/'adaptive_model_per_trip.json').write_text(json.dumps(pertrip,indent=2))
     joblib.dump(model,ROOT/'artifacts'/f'{newname}.joblib',compress=3)
+    configuration_path=ROOT/'results'/'configurations'/f'{newname}.json'
+    configuration_path.parent.mkdir(parents=True,exist_ok=True)
+    configuration_path.write_text(json.dumps(json_safe(model.get_params()),indent=2))
     if improved:
         (ROOT/'artifacts'/'baseline_manifest.json').write_text(json.dumps(manifest,indent=2))
         joblib.dump(model,ROOT/'artifacts'/'model.joblib',compress=3)

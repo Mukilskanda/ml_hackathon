@@ -90,6 +90,8 @@ def reference(trip_id:str=APIPath(pattern=r'^[0-9]{8}$',min_length=8,max_length=
         return {'available':False,'reason':'Reference display is disabled on this server.'}
     path=trip_root()/trip_id
     if not path.is_dir():raise HTTPException(404,'Trip not found in active evaluation partition')
+    if path.parent.name=='evaluator_test':
+        return {'available':False,'reason':'Reserved evaluator references remain server-side and are not exposed to the UI.'}
     route_path=path/f'{trip_id}.route'
     if not route_path.is_file():
         return {'available':False,'reason':'No supplied .route reference for this trip.'}

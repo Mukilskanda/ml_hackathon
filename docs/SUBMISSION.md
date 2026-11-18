@@ -7,7 +7,7 @@
 
 ## Before submission
 
-- Replace `team.json` placeholders and verify actual contribution statements.
+- RouteForge names, USNs and assigned responsibilities are entered in `team.json`; review the allocation against actual completed work.
 - Review every report claim, especially derived-reference accuracy, novelty and unverified deployment steps.
 - Add genuine receiving-console screenshots after the physical two-laptop test; do not label local browser/API evidence as physical deployment evidence.
 - Confirm the official scoring convention for `.route` alignment with organizers.

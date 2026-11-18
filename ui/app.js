@@ -159,7 +159,14 @@ $("run").onclick = async () => {
     const referenceToggle = document.querySelector('[data-layer="reference"]');
     referenceToggle.disabled = true;
     try {
-      const reference = await get("/api/reference/" + result.trip_id);
+      const reference =
+        result.partition === "evaluator_test"
+          ? {
+              available: false,
+              reason:
+                "Reserved evaluator references remain server-side. Reference comparison is available only for student-test review trips.",
+            }
+          : await get("/api/reference/" + result.trip_id);
       result.reference = reference;
       referenceToggle.disabled = !reference.available;
       $("referenceNote").textContent = reference.available

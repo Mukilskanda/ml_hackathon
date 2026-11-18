@@ -52,6 +52,6 @@ Replace angle-bracket placeholders before running. A successful local health che
 - [ ] Test a fresh browser or clear browser storage and reconnect.
 - [ ] Capture genuine UI and receiving-console screenshots during the two-laptop rehearsal.
 - [ ] Keep the reference files server-side and confirm they are absent from the UI transfer ZIP.
-- [ ] Replace placeholders, review the PDF and publish/verify the GitHub repository.
+- [ ] Review assigned responsibilities, the PDF and the final GitHub version.
 
 Local separate-origin browser and API tests are recorded in `results/browser_qa.json` and `results/api_verification.json`. They are not evidence that two physical laptops were tested.

@@ -4,7 +4,18 @@ An end-to-end candidate classifier and directed-road HMM for noisy GPS map match
 
 **For final deployment and submission, start with [FINAL_HANDOFF.md](FINAL_HANDOFF.md).** No further model tuning is required. It contains exact laptop commands, network/firewall prerequisites, expected logs, screenshot evidence and manual actions. All nine PARTIAL items have a local-preparation closeout in [docs/PARTIAL_REQUIREMENTS_CLOSEOUT.md](docs/PARTIAL_REQUIREMENTS_CLOSEOUT.md); external outcomes remain unverified.
 
-The refreshed interface includes a larger route canvas, trip diagnostics, readable model names, the selected-model badge, ordered decoder comparisons, and connection settings on mobile. Loading and failed-request states identify what is currently displayed; JSON export contains the actual server response. Browser checks cover live inference, export, connection recovery and 320-1024 px layouts. This interface update changes no model, prediction logic, decoder settings or development experimental results. A separate comparison endpoint now serves supplied reference geometry after prediction. Reload with Ctrl+F5 after replacing the UI files.
+The refreshed interface includes a larger route canvas, trip diagnostics, readable model names, the selected-model badge, ordered decoder comparisons, and connection settings on mobile. Loading and failed-request states identify what is currently displayed; JSON export contains the actual server response. Browser checks cover live inference, export, connection recovery and 320-1024 px layouts. This interface update changes no model, prediction logic, decoder settings or development experimental results. A separate development comparison endpoint serves student-test reference geometry after prediction; reserved evaluator geometry is blocked. Reload with Ctrl+F5 after replacing the UI files.
+
+## Team RouteForge
+
+| Member | USN |
+|---|---|
+| Mukil Skanda A | PES1UG24CS281 |
+| Mridhini MR | PES1UG24CS277 |
+| Affan Dumba | PES1UG24CS280 |
+| Mrinmayi Raman | PES1UG24CS278 |
+
+Assigned project responsibilities are recorded in [team.json](team.json); each member should review their scope before submission.
 
 ## Report, plots and submission documents
 
@@ -46,7 +57,7 @@ Open <http://localhost:8080>, click the connection settings gear, and configure 
 4. Run the UI launcher on Laptop 2 and open its localhost URL. Configure `http://<Laptop1-IPv4>:<backend-port>` in the gear menu.
 5. Verify the health check and reconstruct **all ten** active trips. Confirm incoming request IDs in the console on Laptop 1. Follow `docs/DEPLOYMENT.md`.
 6. The supplied evaluator ZIP is now imported locally: the app lists **ten evaluator trips** and says EVALUATOR MODE. Without that private folder, it falls back to the ten student-test development trips.
-7. When organizers supply the reserved data, place trip folders at `data/evaluator_test/000000XX/000000XX.track`, `.nodes`, `.arcs`, and optionally `.route`. If that directory contains trips, it becomes the active partition. The backend reads only the three inference files until prediction finishes; `.route` is read by the separate scorer and comparison endpoint. Reference files remain on Laptop 1; the browser can display their geometry after prediction.
+7. When organizers supply the reserved data, place trip folders at `data/evaluator_test/000000XX/000000XX.track`, `.nodes`, `.arcs`, and optionally `.route`. If that directory contains trips, it becomes the active partition. The backend reads only the three inference files until prediction finishes; `.route` is read by the separate server-side scorer. Only student-test references may be displayed after prediction; evaluator reference geometry is blocked from the browser.
 
 The official evaluator's pointwise reference/scoring convention must be confirmed with organizers. The supplied `.route` files describe traversed arc sequences, not one label per GPS sample. Our derived alignment is explicitly described in `docs/METHODOLOGY.md`.
 
@@ -138,7 +149,7 @@ Exactly two official deliverables are required: a **public GitHub repository** a
 
 The private workspace commit and deployed implementation are linked by `SOURCE_COMMIT.txt`/`PROVENANCE.json` in each ZIP. `scripts/submission_checks.py` verifies that runtime files and selected model/configuration still match the frozen audited implementation, scans source/history for recognizable secrets and checks publication file sizes. `scripts/prepare_publication.py` builds the separate data-minimized source snapshot without publishing it.
 
-Replace placeholders in `team.json` and rerun `scripts/report.py`. The report is an AI-assisted technical draft grounded in execution outputs; each teammate must review the claims, add their own interpretation, accurately disclose assistance according to event rules, and be able to defend the implementation. Do not copy between teams or invent experimental evidence.
+RouteForge member details and assigned responsibilities are recorded in `team.json`. Review the allocation against actual work before submission; rerun `scripts/report.py` after approved changes. The report is an AI-assisted technical draft grounded in execution outputs; each teammate must review the claims, add their own interpretation, accurately disclose assistance according to event rules, and be able to defend the implementation. Do not copy between teams or invent experimental evidence.
 
 ## Technical sources
 
@@ -156,10 +167,14 @@ Project contributions are engineering improvements tested within this dataset; n
 
 The later-supplied evaluator ZIP has been imported locally and tested with the frozen pipeline: 10 trips, 19,674 observations, 95.4855% equal-trip and 95.1510% pooled **derived-reference agreement**. This is not official evaluator accuracy. The model and decoder match the audited artifacts; no tuning or manual prediction correction used these results. See `results/evaluator_verification.json`.
 
-In Route explorer, reconstruct a trip. **Blue is the actual path from the supplied `.route` reference; green is the predicted path; orange dots are raw GPS.** Use the independent layer checkboxes to inspect each. Where the routes overlap, the blue border remains visible around green. Actual means the supplied reference, not independently verified physical ground truth. The UI requests reference geometry separately after prediction; it never feeds the classifier or decoder. Missing or invalid references are shown as unavailable and do not block prediction. To disable comparison, set `PATHSNAP_REFERENCE_DISPLAY=0` before starting the server. Raw references remain on Laptop 1; Laptop 2 only receives comparison geometry at runtime.
+In student-test review mode, blue shows the supplied reference and green the prediction. Reserved evaluator references remain server-side: the backend returns no reference geometry and the browser does not request it. Aggregate scoring is calculated only on the backend. PATHSNAP_REFERENCE_DISPLAY=0 also disables student-test reference display.
 
 
 The UI now displays **Route continuity** for the selected trip independently of reference availability. Experiment bench shows each decoder's equal-trip continuity, including the final 90.47% development mean. This differs from network feasibility. Full organizer-question answers are in [docs/DELIVERABLES_ANSWERS.md](docs/DELIVERABLES_ANSWERS.md); the final checklist is [docs/DELIVERABLES_FINAL_CHECK.md](docs/DELIVERABLES_FINAL_CHECK.md).
 
 
 For real HMM/Viterbi console diagnostics with the frozen model, run `python scripts/demo_hmm.py --partition student --trip 00000052`. See [the live HMM review guide](docs/HMM_DEMO.md) for logged one-trip/all-trip commands and stage explanations. This performs inference only and leaves saved artifacts unchanged.
+
+For teammates in different locations, follow [remote two-laptop setup over ZeroTier or Tailscale](docs/REMOTE_TWO_LAPTOP.md). This is unverified until both real machines communicate and genuine receiving-CMD evidence is captured.
+
+The current report includes actual desktop, experiment-bench, reserved-mode, mobile, Folium and API documentation screenshots; see [the screenshot evidence index](docs/SCREENSHOT_EVIDENCE.md). The mandatory real receiving-CMD screenshot remains pending. All five guideline PDFs were re-read; the current [readiness audit](FINAL_READINESS_AUDIT.md) separates local verification from physical/team requirements.

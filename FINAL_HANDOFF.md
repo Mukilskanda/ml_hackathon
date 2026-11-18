@@ -114,7 +114,7 @@ The UI completion message contains the same request ID. Values are generated dur
 
 ## 6. Reserved evaluation data
 
-The supplied `evaluator_test.zip` has now been imported and all ten trips have passed local inference and exact reference-overlay checks. The refreshed Laptop 1 ZIP includes these private evaluator files. For a fresh source checkout, run `python scripts/import_evaluator.py C:/Users/mukil/Downloads/evaluator_test.zip`. Keep them **only on Laptop 1**, under `data/evaluator_test/<eight-digit-trip-id>/` with matching `.track`, `.nodes` and `.arcs` names. `.route` is optional for inference; supplied references support separate scoring and actual-path comparison after inference. Actual trip directories activate evaluator mode; health/menu warnings identify incomplete folders. Refresh the UI and verify ten complete evaluator options.
+The supplied `evaluator_test.zip` has now been imported and all ten trips have passed local inference and separate server-side scoring checks. The refreshed Laptop 1 ZIP includes these private evaluator files. For a fresh source checkout, run `python scripts/import_evaluator.py C:/Users/mukil/Downloads/evaluator_test.zip`. Keep them **only on Laptop 1**, under `data/evaluator_test/<eight-digit-trip-id>/` with matching `.track`, `.nodes` and `.arcs` names. `.route` is optional for inference; reserved references support server-side scoring only; they must never be sent to the UI. Actual trip directories activate evaluator mode; health/menu warnings identify incomplete folders. Refresh the UI and verify ten complete evaluator options.
 
 Do not train, tune or manually repair predictions using reserved references. Confirm whether the organizer supplies point labels or a specific official route scorer. The current scorer uses a documented derived monotone alignment; its displayed percentage must not be presented as official evaluator accuracy.
 
@@ -142,16 +142,20 @@ Follow `docs/CONSOLE_SCREENSHOT_CHECKLIST.md`. Capture the actual receiving CMD/
 
 Use `docs/PUBLICATION.md` and `docs/LICENSING_AND_DATA.md`. The local development history contains detailed derived records; do not directly push that history by accident. A curated, clean publication snapshot is prepared separately. Its runtime/model files must match the final source commit, as checked by `scripts/submission_checks.py`.
 
-Before submission, replace team placeholders, review actual contributions and AI assistance disclosure, and rehearse `docs/DEMO_SCRIPT.md` using `docs/VIVA_GUIDE.md`. Submit the public repository URL and the single consolidated PDF through the organizer's required channel. Verify the URL while logged out. Publication and physical execution remain incomplete until observed and recorded.
+Before submission, review assigned responsibilities, actual contributions and and AI assistance disclosure, and rehearse `docs/DEMO_SCRIPT.md` using `docs/VIVA_GUIDE.md`. Submit the public repository URL and the single consolidated PDF through the organizer's required channel. Verify the URL while logged out. Publication and physical execution remain incomplete until observed and recorded.
 
 ## Manual actions that cannot be completed here
 
-1. Provide team names/USNs, confirm actual contributions/originality/AI disclosure, review the report and rehearse the viva.
+1. Review assigned responsibilities, originality and AI disclosure, review the report and rehearse the viva.
 2. Ask organizers for the official scoring convention, first-phase schedule/scope and redistribution rules for dataset-derived outputs.
 3. Perform the two-laptop network/firewall setup, run every trip, and capture genuine console/UI evidence.
 4. Push the final prepared changes through the team's account, verify the final version, and submit its URL plus the final PDF. Public access to the previously prepared implementation commit was independently verified.
 
 
-## Updated comparison UI
+## Updated comparison UI and evaluator protection
 
-After replacing both laptops' application files with the refreshed ZIPs, restart Laptop 1's backend and press Ctrl+F5 in Laptop 2's browser. EVALUATOR MODE now lists the supplied ten reserved trips. Reconstruct a trip and leave **Actual path Â· reference** (blue) and **Predicted path** (green) checked. Orange dots are GPS observations. Turn either route off to inspect it independently. Actual is the supplied reference, not independently verified physical truth. `PATHSNAP_REFERENCE_DISPLAY=0` disables the reference endpoint if a reference-free demonstration is required. Do not copy the raw evaluator ZIP into the public repository or Laptop 2.
+After replacing both laptops' files with the refreshed ZIPs, restart Laptop 1's backend and press Ctrl+F5 in Laptop 2's browser. In EVALUATOR MODE, the ten reserved trips show predictions and aggregate results; the actual/reference layer is disabled and no ground-truth geometry is returned. Student-test development review can still compare blue supplied references against green predictions. This distinction follows Models and Training Guidelines p6 and Assessment and Plagiarism Policy p3.
+
+## Different locations
+
+Use the genuine two-laptop ZeroTier/Tailscale VPN workflow in `docs/REMOTE_TWO_LAPTOP.md`. Both laptops need working internet and authorized access to the same private VPN network. Keep the backend listening on 0.0.0.0:8000 and configure Laptop 2 with Laptop 1's actual VPN IP. Capture real receiving-CMD and matching UI screenshots; a single-laptop simulation is only rehearsal evidence.

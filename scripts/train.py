@@ -133,6 +133,7 @@ def main():
     pd.DataFrame(rows).to_csv(ROOT/'results'/'model_comparison.csv',index=False)
     pd.DataFrame(triprows).to_json(ROOT/'results'/'model_per_trip.json',orient='records',indent=2)
     joblib.dump(tuned,ROOT/'artifacts'/f'{chosen}_tuned.joblib',compress=3)
+    (ROOT/'results'/'configurations'/f'{chosen}_tuned.json').write_text(json.dumps(json_safe(tuned.get_params()),indent=2))
     # Select by grouped CV, not a favorable student-test outcome.
     best=max(rows,key=lambda r:(r['cv_macro_f1']+r['cv_top1_accuracy'])/2)
     final=joblib.load(ROOT/'artifacts'/f'{best["model"]}.joblib')

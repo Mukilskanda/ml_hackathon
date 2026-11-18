@@ -24,15 +24,15 @@ def main():
             assert result['observations']==len(result['arc_ids'])==len(result['gps'])
             assert not {'labels','ground_truth','reference_route','reference'}&result.keys()
             reference=client.get('/api/reference/'+tid).json()
-            assert reference['available']
+            assert not reference['available'] and 'geometry' not in reference
             path=ROOT/'data/evaluator_test'/tid
             trip=load_trip(path);route=load_indices(path/f'{tid}.route',1).ravel()
-            assert reference['geometry']==trip.nodes[trip.arcs[route]].tolist()
+            assert route.max()<len(trip.arcs)
             records.append({'trip_id':tid,'observations':result['observations'],
                 'point_accuracy':result['metrics']['point_accuracy'],'classifier_top1':result['metrics']['classifier_top1'],
                 'network_feasible_fraction':result['network_feasible_fraction'],
                 'inference_s':result['timings']['total_s'],'request_id':result['request_id'],
-                'reference_arcs':len(route),'reference_geometry_exact':True,
+                'reference_arcs':len(route),'reference_remains_server_side':True,
                 'prediction_sha256':hashlib.sha256(np.asarray(result['arc_ids'],dtype='<i4').tobytes()).hexdigest(),
                 'wall_s':time.perf_counter()-started})
             print(json.dumps(records[-1]),flush=True)

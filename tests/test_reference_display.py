@@ -31,3 +31,16 @@ def test_reference_display_can_be_disabled(monkeypatch):
         response=client.get('/api/reference/00000052')
         assert response.status_code==200 and response.json()['available'] is False
         assert 'disabled' in response.json()['reason']
+
+def test_reserved_reference_never_reaches_ui_even_when_display_enabled(tmp_path,monkeypatch):
+    root=tmp_path/'evaluator_test';root.mkdir()
+    trip=synthetic(root)
+    (root/trip.id/f'{trip.id}.route').write_text('0\n1\n')
+    monkeypatch.setattr(api,'trip_root',lambda:root)
+    monkeypatch.setenv('PATHSNAP_REFERENCE_DISPLAY','1')
+    monkeypatch.setattr(api,'load_trip',lambda *a:(_ for _ in ()).throw(AssertionError('Reserved comparison loaded raw data')))
+    with TestClient(api.app) as client:
+        payload=client.get(f'/api/reference/{trip.id}').json()
+        assert payload['available'] is False
+        assert 'server-side' in payload['reason']
+        assert not {'geometry','labels','reference_arc_ids'}&payload.keys()

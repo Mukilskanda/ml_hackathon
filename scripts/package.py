@@ -30,10 +30,10 @@ There is no model, raw data, reference route or ground-truth label in this archi
 '''
     with zipfile.ZipFile(ui,'w',zipfile.ZIP_DEFLATED) as z:
         add_tree(z,ROOT/'ui');z.write(ROOT/'run_ui.cmd','run_ui.cmd');z.writestr('LAPTOP2_README.md',guide)
-        for name in ['DEPLOYMENT.md','LAPTOP2_SETUP.md','DEMO_SCRIPT.md']:z.write(ROOT/'docs'/name,'docs/'+name)
+        for name in ['DEPLOYMENT.md','LAPTOP2_SETUP.md','DEMO_SCRIPT.md','REMOTE_TWO_LAPTOP.md']:z.write(ROOT/'docs'/name,'docs/'+name)
         z.write(ROOT/'FINAL_HANDOFF.md','FINAL_HANDOFF.md');stamp(z)
     with zipfile.ZipFile(ui) as z:
-        assert set(z.namelist())=={'ui/index.html','ui/style.css','ui/app.js','run_ui.cmd','LAPTOP2_README.md','docs/DEPLOYMENT.md','docs/LAPTOP2_SETUP.md','docs/DEMO_SCRIPT.md','FINAL_HANDOFF.md','SOURCE_COMMIT.txt','PROVENANCE.json'}
+        assert set(z.namelist())=={'ui/index.html','ui/style.css','ui/app.js','run_ui.cmd','LAPTOP2_README.md','docs/DEPLOYMENT.md','docs/LAPTOP2_SETUP.md','docs/DEMO_SCRIPT.md','docs/REMOTE_TWO_LAPTOP.md','FINAL_HANDOFF.md','SOURCE_COMMIT.txt','PROVENANCE.json'}
     backend=out/'PathSnap_Laptop1_Backend.zip'
     with zipfile.ZipFile(backend,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
         for folder in ['pathsnap','backend','ui','docs']:add_tree(z,ROOT/folder)

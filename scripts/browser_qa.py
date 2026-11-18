@@ -1,26 +1,31 @@
 """Real browser integration checks; requires optional playwright + Chromium."""
-import sys,json,time
+import sys,json,time,os
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from playwright.sync_api import sync_playwright
 from pathsnap.core import ROOT
 import httpx
 
+API=os.environ.get("PATHSNAP_QA_API","http://127.0.0.1:8000").rstrip("/")
+UI=os.environ.get("PATHSNAP_QA_UI","http://127.0.0.1:8080").rstrip("/")
+
 def main():
     out=ROOT/'results'/'screenshots';out.mkdir(exist_ok=True)
-    report={'physical_two_laptops_tested':False,'origins':['http://127.0.0.1:8080','http://127.0.0.1:8000'],'checks':[]}
-    listing=httpx.get('http://127.0.0.1:8000/api/trips').json()
+    report={'physical_two_laptops_tested':False,'origins':[UI,API],'checks':[]}
+    listing=httpx.get(API+'/api/trips').json()
     ids=[t['id'] for t in listing['trips']]
     trip_id='00000052' if '00000052' in ids else '00000023'
     other_id=next(t for t in ids if t!=trip_id)
     report['partition']=listing['mode']
+    reserved=listing['mode']=='evaluator'
+    prefix='evaluator_' if reserved else ''
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True)
         page=browser.new_page(viewport={'width':1440,'height':1100},device_scale_factor=1)
         errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
-        page.goto('http://127.0.0.1:8080',wait_until='domcontentloaded')
+        page.goto(UI,wait_until='domcontentloaded')
         print('Loaded UI',flush=True)
-        page.locator('#settings').click();page.locator('#apiUrl').fill('http://127.0.0.1:8000');page.locator('#saveSettings').click()
+        page.locator('#settings').click();page.locator('#apiUrl').fill(API);page.locator('#saveSettings').click()
         page.wait_for_function("document.querySelector('#trip').options.length === 10")
         report['checks'].append('Separate UI origin loads ten actual active-partition trip options via API')
         print('Ten trips available',flush=True)
@@ -30,16 +35,24 @@ def main():
         assert page.locator('#accuracy').inner_text()!='—'
         continuity=page.evaluate('result.direct_arc_continuity')
         assert page.locator('#routeContinuity').inner_text()==f'{100*continuity:.2f}%'
-        assert page.locator('[data-layer="reference"]').is_enabled()
-        assert 'Blue: actual path' in page.locator('#referenceNote').inner_text()
-        page.locator('[data-layer="reference"]').uncheck()
-        page.locator('[data-layer="reference"]').check()
-        report['checks'].append('Actual supplied reference and predicted route are separately toggleable; reference loaded after POST inference')
+        if reserved:
+            assert page.locator('[data-layer="reference"]').is_disabled()
+            assert 'server-side' in page.locator('#referenceNote').inner_text()
+            blocked=httpx.get(API+'/api/reference/'+trip_id).json()
+            assert not blocked['available'] and 'geometry' not in blocked
+            assert page.evaluate('!result.reference.available && !result.reference.geometry')
+            report['checks'].append('Reserved reference endpoint and UI withhold reference geometry while prediction and aggregate scoring work')
+        else:
+            assert page.locator('[data-layer="reference"]').is_enabled()
+            assert 'Blue: actual path' in page.locator('#referenceNote').inner_text()
+            page.locator('[data-layer="reference"]').uncheck()
+            page.locator('[data-layer="reference"]').check()
+            report['checks'].append('Student-test reference and prediction independently toggle after inference')
         page.locator('#scrub').fill('100');page.locator('#scrub').dispatch_event('input')
         page.locator('#zoomIn').click();page.locator('#fit').click()
         page.locator('#map').focus();page.keyboard.press('ArrowLeft');page.keyboard.press('Home')
         page.evaluate('window.scrollTo(0,0)')
-        page.screenshot(path=str(out/'ui_desktop.png'),full_page=True)
+        page.screenshot(path=str(out/(prefix+'ui_desktop.png')),full_page=True)
         print('Desktop screenshot captured',flush=True)
         report['checks'].append('Live POST inference, nonempty route/metrics, playback, zoom and keyboard map controls')
         # Delay a real request to make the transient loading state observable.
@@ -59,7 +72,7 @@ def main():
         download=download_info.value
         exported=json.loads(Path(download.path()).read_text())
         assert exported['trip_id']==trip_id and exported['observations']>0
-        assert exported['reference']['available'] and len(exported['reference']['geometry'])>0
+        assert not exported['reference']['available'] and 'geometry' not in exported['reference'] if reserved else exported['reference']['available'] and len(exported['reference']['geometry'])>0
         # A failed new prediction must identify the old route still displayed.
         page.locator('#trip').select_option(other_id)
         assert f'Showing trip {trip_id}' in page.locator('#message').inner_text()
@@ -75,11 +88,14 @@ def main():
         assert 'Route continuity 90.47%' in page.locator('.final-ablation').inner_text()
         report['checks'].append('Selected-trip direct continuity matches API; final decoder equal-trip benchmark displays 90.47% separately from network feasibility')
         page.evaluate('window.scrollTo(0,0)')
-        page.screenshot(path=str(out/'experiment_bench.png'),full_page=True)
+        page.screenshot(path=str(out/(prefix+'experiment_bench.png')),full_page=True)
         print('Experiment screenshot captured',flush=True)
         report['checks'].append('Experiment table renders real API model results and decoder ablations')
         page.locator('[data-view="map"]').click()
-        page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(300);page.screenshot(path=str(out/'ui_mobile.png'),full_page=True)
+        page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(300);page.screenshot(path=str(out/(prefix+'ui_mobile.png')),full_page=True)
+        if not reserved:
+            page.evaluate('window.scrollTo(0,0)');page.screenshot(path=str(out/'ui_mobile_top.png'))
+            page.locator('.map-panel').scroll_into_view_if_needed();page.screenshot(path=str(out/'ui_mobile_map.png'))
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         assert page.locator('#settings').is_visible() and page.locator('.inspector').is_visible()
         page.locator('#settings').click();assert page.locator('#settingsDialog').is_visible()
@@ -96,10 +112,10 @@ def main():
         page.locator('#settings').click();page.locator('#apiUrl').fill('http://127.0.0.1:1');page.locator('#saveSettings').click()
         page.wait_for_function("document.querySelector('#connection').textContent === 'Server unavailable'")
         assert page.locator('#run').is_disabled()
-        page.locator('#settings').click();page.locator('#apiUrl').fill('http://127.0.0.1:8000');page.locator('#saveSettings').click()
+        page.locator('#settings').click();page.locator('#apiUrl').fill(API);page.locator('#saveSettings').click()
         page.wait_for_function("document.querySelector('#connection').textContent === 'Model server online'")
         report['checks'].append('Incorrect API URL fails clearly; settings recover connection')
-        page.goto('http://127.0.0.1:8000/docs',wait_until='domcontentloaded')
+        page.goto(API+'/docs',wait_until='domcontentloaded')
         page.wait_for_timeout(2000)
         page.screenshot(path=str(out/'api_documentation.png'),full_page=True)
         map_path=ROOT/'results'/'maps'/'development_trip_00000007.html'
@@ -112,7 +128,7 @@ def main():
         assert not errors,errors
         report['javascript_errors']=errors
         browser.close()
-    (ROOT/'results'/'browser_qa.json').write_text(json.dumps(report,indent=2))
+    (ROOT/'results'/('evaluator_browser_qa.json' if reserved else 'browser_qa.json')).write_text(json.dumps(report,indent=2))
     print(json.dumps(report),flush=True)
 
 if __name__=='__main__':main()

@@ -1,6 +1,6 @@
 # Answers to the Deliverables PDF
 
-These answers describe executed PathSnap work. Use them as a study draft and add the team's own interpretation. Names remain placeholders at the user's request. The supplied Deliverables PDF matches the seven-page organizer document in materials/Deliverables.pdf.
+These answers describe executed PathSnap work. Use them as a study draft and add the team's own interpretation. RouteForge member names and USNs have been supplied. Assigned responsibilities are recorded in team.json and require member review before submission. The supplied Deliverables PDF matches the seven-page organizer document in materials/Deliverables.pdf.
 
 ## 1. What are we submitting?
 
@@ -220,13 +220,13 @@ HMM decoding improves agreement and continuity over classifier-only predictions,
 
 We generate an actual interactive Folium map using scripts/figures.py. It overlays original GPS observations, relevant directed road geometry, the supplied reference where available and the predicted route. Layers have distinguishable colours, a legend, appropriate fit bounds and toggle controls. The report embeds a representative screenshot of student-test trip 00000007. The code is public, so a generated HTML map can be regenerated from the legitimately supplied local data. Raw supplied input files and cache arrays remain private. The user has now requested publication of the generated report, plots, map HTML and screenshots as project deliverables.
 
-The separate evaluator UI has an offline canvas: blue is the actual path from the supplied .route reference, green is the model prediction and orange dots are GPS. The reference is fetched separately AFTER prediction; it never affects classifier/decoder output. Actual means supplied reference, not independently verified physical truth. No reference means an unavailable layer, not a guessed actual path.
+The offline UI shows a blue supplied reference only for student-test review, a green prediction and orange GPS observations. Reserved evaluator reference geometry is blocked by both server and client, as required by the training/integrity documents; only aggregate server scoring reaches the evaluator UI.
 
 ## 7. API, UI and deployment
 
-Laptop 1 loads the saved model and runs FastAPI/inference. Laptop 2 runs the static website, chooses a trip and sends HTTP requests to Laptop 1's IPv4 address. Neither laptop trains a model during inference. The backend returns predicted route geometry, observation counts, reference-free direct continuity, network feasibility, timings, relative confidence and a request ID. Optional server-side reference scoring is computed only after prediction. A separate GET endpoint serves reference comparison geometry.
+Laptop 1 loads the saved model and runs FastAPI/inference. Laptop 2 runs the static website, chooses a trip and sends HTTP requests to Laptop 1's IPv4 address. Neither laptop trains a model during inference. The backend returns predicted route geometry, observation counts, reference-free direct continuity, network feasibility, timings, relative confidence and a request ID. Optional server-side reference scoring is computed only after prediction. A separate GET endpoint serves student-test reference comparison geometry; it returns no evaluator ground truth.
 
-Working UI screenshots, actual HTTP responses, 33 passing automated tests, isolated-environment installation and extracted-package execution have local evidence. The UI is checked at desktop and mobile sizes, with connection recovery and error handling. Final source/package hashes tie the demonstrated implementation to saved source. A physical two-laptop run and genuine receiving-CMD screenshot must still be captured; a browser API screenshot or copied console text does not satisfy that requirement.
+Working UI screenshots, actual HTTP responses, 34 passing automated tests, isolated-environment installation and extracted-package execution have local evidence. The UI is checked at desktop and mobile sizes, with connection recovery and error handling. Final source/package hashes tie the demonstrated implementation to saved source. A physical two-laptop run and genuine receiving-CMD screenshot must still be captured; a browser API screenshot or copied console text does not satisfy that requirement.
 
 Demonstration: on Laptop 2 reconstruct trip 00000023; show blue reference versus green prediction; show route continuity separately from network feasibility; show playback; open Experiment bench. On Laptop 1 show the matching request ID and successful POST in the real CMD receiving window. Test all ten evaluator trips, not only the short example.
 
@@ -236,7 +236,7 @@ Our novelty consists of documented engineering contributions and measured compar
 
 The final student-test derived-reference agreement is 95.2559% equal-trip / 94.1284% pooled. The later frozen evaluator replay is 95.4855% equal-trip / 95.1510% pooled across 10 trips and 19,674 observations. These are not official evaluator accuracy, independent physical road truth or guaranteed generalisation. The official scoring convention still requires confirmation.
 
-AI assistance was used for code/documentation and is disclosed in the draft. Every member must independently review, interpret and be able to defend the work. Do not present this document as proof that all members understand it. Placeholders and suggested ownership are not verified personal contributions.
+AI assistance was used for code/documentation and is disclosed in the draft. Every member must independently review, interpret and be able to defend the work. Do not present this document as proof that all members understand it. The assigned responsibility descriptions require team review against the work actually completed.
 
 ## What is still needed before final submission?
 
