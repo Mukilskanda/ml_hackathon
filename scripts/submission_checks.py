@@ -68,8 +68,13 @@ def main():
     original_functions={n.name:ast.dump(n) for n in old_api.body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))}
     current_functions={n.name:ast.dump(n) for n in new_api.body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))}
     assert all(current_functions.get(n)==value for n,value in original_functions.items()),'Audited prediction API logic changed'
+    original_service=ast.parse(git('show','16bd43d:pathsnap/service.py').decode())
+    current_service=ast.parse((ROOT/'pathsnap/service.py').read_text(encoding='utf-8'))
+    old_service_functions={n.name:ast.dump(n) for n in original_service.body if isinstance(n,ast.FunctionDef) and n.name!='serialize_prediction'}
+    new_service_functions={n.name:ast.dump(n) for n in current_service.body if isinstance(n,ast.FunctionDef)}
+    assert all(new_service_functions.get(n)==value for n,value in old_service_functions.items()),'Prediction/geometry implementation changed'
     for name in runtime_members():
-        if name.startswith('ui/') or name=='backend/app.py':continue
+        if name.startswith('ui/') or name in {'backend/app.py','pathsnap/service.py'}:continue
         committed=git('show',f'16bd43d:{name}')
         assert digest(name,(ROOT/name).read_bytes())==digest(name,committed),f'Frozen implementation changed: {name}'
         freeze.append(name)
@@ -106,6 +111,7 @@ def main():
        'physical_two_laptop_tested':False},indent=2),encoding='utf-8',newline='\n')
     result={'frozen_base_commit':'16bd43d39ee3a8474cd334aee5723f8bb464237f','frozen_runtime_members':freeze,
       'prediction_pipeline_unchanged':True,'original_api_functions_ast_unchanged':True,
+      'prediction_and_geometry_functions_ast_unchanged':True,'response_addition':'Reference-free direct_arc_continuity for UI display',
       'authorized_reference_display_endpoint_sha256':digest('backend/app.py',(ROOT/'backend/app.py').read_bytes()),
       'authorized_ui_refresh':{n:digest(n,(ROOT/n).read_bytes()) for n in runtime_members() if n.startswith('ui/')},
       'working_text_secret_findings':findings,'sensitive_filename_findings':sensitive,

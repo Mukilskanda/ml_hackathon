@@ -2,7 +2,7 @@
 
 Final critical audit, 18 November 2026. This supersedes the initial build audit. PASS means local evidence supports the stated scope; PARTIAL means external/human verification or an explicitly limited interpretation remains; FAIL means a mandatory external deliverable is currently absent, not that local inference is broken.
 
-**Status counts: 62 PASS / 8 PARTIAL / 2 FAIL.**
+**Status counts: 63 PASS / 8 PARTIAL / 1 FAIL.**
 
 ## Main findings
 
@@ -22,12 +22,12 @@ Final critical audit, 18 November 2026. This supersedes the initial build audit.
 - Do not call the score official evaluator accuracy or independent true-road accuracy.
 - Do not claim research priority, guaranteed GPS-noise robustness, or that every trip improved.
 - Do not call unnormalized transition compatibilities a calibrated stochastic transition matrix. The chosen procedure is explicit HMM-style Viterbi/MAP scoring.
-- Do not claim two physical laptops, genuine receiving-console screenshots, public GitHub accessibility or four-member viva readiness were verified here.
+- Do not claim two physical laptops, genuine receiving-console screenshots or four-member viva readiness were verified here. Public access has now been independently verified.
 - The sampled training protocol uses every training trip, not every training observation. Calibration was a prior nearest-candidate experiment and is not deployed.
 
 ## Outstanding external and team work
 
-1. Publish the local repository through the team account and verify its public URL.
+1. Push the final report-generation/documentation changes. Public access and the previously prepared implementation commit are verified in `results/publication_verification.json`.
 2. Run the complete deployment on two physical laptops and capture the actual receiving CMD console.
 3. Confirm the organizer's reference-alignment/official scoring convention.
 4. Replace requested placeholders, review interpretation/actual contributions/AI disclosure, and rehearse the viva.
@@ -36,7 +36,7 @@ Final critical audit, 18 November 2026. This supersedes the initial build audit.
 ## Final submission closeout
 
 All nine PARTIAL requirements were reviewed individually in `docs/PARTIAL_REQUIREMENTS_CLOSEOUT.md`. Exact physical setup, owner/admin firewall decisions, genuine receiving-console capture and publication steps are in `FINAL_HANDOFF.md`. No model/decoder tuning is part of this closeout.
-No dataset license/redistribution terms were found in the supplied ZIPs. A curated publication snapshot omits raw/bulk point data and private Git history; dependency metadata is recorded in `THIRD_PARTY_NOTICES.md`. Source-license selection and dataset-derived publication permission remain team/organizer decisions. Public publication remains unverified.
+No dataset license/redistribution terms were found in the supplied ZIPs. A curated publication snapshot omits raw/bulk point data and private Git history; dependency metadata is recorded in `THIRD_PARTY_NOTICES.md`. Source-license selection and dataset-derived publication permission remain team/organizer decisions. Public access to the checked implementation commit is now verified; later local documentation changes must still be pushed.
 Submission checks in `results/submission/submission_checks.json` verify that runtime/model files remain frozen, check recognizable secrets/history and file sizes, and compare deployment members. Deployment provenance and full ZIP-to-commit checks are generated under `packages/` after the final source commit.
 
 ## Requirement-by-requirement evidence
@@ -84,7 +84,7 @@ Submission checks in `results/submission/submission_checks.json` verify that run
 | MT17 | Models and Training p6 | Server computes accuracy with internal references | **PARTIAL** | `backend/app.py`<br>`results/api_verification.json` | Derived-alignment scorer verified; official pointwise reference/scorer convention unresolved. |
 | MT18 | Models and Training p6 | Live API calls/logs; no hardcoded outputs or bypass | **PASS** | `backend/app.py`<br>`results/server_log_excerpt.txt`<br>`results/api_verification.json` |  |
 | MT19 | Models and Training p6 | Independent implementation and artifact explanation | **PARTIAL** | `docs/VIVA_GUIDE.md`<br>`docs/SUBMISSION.md` | Experiments executed here; actual four-person understanding/ownership still requires team review. |
-| DL01 | Deliverables p1 | Public GitHub repository committed and pushed | **FAIL** | `docs/SUBMISSION.md` | Local Git repository exists; no public remote has been created/verified. |
+| DL01 | Deliverables p1 | Public GitHub repository committed and pushed | **PASS** | `docs/SUBMISSION.md` | Anonymous source fetch succeeded; remote main matched aaefc5b9449ad010d9c3d033c0d99bf967f1f4c7. Evidence: results/publication_verification.json. Later documentation edits still need pushing. |
 | DL02 | Deliverables p1-2 | Complete data/feature/training/evaluation/tuning/decoder/API/UI source | **PASS** | `pathsnap/core.py`<br>`scripts/train.py`<br>`backend/app.py`<br>`ui/app.js` |  |
 | DL03 | Deliverables p1-2 | Artifacts, configs, logs, CSVs, maps and deployment files | **PASS** | `artifacts/model.joblib`<br>`results/bayesian_trials.csv`<br>`scripts/figures.py`<br>`requirements.lock.txt` |  |
 | DL04 | Deliverables p2 | README, installation/execution/deployment and organized folders | **PASS** | `README.md`<br>`docs/LAPTOP1_SETUP.md`<br>`docs/LAPTOP2_SETUP.md` |  |

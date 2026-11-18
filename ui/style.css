@@ -274,7 +274,7 @@ select {
 }
 .metrics {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 14px;
   margin: 18px 0;
 }
@@ -1283,4 +1283,21 @@ tr:last-child td {
 #referenceLayerLabel:has(input:disabled) {
   opacity: 0.55;
   cursor: default;
+}
+.ablation-continuity {
+  border-top: 1px solid #d4e2d5;
+  margin-top: 10px;
+  padding-top: 8px;
+  color: #315f4b !important;
+  font-weight: 600;
+}
+@media (min-width: 761px) and (max-width: 1000px) {
+  .metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .metrics article:last-child {
+    grid-column: 1/-1;
+  }
 }

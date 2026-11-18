@@ -28,6 +28,8 @@ def main():
         page.wait_for_function("!document.querySelector('#run').disabled && document.querySelector('#observations').textContent !== '—'",timeout=120000)
         assert page.locator('#empty').is_hidden()
         assert page.locator('#accuracy').inner_text()!='—'
+        continuity=page.evaluate('result.direct_arc_continuity')
+        assert page.locator('#routeContinuity').inner_text()==f'{100*continuity:.2f}%'
         assert page.locator('[data-layer="reference"]').is_enabled()
         assert 'Blue: actual path' in page.locator('#referenceNote').inner_text()
         page.locator('[data-layer="reference"]').uncheck()
@@ -36,6 +38,7 @@ def main():
         page.locator('#scrub').fill('100');page.locator('#scrub').dispatch_event('input')
         page.locator('#zoomIn').click();page.locator('#fit').click()
         page.locator('#map').focus();page.keyboard.press('ArrowLeft');page.keyboard.press('Home')
+        page.evaluate('window.scrollTo(0,0)')
         page.screenshot(path=str(out/'ui_desktop.png'),full_page=True)
         print('Desktop screenshot captured',flush=True)
         report['checks'].append('Live POST inference, nonempty route/metrics, playback, zoom and keyboard map controls')
@@ -69,6 +72,9 @@ def main():
         page.locator('#trip').select_option(trip_id)
         report['checks'].append('Loading overlay and disabled controls; actual JSON export; failed request preserves and identifies previous result')
         page.locator('[data-view="experiments"]').click();page.wait_for_function("document.querySelectorAll('#experimentRows tr').length >= 8")
+        assert 'Route continuity 90.47%' in page.locator('.final-ablation').inner_text()
+        report['checks'].append('Selected-trip direct continuity matches API; final decoder equal-trip benchmark displays 90.47% separately from network feasibility')
+        page.evaluate('window.scrollTo(0,0)')
         page.screenshot(path=str(out/'experiment_bench.png'),full_page=True)
         print('Experiment screenshot captured',flush=True)
         report['checks'].append('Experiment table renders real API model results and decoder ablations')

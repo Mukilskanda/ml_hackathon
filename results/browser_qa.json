@@ -9,6 +9,7 @@
     "Actual supplied reference and predicted route are separately toggleable; reference loaded after POST inference",
     "Live POST inference, nonempty route/metrics, playback, zoom and keyboard map controls",
     "Loading overlay and disabled controls; actual JSON export; failed request preserves and identifies previous result",
+    "Selected-trip direct continuity matches API; final decoder equal-trip benchmark displays 90.47% separately from network feasibility",
     "Experiment table renders real API model results and decoder ablations",
     "320/390/768/1024px responsive layouts have no page overflow; mobile settings and diagnostics remain accessible",
     "Incorrect API URL fails clearly; settings recover connection",

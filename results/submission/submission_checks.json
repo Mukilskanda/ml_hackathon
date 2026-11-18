@@ -10,7 +10,6 @@
     "pathsnap/core.py",
     "pathsnap/decoder.py",
     "pathsnap/metrics.py",
-    "pathsnap/service.py",
     "requirements.lock.txt",
     "run_backend.cmd",
     "run_ui.cmd",
@@ -18,16 +17,18 @@
   ],
   "prediction_pipeline_unchanged": true,
   "original_api_functions_ast_unchanged": true,
+  "prediction_and_geometry_functions_ast_unchanged": true,
+  "response_addition": "Reference-free direct_arc_continuity for UI display",
   "authorized_reference_display_endpoint_sha256": "9ee324cc8e1ada5badd74a88fadf965d5f56d851af8a3376c128a090376f93d1",
   "authorized_ui_refresh": {
-    "ui/app.js": "986f4c5779f208d2c7528c6cfe2641b5affbac5a4208f45261e54be8cd1e3aba",
-    "ui/index.html": "c9591bad780970514a73e62acba88cda7fc09b18c680933ca8adfa2e9c2fc20d",
-    "ui/style.css": "097a70b43125cffb6d7ad9040d72598f379d2e20aeb9526d5cc91f1ebbf32ab8"
+    "ui/app.js": "2813998c5a451fccfea1ae697f51b1c1d501066d213649e58fb091b81c2d253c",
+    "ui/index.html": "9b21389b44aa9f551aeb3a75d05473a04acdf01198d2e8a56c1ceb8f0bceb55a",
+    "ui/style.css": "849f9db5b341b711bbbae3448ea85797029ae8fb52990d21068ba40fb1f21a11"
   },
   "working_text_secret_findings": [],
   "sensitive_filename_findings": [],
   "history_scan": {
-    "text_objects_scanned": 211,
+    "text_objects_scanned": 239,
     "credential_pattern_findings": [],
     "scope": "Heuristic recognizable-token/private-key scan; not a guarantee against all secrets."
   },
@@ -46,7 +47,7 @@
     },
     {
       "path": "output/pdf/PathSnap_Technical_Report.pdf",
-      "bytes": 1091629
+      "bytes": 1098703
     },
     {
       "path": "results/training_split_manifest.json",
@@ -119,8 +120,8 @@
     }
   ],
   "report_final_numbers_present": true,
-  "report_pages": 27,
-  "final_tests_passed": 30,
+  "report_pages": 28,
+  "final_tests_passed": 33,
   "publication_policy": "Curated snapshot excludes raw inputs, per-point arrays, location-bearing generated outputs and private development history.",
   "public_publication_verified": false,
   "physical_two_laptop_verified": false

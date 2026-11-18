@@ -64,7 +64,7 @@
     }
   ],
   "browser_checks": [
-    "Packaged backend UI auto-connects and infers on nondefault port 8001"
+    "Packaged backend UI auto-connects, infers and displays actual/predicted paths plus route continuity on nondefault port 8001"
   ],
   "ui_archive_contains_no_model_or_dataset_or_reference": true,
   "ui_archive_members": [

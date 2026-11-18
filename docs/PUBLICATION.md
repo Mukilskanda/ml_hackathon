@@ -1,6 +1,6 @@
 # Publish the prepared source repository
 
-Public publication is **not verified**. The supplied remote is https://github.com/Mukilskanda/ml_hackathon; publication and account access have not been verified.
+Public access to https://github.com/Mukilskanda/ml_hackathon is verified: an anonymous raw-source request succeeded and remote main matched publication commit aaefc5b9449ad010d9c3d033c0d99bf967f1f4c7. See results/publication_verification.json for the checked source version and timestamp. Later local documentation/report-generation changes must also be pushed. Account permissions and physical deployment are separate checks.
 
 ## Use the curated snapshot, not private development history
 

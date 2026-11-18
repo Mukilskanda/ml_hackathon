@@ -137,6 +137,11 @@ $("run").onclick = async () => {
     $("observations").textContent = result.observations.toLocaleString();
     $("accuracy").textContent = percent(result.metrics?.point_accuracy);
     $("continuity").textContent = percent(result.network_feasible_fraction);
+    const directContinuity =
+      result.direct_arc_continuity ?? result.metrics?.direct_arc_continuity;
+    $("routeContinuity").textContent = Number.isFinite(directContinuity)
+      ? (100 * directContinuity).toFixed(2) + "%"
+      : "—";
     $("latency").textContent = result.timings.total_s.toFixed(2) + " s";
     setModel(result.model);
     $("uncertain").textContent = percent(result.uncertain_fraction);
@@ -577,7 +582,14 @@ async function loadExperiments() {
             : "—";
           let sub = document.createElement("small");
           sub.textContent = "Equal-trip derived reference agreement";
-          div.append(label, score, sub);
+          const continuity = document.createElement("small");
+          continuity.className = "ablation-continuity";
+          continuity.textContent = Number.isFinite(m.direct_arc_continuity)
+            ? "Route continuity " +
+              (100 * m.direct_arc_continuity).toFixed(2) +
+              "%"
+            : "Route continuity unavailable";
+          div.append(label, score, sub, continuity);
           return div;
         }),
     );

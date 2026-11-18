@@ -12,12 +12,12 @@
 - Add genuine receiving-console screenshots after the physical two-laptop test; do not label local browser/API evidence as physical deployment evidence.
 - Confirm the official scoring convention for `.route` alignment with organizers.
 - Follow event rules for AI assistance disclosure. The code/report were developed with AI assistance; experiments and screenshots are real execution outputs. Team members must independently review and defend the work.
-- Create the public GitHub repository using the team's account, add its remote, push, and verify the URL is accessible to evaluators. No public URL has been created by this local build.
+- Public repository access is now verified at https://github.com/Mukilskanda/ml_hackathon. Push the final report-generation/documentation changes and verify the final commit before submission.
 - Do not commit raw datasets, cache files, credentials, private keys, environments or archive ZIPs. `.gitignore` covers these. Trained artifacts and result logs are included; inspect large-file sizes before publishing.
 
 ## Publication location and commands
 
-Use the curated snapshot at `packages/PathSnap_Publication_Source/`, not this private development history. Exact initialization/push and logged-out verification steps are in `docs/PUBLICATION.md`. No public URL is verified. Do not put account tokens in README files, remote URLs or command history. The separate report is still required; confirm public redistribution permission for dataset-derived maps/report outputs.
+Use the curated snapshot at `packages/PathSnap_Publication_Source/`, not this private development history. Exact initialization/push and logged-out verification steps are in `docs/PUBLICATION.md`. The previously prepared implementation commit is publicly verified; final documentation updates still need pushing. Do not put account tokens in README files, remote URLs or command history. The separate report is still required; confirm public redistribution permission for dataset-derived maps/report outputs.
 
 ## Transfer to Laptop 2
 

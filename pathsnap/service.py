@@ -54,13 +54,16 @@ def serialize_prediction(trip,c,p,d,timings,model_name):
     classifier=c['ids'][np.arange(n),p.argmax(axis=1)]
     classifier_lines=trip.nodes[trip.arcs[np.unique(classifier)]].tolist()
     points=trip.unproject(c['foot'][np.arange(n),chosen])
+    # Direct continuity depends on predicted road endpoints, never references.
+    collapsed=selected[np.r_[True,np.diff(selected)!=0]]
+    continuity=float(np.mean(trip.arcs[collapsed[:-1],1]==trip.arcs[collapsed[1:],0])) if len(collapsed)>1 else 1.
     return {'trip_id':trip.id,'partition':trip.partition,'model':model_name,'observations':n,
        'gps':trip.track[:,:2].tolist(),'timestamps':trip.track[:,2].tolist(),
        'roads':trip.nodes[trip.arcs[ix]].tolist(),'route':lines,'classifier_route':classifier_lines,
        'matched_points':points.tolist(),'arc_ids':selected.tolist(),
        'confidence':d['confidence'].tolist(),'entropy':d['entropy'].tolist(),
        'resets':d['resets'],'geometry_gaps':gaps,'uncertain_fraction':d['uncertain_fraction'],
-       'network_feasible_fraction':d['network_feasible_fraction'],'timings':timings,
+       'network_feasible_fraction':d['network_feasible_fraction'],'direct_arc_continuity':continuity,'timings':timings,
        'warnings':['Model confidence is uncalibrated; use as a relative score.']+
          ([f'{np.mean(c["distance"][:,0]>100):.1%} of observations are over 100 m from the nearest retained candidate.'] if np.any(c['distance'][:,0]>100) else [])+
          ([f'{gaps} reset or unreachable route joins are shown as separate lines.'] if gaps else [])}

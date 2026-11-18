@@ -78,6 +78,7 @@ def test_reference_failure_does_not_destroy_prediction(tmp_path,monkeypatch):
     with TestClient(api.app) as client:
         without=client.post('/api/predict',json={'trip_id':'00000052'}).json()
         assert without['metrics'] is None
+        assert 0<=without['direct_arc_continuity']<=1
         (target/'00000052.route').write_text('0.5\n')
         response=client.post('/api/predict',json={'trip_id':'00000052'})
         assert response.status_code==200,response.text

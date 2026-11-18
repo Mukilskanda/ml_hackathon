@@ -149,9 +149,9 @@ Before submission, replace team placeholders, review actual contributions and AI
 1. Provide team names/USNs, confirm actual contributions/originality/AI disclosure, review the report and rehearse the viva.
 2. Ask organizers for the official scoring convention, first-phase schedule/scope and redistribution rules for dataset-derived outputs.
 3. Perform the two-laptop network/firewall setup, run every trip, and capture genuine console/UI evidence.
-4. Publish the prepared clean repository through the team's account, verify public access, and submit its URL plus the final PDF.
+4. Push the final prepared changes through the team's account, verify the final version, and submit its URL plus the final PDF. Public access to the previously prepared implementation commit was independently verified.
 
 
 ## Updated comparison UI
 
-After replacing both laptops' application files with the refreshed ZIPs, restart Laptop 1's backend and press Ctrl+F5 in Laptop 2's browser. EVALUATOR MODE now lists the supplied ten reserved trips. Reconstruct a trip and leave **Actual path · reference** (blue) and **Predicted path** (green) checked. Orange dots are GPS observations. Turn either route off to inspect it independently. Actual is the supplied reference, not independently verified physical truth. `PATHSNAP_REFERENCE_DISPLAY=0` disables the reference endpoint if a reference-free demonstration is required. Do not copy the raw evaluator ZIP into the public repository or Laptop 2.
+After replacing both laptops' application files with the refreshed ZIPs, restart Laptop 1's backend and press Ctrl+F5 in Laptop 2's browser. EVALUATOR MODE now lists the supplied ten reserved trips. Reconstruct a trip and leave **Actual path Â· reference** (blue) and **Predicted path** (green) checked. Orange dots are GPS observations. Turn either route off to inspect it independently. Actual is the supplied reference, not independently verified physical truth. `PATHSNAP_REFERENCE_DISPLAY=0` disables the reference endpoint if a reference-free demonstration is required. Do not copy the raw evaluator ZIP into the public repository or Laptop 2.

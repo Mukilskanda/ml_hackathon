@@ -37,6 +37,10 @@ def main():
                 response=client.post('/api/predict',json={'trip_id':trip['id']});assert response.status_code==200,response.text
                 p=response.json();assert abs(p['metrics']['point_accuracy']-expected.loc[trip['id'],'point_accuracy'])<1e-12
                 assert p['observations']==len(p['arc_ids'])
+                assert 0<=p['direct_arc_continuity']<=1
+                if listing['mode']=='evaluator':
+                    import numpy as np
+                    assert hashlib.sha256(np.asarray(p['arc_ids'],dtype='<i4').tobytes()).hexdigest()==expected.loc[trip['id'],'prediction_sha256'],'Predicted sequence changed'
                 assert not {'labels','reference_route','ground_truth'}&p.keys()
                 ref=client.get('/api/reference/'+trip['id']).json()
                 assert ref['available'] and len(ref['geometry'])==ref['route_arc_count']
@@ -53,7 +57,8 @@ def main():
                 page.locator('#trip').select_option(listing['trips'][0]['id']);page.locator('#run').click()
                 page.wait_for_function("document.querySelector('#observations').textContent!=='—' && !document.querySelector('#run').disabled",timeout=90000)
                 assert page.locator('[data-layer="reference"]').is_enabled()
-                browser_checks.append('Packaged backend UI auto-connects and infers on nondefault port 8001')
+                assert page.locator('#routeContinuity').inner_text()!='—'
+                browser_checks.append('Packaged backend UI auto-connects, infers and displays actual/predicted paths plus route continuity on nondefault port 8001')
                 browser.close()
         except ImportError:browser_checks.append('Optional Playwright unavailable; browser portion not executed')
     finally:

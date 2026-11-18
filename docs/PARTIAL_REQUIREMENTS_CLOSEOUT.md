@@ -14,4 +14,4 @@ No model changes are part of this closeout. Every local preparation below is com
 | AP04 | Publication boundary, no-interteam-sharing policy and secret/source inventory | Team attests to conduct outside this environment; no global originality certification is claimed |
 | AP05 | Comprehensive mathematical viva guide and three-minute demonstration script | Each member rehearses and demonstrates understanding |
 
-The two FAIL items are still public GitHub publication (DL01) and a genuine receiving-laptop CMD screenshot (DL18). `docs/PUBLICATION.md` and `docs/CONSOLE_SCREENSHOT_CHECKLIST.md` provide the exact next steps. None has been marked complete.
+Public GitHub access (DL01) is now independently verified. The remaining FAIL is a genuine receiving-laptop CMD screenshot (DL18). `docs/PUBLICATION.md` and `docs/CONSOLE_SCREENSHOT_CHECKLIST.md` provide the exact next steps. Later report-generation/documentation changes still require a push; real physical execution is not marked complete.
