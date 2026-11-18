@@ -1,0 +1,325 @@
+{
+  "records": [
+    {
+      "trip_id": "00000001",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000002",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000003",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000004",
+      "changed_candidate_rows": 2
+    },
+    {
+      "trip_id": "00000005",
+      "changed_candidate_rows": 190
+    },
+    {
+      "trip_id": "00000006",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000008",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000010",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000011",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000012",
+      "changed_candidate_rows": 36
+    },
+    {
+      "trip_id": "00000013",
+      "changed_candidate_rows": 2
+    },
+    {
+      "trip_id": "00000014",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000016",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000018",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000019",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000020",
+      "changed_candidate_rows": 389
+    },
+    {
+      "trip_id": "00000021",
+      "changed_candidate_rows": 1668
+    },
+    {
+      "trip_id": "00000022",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000024",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000025",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000026",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000027",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000028",
+      "changed_candidate_rows": 266
+    },
+    {
+      "trip_id": "00000029",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000031",
+      "changed_candidate_rows": 161
+    },
+    {
+      "trip_id": "00000032",
+      "changed_candidate_rows": 1
+    },
+    {
+      "trip_id": "00000033",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000034",
+      "changed_candidate_rows": 52
+    },
+    {
+      "trip_id": "00000035",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000036",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000037",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000038",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000039",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000041",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000042",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000043",
+      "changed_candidate_rows": 6
+    },
+    {
+      "trip_id": "00000044",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000045",
+      "changed_candidate_rows": 4
+    },
+    {
+      "trip_id": "00000046",
+      "changed_candidate_rows": 12
+    },
+    {
+      "trip_id": "00000047",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000048",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000050",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000051",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000053",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000054",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000055",
+      "changed_candidate_rows": 2
+    },
+    {
+      "trip_id": "00000057",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000058",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000060",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000061",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000062",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000063",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000064",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000066",
+      "changed_candidate_rows": 390
+    },
+    {
+      "trip_id": "00000068",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000069",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000070",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000071",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000072",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000074",
+      "changed_candidate_rows": 19
+    },
+    {
+      "trip_id": "00000075",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000078",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000079",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000080",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000081",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000082",
+      "changed_candidate_rows": 42
+    },
+    {
+      "trip_id": "00000083",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000084",
+      "changed_candidate_rows": 38
+    },
+    {
+      "trip_id": "00000085",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000086",
+      "changed_candidate_rows": 2
+    },
+    {
+      "trip_id": "00000088",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000089",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000090",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000092",
+      "changed_candidate_rows": 5
+    },
+    {
+      "trip_id": "00000093",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000095",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000096",
+      "changed_candidate_rows": 62
+    },
+    {
+      "trip_id": "00000097",
+      "changed_candidate_rows": 0
+    },
+    {
+      "trip_id": "00000098",
+      "changed_candidate_rows": 5
+    },
+    {
+      "trip_id": "00000099",
+      "changed_candidate_rows": 0
+    }
+  ],
+  "total_changed_rows": 3354
+}

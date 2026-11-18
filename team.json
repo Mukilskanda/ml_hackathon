@@ -1,0 +1,10 @@
+{
+  "team_name": "[TEAM NAME]",
+  "members": [
+    {"name": "[MEMBER 1]", "usn": "[USN 1]", "ownership": "Data and features"},
+    {"name": "[MEMBER 2]", "usn": "[USN 2]", "ownership": "Models and optimisation"},
+    {"name": "[MEMBER 3]", "usn": "[USN 3]", "ownership": "HMM and evaluation"},
+    {"name": "[MEMBER 4]", "usn": "[USN 4]", "ownership": "API, UI and integration"}
+  ],
+  "note": "Suggested ownership; replace with actual contributions before submission."
+}

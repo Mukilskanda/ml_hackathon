@@ -1,0 +1,17 @@
+[
+  "distance_m",
+  "heading_cos",
+  "heading_abs_sin",
+  "log_length",
+  "fraction",
+  "prev_distance_m",
+  "next_distance_m",
+  "speed_mps",
+  "gap_s",
+  "distance_rank",
+  "distance_margin_m",
+  "heading_reliability",
+  "source_degree",
+  "target_degree",
+  "endpoint_distance_m"
+]

@@ -1,0 +1,10 @@
+{
+  "isolated_venv": true,
+  "user_site_enabled": false,
+  "sklearn_loaded_from_venv": true,
+  "python": "3.13.0",
+  "sklearn": "1.7.2",
+  "requirements_sha256": "a643a1ac0ba99ed2023d1b71eb322927998f27dff1e42ac33fc287f53df8d72f",
+  "pip_check": "No broken requirements found.",
+  "physical_second_laptop_tested": false
+}

@@ -1,0 +1,47 @@
+INFO:     Started server process [31848]
+INFO:     Waiting for application startup.
+INFO:     PathSnap model=HistGradientBoosting_tuned_adaptive_candidates decoder=adaptive; inference does not read .route files
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:64823 - "GET /api/trips HTTP/1.1" 200 OK
+INFO:     INFERENCE request=a415dab42f trip=00000000 started
+INFO:     INFERENCE request=a415dab42f trip=00000000 observations=2503 inference_s=1.066 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=81b6c9e463 trip=00000007 started
+INFO:     INFERENCE request=81b6c9e463 trip=00000007 observations=1354 inference_s=0.542 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=0b4970197e trip=00000009 started
+INFO:     INFERENCE request=0b4970197e trip=00000009 observations=1049 inference_s=0.535 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=587bc8e322 trip=00000040 started
+INFO:     INFERENCE request=587bc8e322 trip=00000040 observations=2995 inference_s=1.291 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=8bc1deb58b trip=00000052 started
+INFO:     INFERENCE request=8bc1deb58b trip=00000052 observations=262 inference_s=0.126 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=8dc745602e trip=00000056 started
+INFO:     INFERENCE request=8dc745602e trip=00000056 observations=3958 inference_s=1.908 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=850d3145e3 trip=00000065 started
+INFO:     INFERENCE request=850d3145e3 trip=00000065 observations=768 inference_s=0.432 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=c815bb4deb trip=00000076 started
+INFO:     INFERENCE request=c815bb4deb trip=00000076 observations=1486 inference_s=1.016 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=da05ea4811 trip=00000077 started
+INFO:     INFERENCE request=da05ea4811 trip=00000077 observations=3911 inference_s=1.620 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=cadc12d092 trip=00000091 started
+INFO:     INFERENCE request=cadc12d092 trip=00000091 observations=874 inference_s=0.526 scored=True completed
+INFO:     127.0.0.1:64823 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64824 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "GET /api/trips HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "OPTIONS /api/predict HTTP/1.1" 200 OK
+INFO:     INFERENCE request=a5f0f1bc8b trip=00000052 started
+INFO:     INFERENCE request=a5f0f1bc8b trip=00000052 observations=262 inference_s=0.136 scored=True completed
+INFO:     127.0.0.1:64824 - "POST /api/predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64824 - "GET /api/experiments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60014 - "GET /api/trips HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64824 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64825 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64825 - "GET /openapi.json HTTP/1.1" 200 OK

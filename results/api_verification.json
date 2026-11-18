@@ -1,0 +1,92 @@
+[
+  {
+    "trip_id": "00000000",
+    "status": 200,
+    "observations": 2503,
+    "point_accuracy": 0.9636436276468238,
+    "wall_s": 2.4032768000033684,
+    "inference_s": 1.0657841999927768,
+    "request_id": "a415dab42f"
+  },
+  {
+    "trip_id": "00000007",
+    "status": 200,
+    "observations": 1354,
+    "point_accuracy": 0.9977843426883308,
+    "wall_s": 0.7338547999970615,
+    "inference_s": 0.5422663999925135,
+    "request_id": "81b6c9e463"
+  },
+  {
+    "trip_id": "00000009",
+    "status": 200,
+    "observations": 1049,
+    "point_accuracy": 0.90371782650143,
+    "wall_s": 0.8576310000062222,
+    "inference_s": 0.5354797000036342,
+    "request_id": "0b4970197e"
+  },
+  {
+    "trip_id": "00000040",
+    "status": 200,
+    "observations": 2995,
+    "point_accuracy": 0.9529215358931553,
+    "wall_s": 2.075694300001487,
+    "inference_s": 1.2912360999907833,
+    "request_id": "587bc8e322"
+  },
+  {
+    "trip_id": "00000052",
+    "status": 200,
+    "observations": 262,
+    "point_accuracy": 0.9961832061068703,
+    "wall_s": 0.20477670000400394,
+    "inference_s": 0.1264009000005899,
+    "request_id": "8bc1deb58b"
+  },
+  {
+    "trip_id": "00000056",
+    "status": 200,
+    "observations": 3958,
+    "point_accuracy": 0.9479535118746841,
+    "wall_s": 3.513726700010011,
+    "inference_s": 1.9083673999994062,
+    "request_id": "8dc745602e"
+  },
+  {
+    "trip_id": "00000065",
+    "status": 200,
+    "observations": 768,
+    "point_accuracy": 0.9596354166666666,
+    "wall_s": 0.7630619999981718,
+    "inference_s": 0.4324244000017643,
+    "request_id": "850d3145e3"
+  },
+  {
+    "trip_id": "00000076",
+    "status": 200,
+    "observations": 1486,
+    "point_accuracy": 0.9737550471063257,
+    "wall_s": 1.478506200000993,
+    "inference_s": 1.0160008999955608,
+    "request_id": "c815bb4deb"
+  },
+  {
+    "trip_id": "00000077",
+    "status": 200,
+    "observations": 3911,
+    "point_accuracy": 0.8803375095883406,
+    "wall_s": 2.332432700000936,
+    "inference_s": 1.6196312999963993,
+    "request_id": "da05ea4811"
+  },
+  {
+    "trip_id": "00000091",
+    "status": 200,
+    "observations": 874,
+    "point_accuracy": 0.9496567505720824,
+    "wall_s": 0.8087329999980284,
+    "inference_s": 0.5259775000013178,
+    "request_id": "cadc12d092"
+  }
+]

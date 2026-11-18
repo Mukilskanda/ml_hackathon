@@ -1,0 +1,116 @@
+{
+  "leave_one_trip_out_decoder_selection_accuracy": 0.9492106893458943,
+  "scope": "Conditional selection-sensitivity diagnostic only: fixed candidate/model/alignment design is not nested or independent.",
+  "records": [
+    {
+      "trip_id": "00000000",
+      "held_trip_accuracy": 0.968837395125849,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000007",
+      "held_trip_accuracy": 0.9977843426883308,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000009",
+      "held_trip_accuracy": 0.90371782650143,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000040",
+      "held_trip_accuracy": 0.9696160267111853,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000052",
+      "held_trip_accuracy": 0.9961832061068703,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000056",
+      "held_trip_accuracy": 0.9461849418898434,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000065",
+      "held_trip_accuracy": 0.9583333333333334,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000076",
+      "held_trip_accuracy": 0.971736204576043,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000077",
+      "held_trip_accuracy": 0.8460751725901304,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 18.0,
+        "geometry_weight": 0.6,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    },
+    {
+      "trip_id": "00000091",
+      "held_trip_accuracy": 0.9336384439359268,
+      "selected_on_other_nine": {
+        "mode": "adaptive",
+        "beta": 8.0,
+        "geometry_weight": 0.1,
+        "jitter_m": 30.0,
+        "emission_strength": 0.4
+      }
+    }
+  ]
+}

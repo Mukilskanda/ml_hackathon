@@ -1,0 +1,10 @@
+{
+  "archive_crc": "passed",
+  "complete_archive_trip_count": 90,
+  "fresh_isolated_process_model_reload": "passed",
+  "reference_file_absent": true,
+  "predictions_equal_live_api": true,
+  "observations": 262,
+  "inference_s": 1.9393225999956485,
+  "ui_archive_reference_and_model_free": true
+}

@@ -1,0 +1,8 @@
+{
+  "feature_ablations_4_reproduced": true,
+  "calibration_nested_cv_and_student_metrics_reproduced": true,
+  "robustness_18_cases_reexecuted": true,
+  "robustness_exact_replay": false,
+  "robustness_difference_explained_in": "robustness_replay_differences.json",
+  "calibration_adopted": false
+}

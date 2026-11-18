@@ -1,0 +1,86 @@
+{
+  "historical_cv_objective": 0.9059558442833191,
+  "corrected_cv_objective": 0.905638983590499,
+  "cv_metrics": {
+    "candidate_accuracy": 0.9725007692092529,
+    "precision": 0.8981162111966039,
+    "recall": 0.8735734357974422,
+    "macro_f1": 0.9350227575365124,
+    "log_loss": 0.07541179317999867,
+    "top1_accuracy": 0.8762552096444854,
+    "candidate_miss_rate": 0.0245307823557383,
+    "confusion_matrix": [
+      [
+        247678,
+        3456
+      ],
+      [
+        4409,
+        30465
+      ]
+    ],
+    "fold_top1_std": 0.0302510462710852,
+    "fold_macro_f1_std": 0.00729541691224359
+  },
+  "folds": [
+    {
+      "candidate_accuracy": 0.9744123931623931,
+      "precision": 0.9180043779642466,
+      "recall": 0.8705994291151284,
+      "macro_f1": 0.939564948751341,
+      "log_loss": 0.06958163670667881,
+      "top1_accuracy": 0.892991452991453,
+      "candidate_miss_rate": 0.01188034188034188,
+      "confusion_matrix": [
+        [
+          81140,
+          899
+        ],
+        [
+          1496,
+          10065
+        ]
+      ]
+    },
+    {
+      "candidate_accuracy": 0.9748009785222655,
+      "precision": 0.9208348009862628,
+      "recall": 0.8722161981816665,
+      "macro_f1": 0.9407662708037638,
+      "log_loss": 0.06828547034370445,
+      "top1_accuracy": 0.9021477734472179,
+      "candidate_miss_rate": 0.005804793100588772,
+      "confusion_matrix": [
+        [
+          83584,
+          899
+        ],
+        [
+          1532,
+          10457
+        ]
+      ]
+    },
+    {
+      "candidate_accuracy": 0.968322631754503,
+      "precision": 0.8570812860960262,
+      "recall": 0.8780466266336984,
+      "macro_f1": 0.9247247029178406,
+      "log_loss": 0.08826612588686275,
+      "top1_accuracy": 0.8338892595063375,
+      "candidate_miss_rate": 0.05570380253502335,
+      "confusion_matrix": [
+        [
+          82954,
+          1658
+        ],
+        [
+          1381,
+          9943
+        ]
+      ]
+    }
+  ],
+  "adopted": false,
+  "criterion": "Nondecreasing original grouped-CV objective on identical sampled observations/folds; student-test does not choose profile."
+}

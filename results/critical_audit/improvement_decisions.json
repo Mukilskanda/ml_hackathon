@@ -1,0 +1,19 @@
+{
+  "decisions": [
+    {
+      "variant": "soft_uturn_prior",
+      "mean_accuracy_gain": 0.0031511629744445566,
+      "trips_regress_over_1pp": 0,
+      "median_decode_time_ratio": 0.9515052539763215,
+      "passes_gate": true
+    },
+    {
+      "variant": "row_normalized_hmm",
+      "mean_accuracy_gain": -0.06835828627974073,
+      "trips_regress_over_1pp": 11,
+      "median_decode_time_ratio": 3.933468262997901,
+      "passes_gate": false
+    }
+  ],
+  "production_changed": false
+}

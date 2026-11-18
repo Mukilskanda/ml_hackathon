@@ -1,0 +1,16 @@
+{
+  "physical_two_laptops_tested": false,
+  "origins": [
+    "http://127.0.0.1:8080",
+    "http://127.0.0.1:8000"
+  ],
+  "checks": [
+    "Separate UI origin loads ten actual development trip options via API",
+    "Live POST inference, nonempty route/metrics, playback, zoom and keyboard map controls",
+    "Experiment table renders real API model results and decoder ablations",
+    "390px mobile layout has no horizontal overflow",
+    "Incorrect API URL fails clearly; settings recover connection",
+    "Generated Folium map loads Leaflet canvas and actual trajectory layers"
+  ],
+  "javascript_errors": []
+}

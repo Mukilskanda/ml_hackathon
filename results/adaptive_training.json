@@ -1,0 +1,107 @@
+{
+  "base_model": "HistGradientBoosting_tuned",
+  "model": "HistGradientBoosting_tuned_adaptive_candidates",
+  "cv_metrics": {
+    "candidate_accuracy": 0.9728469133730525,
+    "precision": 0.9002244138664147,
+    "recall": 0.8742042782588748,
+    "macro_f1": 0.9357963351499503,
+    "log_loss": 0.07519670457308716,
+    "top1_accuracy": 0.8761153534166877,
+    "candidate_miss_rate": 0.0245307823557383,
+    "confusion_matrix": [
+      [
+        247755,
+        3379
+      ],
+      [
+        4387,
+        30487
+      ]
+    ],
+    "fold_top1_std": 0.030730081441766827,
+    "fold_macro_f1_std": 0.006837650162861969
+  },
+  "test_metrics": {
+    "candidate_accuracy": 0.9710334029227558,
+    "precision": 0.8915424480418871,
+    "recall": 0.8738021678797717,
+    "macro_f1": 0.933030997062635,
+    "log_loss": 0.0708127844892156,
+    "top1_accuracy": 0.8849686847599165,
+    "candidate_miss_rate": 0.0032881002087682674,
+    "confusion_matrix": [
+      [
+        132153,
+        2030
+      ],
+      [
+        2410,
+        16687
+      ]
+    ],
+    "inference_s": 0.5377554999868153
+  },
+  "folds": [
+    {
+      "candidate_accuracy": 0.9743376068376068,
+      "precision": 0.9171144913015757,
+      "recall": 0.8709454199463714,
+      "macro_f1": 0.9394231300851605,
+      "log_loss": 0.06996412722837404,
+      "top1_accuracy": 0.8926495726495727,
+      "candidate_miss_rate": 0.01188034188034188,
+      "confusion_matrix": [
+        [
+          81129,
+          910
+        ],
+        [
+          1492,
+          10069
+        ]
+      ]
+    },
+    {
+      "candidate_accuracy": 0.9752363380048097,
+      "precision": 0.9238784881667256,
+      "recall": 0.8726332471432147,
+      "macro_f1": 0.941720737690109,
+      "log_loss": 0.06781406081228238,
+      "top1_accuracy": 0.9028111783729994,
+      "candidate_miss_rate": 0.005804793100588772,
+      "confusion_matrix": [
+        [
+          83621,
+          862
+        ],
+        [
+          1527,
+          10462
+        ]
+      ]
+    },
+    {
+      "candidate_accuracy": 0.9689897431621081,
+      "precision": 0.8610222260658998,
+      "recall": 0.8791946308724832,
+      "macro_f1": 0.9262042159636271,
+      "log_loss": 0.08772576194839472,
+      "top1_accuracy": 0.8331387591727819,
+      "candidate_miss_rate": 0.05570380253502335,
+      "confusion_matrix": [
+        [
+          83005,
+          1607
+        ],
+        [
+          1368,
+          9956
+        ]
+      ]
+    }
+  ],
+  "fit_and_cv_s": 7.485236400010763,
+  "adopted": true,
+  "protocol": "Same seed, same sampled observation IDs, same 3 trip-grouped folds, same tuned HGB hyperparameters; only candidate selection changes."
+}

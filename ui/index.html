@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PathSnap / Route intelligence</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <aside>
+      <a class="brand" href="#"
+        ><span class="brand-icon">⌁</span> PathSnap<span class="badge"
+          >LAB</span
+        ></a
+      >
+      <div class="eyebrow">WORKSPACE</div>
+      <button class="nav active" data-view="map">⌖ &nbsp; Route explorer</button
+      ><button class="nav" data-view="experiments">
+        ▥ &nbsp; Experiment bench
+      </button>
+      <div class="sidebar-bottom">
+        <span class="status-dot" id="statusDot"></span
+        ><span id="connection">Connecting</span
+        ><button id="settings" aria-label="API settings">⚙</button
+        ><small
+          >Distributed map matching<br />Classifier → directed HMM →
+          route</small
+        >
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div>
+          <div class="eyebrow">GPS IN. CLARITY OUT.</div>
+          <h1 id="pageTitle">Every point has a path.</h1>
+          <p>Reconstruct the journey behind noisy observations.</p>
+        </div>
+        <div class="header-meta">
+          <span class="pill" id="partition">DEVELOPMENT</span>
+          <div id="clock"></div>
+        </div>
+      </header>
+      <section id="mapView">
+        <div class="toolbar">
+          <div class="select-group">
+            <label for="trip">TRAJECTORY</label
+            ><select id="trip">
+              <option>Loading trips…</option>
+            </select>
+          </div>
+          <button class="primary" id="run">
+            Reconstruct route <span>↗</span></button
+          ><span class="toolbar-note" id="runNote"
+            >Live inference on the model server</span
+          >
+        </div>
+        <div class="metrics">
+          <article>
+            <label>OBSERVATIONS</label><strong id="observations">—</strong
+            ><small>Raw GPS measurements</small>
+          </article>
+          <article>
+            <label
+              >POINT ACCURACY
+              <span
+                title="Computed on the server from derived reference alignment"
+                >ⓘ</span
+              ></label
+            ><strong id="accuracy">—</strong
+            ><small id="accuracyNote">Reference-based development score</small>
+          </article>
+          <article>
+            <label>NETWORK FEASIBILITY</label><strong id="continuity">—</strong
+            ><small>Directed paths with GPS jitter tolerance</small>
+          </article>
+          <article>
+            <label>INFERENCE TIME</label><strong id="latency">—</strong
+            ><small id="modelLabel">Awaiting reconstruction</small>
+          </article>
+        </div>
+        <div class="explorer">
+          <div class="map-panel">
+            <div class="map-heading">
+              <div>
+                <span class="live-dot"></span><b>Trajectory canvas</b
+                ><span id="tripTag">NO TRIP LOADED</span>
+              </div>
+              <div>
+                <button id="zoomOut" aria-label="Zoom out">−</button
+                ><button id="zoomIn" aria-label="Zoom in">+</button
+                ><button id="fit">Fit</button>
+              </div>
+            </div>
+            <div class="canvas-wrap">
+              <canvas
+                id="map"
+                aria-label="Geographic route map, drag to pan and scroll to zoom"
+              ></canvas>
+              <div class="empty" id="empty">
+                <div class="empty-symbol">⌁</div>
+                <h2>Find the road through the noise.</h2>
+                <p>
+                  Select a trajectory and reconstruct its route.<br />Every
+                  request runs the complete prediction pipeline.
+                </p>
+              </div>
+              <div class="map-chip">
+                GEOGRAPHIC CANVAS <span>·</span> Works offline
+              </div>
+              <div class="map-coordinates" id="coords">
+                LONGITUDE / LATITUDE
+              </div>
+            </div>
+            <div class="legend">
+              <label
+                ><input type="checkbox" data-layer="roads" checked /><i
+                  class="road"
+                ></i
+                >Road network</label
+              ><label
+                ><input type="checkbox" data-layer="gps" checked /><i
+                  class="gps"
+                ></i
+                >GPS observations</label
+              ><label
+                ><input type="checkbox" data-layer="classifier" /><i
+                  class="classifier"
+                ></i
+                >Classifier only</label
+              ><label
+                ><input type="checkbox" data-layer="route" checked /><i
+                  class="route"
+                ></i
+                >Decoded route</label
+              ><label
+                ><input type="checkbox" data-layer="uncertainty" /><i
+                  class="uncertainty"
+                ></i
+                >Uncertainty</label
+              >
+            </div>
+          </div>
+          <div class="inspector">
+            <div class="eyebrow">RECONSTRUCTION NOTES</div>
+            <h2>Built for the<br />roads between points.</h2>
+            <div class="pipeline-step">
+              <span>01</span>
+              <div>
+                <b>Spatial candidates</b>
+                <p>
+                  Densified segment index retrieves 8 nearby road hypotheses.
+                </p>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <span>02</span>
+              <div>
+                <b>Learned road affinity</b>
+                <p>Geometry, motion and topology become candidate scores.</p>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <span>03</span>
+              <div>
+                <b>Graph-aware decoding</b>
+                <p>
+                  Directed shortest paths and gap resets resolve the sequence.
+                </p>
+              </div>
+            </div>
+            <div class="inspector-stats">
+              <div>
+                <span>Ambiguous observations</span><b id="uncertain">—</b>
+              </div>
+              <div><span>Sequence resets</span><b id="resets">—</b></div>
+              <div>
+                <span>Classifier Top-1</span><b id="classifierAccuracy">—</b>
+              </div>
+            </div>
+            <div class="notice" id="metricBasis">
+              Development scores use reference-derived alignment. Reserved
+              evaluator trips are loaded separately on the server.
+            </div>
+            <button id="export" class="secondary" disabled>
+              Download prediction JSON ↓
+            </button>
+          </div>
+        </div>
+        <div class="timeline">
+          <div>
+            <div class="eyebrow">OBSERVATION PLAYBACK</div>
+            <b id="playbackLabel">Trace the reconstructed journey</b>
+          </div>
+          <button id="play" disabled aria-label="Play trajectory">▶</button
+          ><input
+            id="scrub"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            disabled
+          /><span id="timeLabel">00:00</span>
+        </div>
+        <div id="message" role="status" aria-live="polite"></div>
+      </section>
+      <section id="experimentsView" hidden>
+        <div class="section-heading">
+          <h2>Evidence before selection.</h2>
+          <p>
+            Measured experiments, grouped by trip. Scores use derived point
+            references.
+          </p>
+        </div>
+        <div class="experiment-card">
+          <div id="experimentSummary"></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>MODEL</th>
+                  <th>CV MACRO F1</th>
+                  <th>CV TOP-1</th>
+                  <th>TEST MACRO F1</th>
+                  <th>TEST TOP-1</th>
+                  <th>LOG LOSS</th>
+                  <th>INFERENCE</th>
+                </tr>
+              </thead>
+              <tbody id="experimentRows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="experiment-card">
+          <h2>Sequence decoding / ablation</h2>
+          <div id="ablations"></div>
+          <p class="notice">
+            Decoder settings are selected on the ten permitted student-test
+            trips. These development scores are optimistic; reserved evaluator
+            performance remains unmeasured.
+          </p>
+        </div>
+      </section>
+      <footer>
+        <span>PATHSNAP / ROUTE INTELLIGENCE</span
+        ><span>Model evidence. Connected journeys.</span>
+      </footer>
+    </main>
+    <dialog id="settingsDialog">
+      <form method="dialog">
+        <div class="eyebrow">TWO-LAPTOP CONNECTION</div>
+        <h2>Connect to the model server.</h2>
+        <p>
+          Enter Laptop 1’s IPv4 address and port.<br />Example:
+          http://192.168.1.25:8000
+        </p>
+        <label for="apiUrl">API server URL</label
+        ><input id="apiUrl" type="url" required />
+        <div class="dialog-actions">
+          <button value="cancel" formnovalidate>Cancel</button
+          ><button id="saveSettings" value="save" class="primary">
+            Save connection
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>

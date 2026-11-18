@@ -1,0 +1,16 @@
+* text=auto
+*.py text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+*.txt text eol=lf
+*.ini text eol=lf
+*.cmd text eol=crlf
+*.pdf binary
+*.png binary
+*.npy binary
+*.npz binary
+*.joblib binary

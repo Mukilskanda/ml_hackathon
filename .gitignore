@@ -1,0 +1,12 @@
+data/
+cache/
+materials/
+packages/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+tmp/
+*.log
+results/optuna.db
+submission_evidence/

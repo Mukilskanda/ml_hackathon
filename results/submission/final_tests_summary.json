@@ -1,0 +1,7 @@
+{
+  "passed": 28,
+  "warnings": 1,
+  "command": "tmp/clean_env/Scripts/python.exe -m pytest -q",
+  "source_log": "Private working project: results/submission/final_tests.txt",
+  "physical_two_laptop_tested": false
+}

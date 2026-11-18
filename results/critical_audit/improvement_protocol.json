@@ -1,0 +1,29 @@
+{
+  "holdout_trip_ids": [
+    "00000004",
+    "00000006",
+    "00000027",
+    "00000032",
+    "00000035",
+    "00000036",
+    "00000046",
+    "00000047",
+    "00000055",
+    "00000063",
+    "00000072",
+    "00000096"
+  ],
+  "fitting_trips": 68,
+  "seed": 20261118,
+  "variants": {
+    "frozen_baseline": {},
+    "soft_uturn_prior": {
+      "uturn_penalty": 0.6931471805599453
+    },
+    "row_normalized_hmm": {
+      "normalize_transitions": true
+    }
+  },
+  "gate": "Adopt only if training-holdout macro accuracy improves >=0.001, no more than 2 trips regress >0.01, and median decode cost <=1.1x baseline. No student-test selection.",
+  "limitation": "Hyperparameters and original decoder previously developed on these training trips/CV; this is a training-only replay, not an untouched nested generalisation estimate."
+}

@@ -1,0 +1,10 @@
+{
+  "mode": "adaptive",
+  "beta": 8.0,
+  "geometry_weight": 0.6,
+  "jitter_m": 30.0,
+  "emission_strength": 0.4,
+  "candidate_strategy": "adaptive",
+  "selection": "highest equal-trip mean derived-reference accuracy across 10 permitted student-test trips",
+  "warning": "Development-selected decoder score is optimistic; evaluator generalization remains unmeasured."
+}

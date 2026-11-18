@@ -1,0 +1,85 @@
+{
+  "trials": [
+    {
+      "trial": 0,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 1,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 2,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 3,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 4,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 5,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 6,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 7,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 8,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 9,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 10,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 11,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 12,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 13,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 14,
+      "objective_verified": true,
+      "fold_count": 3
+    },
+    {
+      "trial": 15,
+      "objective_verified": true,
+      "fold_count": 3
+    }
+  ],
+  "database_matches_csv": true
+}

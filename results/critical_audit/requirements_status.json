@@ -1,0 +1,842 @@
+{
+  "counts": {
+    "PASS": 61,
+    "PARTIAL": 9,
+    "FAIL": 2
+  },
+  "records": [
+    {
+      "id": "MG01",
+      "source": "Main Guidelines p1-2",
+      "requirement": "End-to-end noisy GPS to road reconstruction",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/core.py",
+        "pathsnap/service.py",
+        "results/api_verification.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MG02",
+      "source": "Main Guidelines p2",
+      "requirement": "Read/understand the five supplied documents",
+      "status": "PASS",
+      "evidence": [
+        "docs/REQUIREMENTS_CHECKLIST.md",
+        "FINAL_READINESS_AUDIT.md"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MG03",
+      "source": "Main Guidelines p2",
+      "requirement": "Independent processing, feature engineering and model comparison",
+      "status": "PASS",
+      "evidence": [
+        "scripts/prepare.py",
+        "scripts/train.py",
+        "results/critical_audit/model_replay.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MG04",
+      "source": "Main Guidelines p2",
+      "requirement": "Bayesian optimisation and saved artifacts",
+      "status": "PASS",
+      "evidence": [
+        "results/bayesian_trials.csv",
+        "results/critical_audit/bayesian_log_verification.json",
+        "artifacts/model.joblib"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MG05",
+      "source": "Main Guidelines p2",
+      "requirement": "HMM/Viterbi and candidate/road correspondence",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/decoder.py",
+        "tests/test_critical_audit.py::test_viterbi_matches_exhaustive_path_enumeration"
+      ],
+      "note": "Uses explicitly disclosed proportional transition potentials; stochastic row-normalized alternative tested and rejected."
+    },
+    {
+      "id": "MG06",
+      "source": "Main Guidelines p2",
+      "requirement": "Laptop 1 model/API/graph/server scoring",
+      "status": "PASS",
+      "evidence": [
+        "backend/app.py",
+        "docs/LAPTOP1_SETUP.md",
+        "results/api_verification.json"
+      ],
+      "note": "Verified as isolated-environment process on this machine."
+    },
+    {
+      "id": "MG07",
+      "source": "Main Guidelines p2",
+      "requirement": "Laptop 2 UI reaches actual Laptop 1",
+      "status": "PARTIAL",
+      "evidence": [
+        "results/browser_qa.json",
+        "docs/DEPLOYMENT.md"
+      ],
+      "note": "Separate origins tested locally; physical machines/network not available."
+    },
+    {
+      "id": "MG08",
+      "source": "Main Guidelines p2",
+      "requirement": "Integration and final report",
+      "status": "PASS",
+      "evidence": [
+        "results/browser_qa.json",
+        "output/pdf/PathSnap_Technical_Report.pdf"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE01",
+      "source": "Dataset Exploration p1-3",
+      "requirement": "Exactly 80 train and 10 student-test trips",
+      "status": "PASS",
+      "evidence": [
+        "results/dataset_inventory.csv",
+        "results/dataset_integrity.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE02",
+      "source": "Dataset Exploration p1-2",
+      "requirement": "Column meanings, zero-based node/arc IDs, directed connections",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/core.py",
+        "docs/METHODOLOGY.md",
+        "tests/test_critical_audit.py::test_index_files_reject_nonintegers_and_invalid_values"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE03",
+      "source": "Dataset Exploration p2",
+      "requirement": "Do not equate route rows with GPS rows",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/core.py::reference_labels",
+        "scripts/critical_accuracy_audit.py",
+        "results/critical_audit/accuracy_audit.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE04",
+      "source": "Dataset Exploration p2",
+      "requirement": "File availability, counts, types, GPS/graph/reference sizes",
+      "status": "PASS",
+      "evidence": [
+        "results/dataset_inventory.csv",
+        "results/dataset_integrity.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE05",
+      "source": "Dataset Exploration p2",
+      "requirement": "Missing/invalid points, timestamp order and gaps",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/core.py",
+        "results/dataset_inventory.csv",
+        "tests/test_pipeline.py::test_invalid_timestamp_rejected"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE06",
+      "source": "Dataset Exploration p2",
+      "requirement": "Geographic extent, coordinate order and plausible ranges",
+      "status": "PASS",
+      "evidence": [
+        "results/dataset_inventory.csv",
+        "tests/test_pipeline.py::test_invalid_coordinate_rejected",
+        "scripts/figures.py"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE07",
+      "source": "Dataset Exploration p2",
+      "requirement": "Connectivity, components and isolated nodes",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/core.py::inventory",
+        "results/dataset_inventory.csv"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE08",
+      "source": "Dataset Exploration p2",
+      "requirement": "Investigate unusual trips and large GPS gaps",
+      "status": "PASS",
+      "evidence": [
+        "results/dataset_inventory.csv",
+        "docs/METHODOLOGY.md",
+        "results/critical_audit/accuracy_audit.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE09",
+      "source": "Dataset Exploration p2-3",
+      "requirement": "Physically meaningful geographic distances",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/core.py",
+        "docs/METHODOLOGY.md"
+      ],
+      "note": "Local equirectangular approximation; not a global survey projection."
+    },
+    {
+      "id": "DE10",
+      "source": "Dataset Exploration p3",
+      "requirement": "Reference limitations and assumptions disclosed",
+      "status": "PASS",
+      "evidence": [
+        "docs/METHODOLOGY.md",
+        "results/critical_audit/accuracy_audit.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE11",
+      "source": "Dataset Exploration p3",
+      "requirement": "Whole-trip partitions and training-only preprocessing fit",
+      "status": "PASS",
+      "evidence": [
+        "scripts/train.py::cv_run",
+        "results/training_split_manifest.json",
+        "results/critical_audit/model_replay.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE12",
+      "source": "Dataset Exploration p3",
+      "requirement": "No evaluator data used for model/features/tuning",
+      "status": "PASS",
+      "evidence": [
+        "scripts/train.py",
+        "scripts/decoder_improvement_audit.py"
+      ],
+      "note": "Experiment inputs explicitly target supplied train/student-test only; no evaluator files supplied."
+    },
+    {
+      "id": "DE13",
+      "source": "Dataset Exploration p3",
+      "requirement": "No reference input to prediction or UI",
+      "status": "PASS",
+      "evidence": [
+        "tests/test_pipeline.py::test_inference_never_reads_reference",
+        "tests/test_critical_audit.py::test_reference_failure_does_not_destroy_prediction",
+        "backend/app.py"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DE14",
+      "source": "Dataset Exploration p3-4",
+      "requirement": "Retain inventory, statistics, GPS/maps and quality decisions",
+      "status": "PASS",
+      "evidence": [
+        "results/figures/dataset_overview.png",
+        "results/maps/development_trip_00000007.html",
+        "docs/METHODOLOGY.md"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT01",
+      "source": "Models and Training p1-3",
+      "requirement": "At least five distinct algorithms across families",
+      "status": "PASS",
+      "evidence": [
+        "results/model_comparison.csv",
+        "results/critical_audit/model_replay.json"
+      ],
+      "note": "Seven algorithms plus tuned and candidate variants."
+    },
+    {
+      "id": "MT02",
+      "source": "Models and Training p2",
+      "requirement": "Configurations, seeds, experiment logs and results",
+      "status": "PASS",
+      "evidence": [
+        "results/configurations/HistGradientBoosting.json",
+        "artifacts/manifest.json",
+        "results/cv_folds.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT03",
+      "source": "Models and Training p2",
+      "requirement": "Use all 80 training trips for fit/CV; ten student trips for comparison",
+      "status": "PASS",
+      "evidence": [
+        "artifacts/manifest.json",
+        "results/training_split_manifest.json",
+        "results/api_verification.json"
+      ],
+      "note": "Training samples up to 450 observations per trip; all student observations scored."
+    },
+    {
+      "id": "MT04",
+      "source": "Models and Training p2-4",
+      "requirement": "Consistent preprocessing and evidence-based selection",
+      "status": "PASS",
+      "evidence": [
+        "scripts/train.py",
+        "results/critical_audit/model_replay.json",
+        "artifacts/manifest.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT05",
+      "source": "Models and Training p3",
+      "requirement": "Accuracy, precision, recall, F1 and confusion matrices",
+      "status": "PASS",
+      "evidence": [
+        "results/model_comparison.csv",
+        "results/model_per_trip.json",
+        "results/adaptive_model_per_trip.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT06",
+      "source": "Models and Training p3",
+      "requirement": "Log loss, Top-1 and candidate miss rate",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/metrics.py",
+        "results/model_comparison.csv"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT07",
+      "source": "Models and Training p3-4",
+      "requirement": "Route continuity, sequence performance and timing",
+      "status": "PASS",
+      "evidence": [
+        "results/model_route_metrics.csv",
+        "results/route_comparison.csv",
+        "results/training_diagnostics.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT08",
+      "source": "Models and Training p3-4",
+      "requirement": "Primary metric and probability/speed/complexity justification",
+      "status": "PASS",
+      "evidence": [
+        "artifacts/manifest.json",
+        "docs/METHODOLOGY.md",
+        "output/pdf/PathSnap_Technical_Report.pdf"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT09",
+      "source": "Models and Training p4",
+      "requirement": "Bayesian space, objective, grouped CV, trial record, best config, refit and cost",
+      "status": "PASS",
+      "evidence": [
+        "scripts/train.py",
+        "results/bayesian_trials.csv",
+        "results/critical_audit/bayesian_log_verification.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT10",
+      "source": "Models and Training p4",
+      "requirement": "Untuned/tuned comparison on identical protocols",
+      "status": "PASS",
+      "evidence": [
+        "results/model_comparison.csv",
+        "results/critical_audit/model_replay.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT11",
+      "source": "Models and Training p4-5",
+      "requirement": "States, emissions, transitions and Viterbi recurrence explained",
+      "status": "PASS",
+      "evidence": [
+        "docs/METHODOLOGY.md",
+        "docs/VIVA_GUIDE.md",
+        "pathsnap/decoder.py"
+      ],
+      "note": "No claim that production transition rows are stochastic probabilities."
+    },
+    {
+      "id": "MT12",
+      "source": "Models and Training p5",
+      "requirement": "Missing candidates, invalid transitions and GPS gap handling",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/decoder.py",
+        "tests/test_pipeline.py::test_gap_reset_is_explicit",
+        "results/critical_audit/clean_environment_tests.txt"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT13",
+      "source": "Models and Training p5",
+      "requirement": "One predicted road per relevant observation",
+      "status": "PASS",
+      "evidence": [
+        "scripts/verify_api.py",
+        "results/api_verification.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT14",
+      "source": "Models and Training p5",
+      "requirement": "Classifier-only versus sequence decoding and continuity analysis",
+      "status": "PASS",
+      "evidence": [
+        "results/route_comparison.csv",
+        "results/figures/route_comparison.png"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT15",
+      "source": "Models and Training p5",
+      "requirement": "Decoder tuning on permitted data only",
+      "status": "PASS",
+      "evidence": [
+        "scripts/evaluate_routes.py",
+        "results/critical_audit/improvement_protocol.json"
+      ],
+      "note": "Original decoder uses student-test development tuning; new prior uses training-only replay gates."
+    },
+    {
+      "id": "MT16",
+      "source": "Models and Training p5-6",
+      "requirement": "All ten actual reserved evaluator trips work",
+      "status": "PARTIAL",
+      "evidence": [
+        "backend/app.py",
+        "docs/DEPLOYMENT.md"
+      ],
+      "note": "Loader and synthetic partition handling tested; real reserved files not supplied."
+    },
+    {
+      "id": "MT17",
+      "source": "Models and Training p6",
+      "requirement": "Server computes accuracy with internal references",
+      "status": "PARTIAL",
+      "evidence": [
+        "backend/app.py",
+        "results/api_verification.json"
+      ],
+      "note": "Derived-alignment scorer verified; official pointwise reference/scorer convention unresolved."
+    },
+    {
+      "id": "MT18",
+      "source": "Models and Training p6",
+      "requirement": "Live API calls/logs; no hardcoded outputs or bypass",
+      "status": "PASS",
+      "evidence": [
+        "backend/app.py",
+        "results/server_log_excerpt.txt",
+        "results/api_verification.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "MT19",
+      "source": "Models and Training p6",
+      "requirement": "Independent implementation and artifact explanation",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/VIVA_GUIDE.md",
+        "docs/SUBMISSION.md"
+      ],
+      "note": "Experiments executed here; actual four-person understanding/ownership still requires team review."
+    },
+    {
+      "id": "DL01",
+      "source": "Deliverables p1",
+      "requirement": "Public GitHub repository committed and pushed",
+      "status": "FAIL",
+      "evidence": [
+        "docs/SUBMISSION.md"
+      ],
+      "note": "Local Git repository exists; no public remote has been created/verified."
+    },
+    {
+      "id": "DL02",
+      "source": "Deliverables p1-2",
+      "requirement": "Complete data/feature/training/evaluation/tuning/decoder/API/UI source",
+      "status": "PASS",
+      "evidence": [
+        "pathsnap/core.py",
+        "scripts/train.py",
+        "backend/app.py",
+        "ui/app.js"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL03",
+      "source": "Deliverables p1-2",
+      "requirement": "Artifacts, configs, logs, CSVs, maps and deployment files",
+      "status": "PASS",
+      "evidence": [
+        "artifacts/model.joblib",
+        "results/bayesian_trials.csv",
+        "scripts/figures.py",
+        "requirements.lock.txt"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL04",
+      "source": "Deliverables p2",
+      "requirement": "README, installation/execution/deployment and organized folders",
+      "status": "PASS",
+      "evidence": [
+        "README.md",
+        "docs/LAPTOP1_SETUP.md",
+        "docs/LAPTOP2_SETUP.md"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL05",
+      "source": "Deliverables p2",
+      "requirement": "No committed secrets or private credentials",
+      "status": "PASS",
+      "evidence": [
+        "scripts/audit.py",
+        ".gitignore"
+      ],
+      "note": "Heuristic token/path scan, not a general security certification."
+    },
+    {
+      "id": "DL06",
+      "source": "Deliverables p2",
+      "requirement": "One consolidated PDF with prescribed sections and genuine results",
+      "status": "PASS",
+      "evidence": [
+        "output/pdf/PathSnap_Technical_Report.pdf",
+        "scripts/report.py"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL07",
+      "source": "Deliverables p2",
+      "requirement": "EDA, preprocessing, features, missing values, GPS and road maps",
+      "status": "PASS",
+      "evidence": [
+        "results/dataset_inventory.csv",
+        "results/figures/dataset_overview.png",
+        "results/maps/development_trip_00000007.html"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL08",
+      "source": "Deliverables p3",
+      "requirement": "Overall table with model/family/config/CV F1/Top-1/continuity/test F1/log loss/time",
+      "status": "PASS",
+      "evidence": [
+        "output/pdf/PathSnap_Technical_Report.pdf",
+        "results/model_comparison.csv",
+        "results/model_route_metrics.csv"
+      ],
+      "note": "Consolidated required-field table added in audit appendix."
+    },
+    {
+      "id": "DL09",
+      "source": "Deliverables p3-4",
+      "requirement": "Every trained model: suitability, strengths/limits, hyperparameters, objective and actual test results",
+      "status": "PASS",
+      "evidence": [
+        "scripts/report.py",
+        "results/configurations/MLP.json",
+        "results/model_comparison.csv"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL10",
+      "source": "Deliverables p4",
+      "requirement": "Over/underfitting evidence connected to actual experiments",
+      "status": "PASS",
+      "evidence": [
+        "results/training_diagnostics.json",
+        "results/cv_folds.json",
+        "output/pdf/PathSnap_Technical_Report.pdf"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL11",
+      "source": "Deliverables p4",
+      "requirement": "Real CV/test F1, Top-1 and log-loss comparison plots",
+      "status": "PASS",
+      "evidence": [
+        "results/figures/model_comparison.png",
+        "results/figures/log_loss.png"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL12",
+      "source": "Deliverables p4",
+      "requirement": "No artificial training/validation curves",
+      "status": "PASS",
+      "evidence": [
+        "results/figures/mlp_loss.png",
+        "scripts/figures.py"
+      ],
+      "note": "Only actual MLP training history plotted; no validation-loss history claimed."
+    },
+    {
+      "id": "DL13",
+      "source": "Deliverables p5",
+      "requirement": "Bayesian questions and tuned/untuned metrics",
+      "status": "PASS",
+      "evidence": [
+        "results/bayesian_trials.csv",
+        "artifacts/manifest.json",
+        "output/pdf/PathSnap_Technical_Report.pdf"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL14",
+      "source": "Deliverables p5-6",
+      "requirement": "HMM design questions, comparisons, improvement/failure discussion",
+      "status": "PASS",
+      "evidence": [
+        "docs/VIVA_GUIDE.md",
+        "results/route_comparison.csv",
+        "results/critical_audit/training_holdout_decoder.csv"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL15",
+      "source": "Deliverables p6",
+      "requirement": "Mandatory actual Folium GPS/network/reference/predicted layers, colors, legend, extent and controls",
+      "status": "PASS",
+      "evidence": [
+        "results/maps/development_trip_00000007.html",
+        "scripts/figures.py",
+        "results/screenshots/folium_development_map.png"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL16",
+      "source": "Deliverables p6",
+      "requirement": "Interactive map/code retained and representative screenshot in report",
+      "status": "PASS",
+      "evidence": [
+        "results/maps/development_trip_00000007.html",
+        "output/pdf/PathSnap_Technical_Report.pdf"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL17",
+      "source": "Deliverables p6",
+      "requirement": "Actual working UI screenshot",
+      "status": "PASS",
+      "evidence": [
+        "results/screenshots/ui_desktop.png",
+        "results/screenshots/ui_mobile.png",
+        "results/browser_qa.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "DL18",
+      "source": "Deliverables p6",
+      "requirement": "Genuine successful receiving-laptop CMD screenshot",
+      "status": "FAIL",
+      "evidence": [
+        "docs/DEPLOYMENT.md",
+        "results/server_log_excerpt.txt"
+      ],
+      "note": "Real local logs exist; no CMD screenshot of the physical receiving laptop has been captured."
+    },
+    {
+      "id": "DL19",
+      "source": "Deliverables p7",
+      "requirement": "Submitted source matches final demonstrated system",
+      "status": "PARTIAL",
+      "evidence": [
+        "scripts/package.py",
+        "docs/SUBMISSION.md"
+      ],
+      "note": "Local artifact/package consistency verified; team must use final commit at external demo."
+    },
+    {
+      "id": "DL20",
+      "source": "Deliverables p1",
+      "requirement": "First-phase evaluation before lunch",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/DEMO_SCRIPT.md"
+      ],
+      "note": "Organizer schedule and phase scope are external; not invented."
+    },
+    {
+      "id": "DL21",
+      "source": "Deliverables p7",
+      "requirement": "AI disclosure, original analysis and each member can defend claims",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/VIVA_GUIDE.md",
+        "team.json",
+        "docs/SUBMISSION.md"
+      ],
+      "note": "AI-assisted draft disclosed; team interpretation and names remain placeholders by request."
+    },
+    {
+      "id": "AP01",
+      "source": "Assessment p1",
+      "requirement": "Meaningful >=5-model experimentation, tuning and retained records",
+      "status": "PASS",
+      "evidence": [
+        "results/critical_audit/model_replay.json",
+        "results/critical_audit/bayesian_log_verification.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "AP02",
+      "source": "Assessment p1",
+      "requirement": "Correctness, reproducibility, evidence beyond one high score",
+      "status": "PASS",
+      "evidence": [
+        "results/critical_audit/accuracy_audit.json",
+        "results/critical_audit/clean_environment_tests.txt",
+        "docs/METHODOLOGY.md"
+      ],
+      "note": ""
+    },
+    {
+      "id": "AP03",
+      "source": "Assessment p2",
+      "requirement": "No fabricated experiments, graphs, claims or implementation details",
+      "status": "PASS",
+      "evidence": [
+        "scripts/verify_experiments.py",
+        "results/critical_audit/experiment_replay_checks.json",
+        "scripts/report.py"
+      ],
+      "note": "Claims are bounded to retained execution evidence; no universal originality certification."
+    },
+    {
+      "id": "AP04",
+      "source": "Assessment p2",
+      "requirement": "No sharing another team code/weights/results",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/SUBMISSION.md"
+      ],
+      "note": "No other-team material used in this session; interteam behavior outside this environment cannot be audited."
+    },
+    {
+      "id": "AP05",
+      "source": "Assessment p2-3",
+      "requirement": "Every member explains/reproduces work in viva",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/VIVA_GUIDE.md",
+        "docs/DEMO_SCRIPT.md"
+      ],
+      "note": "Guide and cross-examination plan supplied; human understanding cannot be certified here."
+    },
+    {
+      "id": "AP06",
+      "source": "Assessment p3",
+      "requirement": "No evaluator leakage or hardcoded predictions",
+      "status": "PASS",
+      "evidence": [
+        "tests/test_pipeline.py::test_inference_never_reads_reference",
+        "backend/app.py",
+        "results/critical_audit/partition_overlap.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "AP07",
+      "source": "Assessment p3",
+      "requirement": "Source/history/artifacts/results available for investigation",
+      "status": "PASS",
+      "evidence": [
+        "results/artifact_checksums.json",
+        "results/dataset_integrity.json",
+        "docs/SUBMISSION.md"
+      ],
+      "note": "Local repository and packages prepared; public publication remains DL01 FAIL."
+    },
+    {
+      "id": "U01",
+      "source": "User audit request",
+      "requirement": "Fresh isolated install, dependency check and actual execution",
+      "status": "PASS",
+      "evidence": [
+        "results/critical_audit/clean_environment_install.json",
+        "results/critical_audit/clean_environment_tests.txt",
+        "results/api_verification.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "U02",
+      "source": "User audit request",
+      "requirement": "Exact two-laptop packages, launch commands and troubleshooting",
+      "status": "PASS",
+      "evidence": [
+        "scripts/package.py",
+        "docs/LAPTOP1_SETUP.md",
+        "docs/LAPTOP2_SETUP.md",
+        "docs/DEPLOYMENT.md",
+        "results/critical_audit/package_execution.json"
+      ],
+      "note": ""
+    },
+    {
+      "id": "U03",
+      "source": "User audit request",
+      "requirement": "Comprehensive viva and short demonstration script",
+      "status": "PASS",
+      "evidence": [
+        "docs/VIVA_GUIDE.md",
+        "docs/DEMO_SCRIPT.md"
+      ],
+      "note": ""
+    }
+  ]
+}

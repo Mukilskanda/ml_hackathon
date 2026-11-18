@@ -1,0 +1,22 @@
+{
+  "memory": null,
+  "steps": [
+    [
+      "standardscaler",
+      "StandardScaler()"
+    ],
+    [
+      "gaussiannb",
+      "GaussianNB(var_smoothing=1e-07)"
+    ]
+  ],
+  "transform_input": null,
+  "verbose": false,
+  "standardscaler": "StandardScaler()",
+  "gaussiannb": "GaussianNB(var_smoothing=1e-07)",
+  "standardscaler__copy": true,
+  "standardscaler__with_mean": true,
+  "standardscaler__with_std": true,
+  "gaussiannb__priors": null,
+  "gaussiannb__var_smoothing": 1e-07
+}

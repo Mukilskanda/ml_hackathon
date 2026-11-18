@@ -1,0 +1,191 @@
+[
+  {
+    "model": "DecisionTree",
+    "single_refit_training_s": 7.3141582,
+    "candidate_accuracy": 0.977385248,
+    "precision": 0.9167943881,
+    "recall": 0.8951079137,
+    "macro_f1": 0.9464855787,
+    "log_loss": 0.0566894986,
+    "top1_accuracy": 0.8988559761,
+    "candidate_miss_rate": 0.0279992168,
+    "confusion_matrix": [
+      [
+        248435,
+        2823
+      ],
+      [
+        3645,
+        31105
+      ]
+    ]
+  },
+  {
+    "model": "ExtraTrees",
+    "single_refit_training_s": 7.999906,
+    "candidate_accuracy": 0.9739797488,
+    "precision": 0.928347346,
+    "recall": 0.8515683453,
+    "macro_f1": 0.9367883012,
+    "log_loss": 0.0746976362,
+    "top1_accuracy": 0.8811501776,
+    "candidate_miss_rate": 0.0279992168,
+    "confusion_matrix": [
+      [
+        248974,
+        2284
+      ],
+      [
+        5158,
+        29592
+      ]
+    ]
+  },
+  {
+    "model": "GaussianNB",
+    "single_refit_training_s": 0.1905875,
+    "candidate_accuracy": 0.8832375318,
+    "precision": 0.5106312866,
+    "recall": 0.9364316547,
+    "macro_f1": 0.7951815542,
+    "log_loss": 0.6512481983,
+    "top1_accuracy": 0.8496545551,
+    "candidate_miss_rate": 0.0279992168,
+    "confusion_matrix": [
+      [
+        220072,
+        31186
+      ],
+      [
+        2209,
+        32541
+      ]
+    ]
+  },
+  {
+    "model": "HistGradientBoosting",
+    "single_refit_training_s": 3.0108489,
+    "candidate_accuracy": 0.9776754496,
+    "precision": 0.9172673512,
+    "recall": 0.8971798561,
+    "macro_f1": 0.9472127802,
+    "log_loss": 0.0591958816,
+    "top1_accuracy": 0.8932057845,
+    "candidate_miss_rate": 0.0279992168,
+    "confusion_matrix": [
+      [
+        248446,
+        2812
+      ],
+      [
+        3573,
+        31177
+      ]
+    ]
+  },
+  {
+    "model": "HistGradientBoosting_tuned",
+    "single_refit_training_s": 1.9258369,
+    "candidate_accuracy": 0.9767943554,
+    "precision": 0.9150010333,
+    "recall": 0.8918561151,
+    "macro_f1": 0.9450479298,
+    "log_loss": 0.0623986271,
+    "top1_accuracy": 0.8880590753,
+    "candidate_miss_rate": 0.0279992168,
+    "confusion_matrix": [
+      [
+        248379,
+        2879
+      ],
+      [
+        3758,
+        30992
+      ]
+    ]
+  },
+  {
+    "model": "LogisticRegression",
+    "single_refit_training_s": 1.1508095,
+    "candidate_accuracy": 0.9628087326,
+    "precision": 0.8544465677,
+    "recall": 0.8363741007,
+    "macro_f1": 0.9120885899,
+    "log_loss": 0.1157001158,
+    "top1_accuracy": 0.8555005454,
+    "candidate_miss_rate": 0.0279992168,
+    "confusion_matrix": [
+      [
+        246307,
+        4951
+      ],
+      [
+        5686,
+        29064
+      ]
+    ]
+  },
+  {
+    "model": "MLP",
+    "single_refit_training_s": 17.4458999,
+    "candidate_accuracy": 0.973360885,
+    "precision": 0.9195818255,
+    "recall": 0.8555683453,
+    "macro_f1": 0.9356659116,
+    "log_loss": 0.071143619,
+    "top1_accuracy": 0.8802271265,
+    "candidate_miss_rate": 0.0279992168,
+    "confusion_matrix": [
+      [
+        248658,
+        2600
+      ],
+      [
+        5019,
+        29731
+      ]
+    ]
+  },
+  {
+    "model": "RandomForest",
+    "single_refit_training_s": 31.3611692,
+    "candidate_accuracy": 0.9808466896,
+    "precision": 0.9422019457,
+    "recall": 0.8974100719,
+    "macro_f1": 0.9541976373,
+    "log_loss": 0.0516411295,
+    "top1_accuracy": 0.9096249056,
+    "candidate_miss_rate": 0.0279992168,
+    "confusion_matrix": [
+      [
+        249345,
+        1913
+      ],
+      [
+        3565,
+        31185
+      ]
+    ]
+  },
+  {
+    "model": "HistGradientBoosting_tuned_adaptive_candidates",
+    "single_refit_training_s": 1.6971907999977702,
+    "candidate_accuracy": 0.976671981203323,
+    "precision": 0.9149549761638515,
+    "recall": 0.8915524459482709,
+    "macro_f1": 0.9449209653061663,
+    "log_loss": 0.06369611356047043,
+    "top1_accuracy": 0.8883387877262174,
+    "candidate_miss_rate": 0.0245307823557383,
+    "confusion_matrix": [
+      [
+        248244,
+        2890
+      ],
+      [
+        3782,
+        31092
+      ]
+    ]
+  }
+]

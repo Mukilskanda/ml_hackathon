@@ -1,0 +1,11 @@
+{
+  "candidate": "soft_uturn_prior",
+  "training_holdout_accuracy_gain": 0.0031511629744445566,
+  "repeated_median_decode_ratio": 1.080891614122324,
+  "mean_robustness_gain": 0.0031919343210104634,
+  "robustness_cases_regress_over_2pp": 0,
+  "accepted": true,
+  "student_test_used_for_decision": false,
+  "selected_penalty": 0.6931471805599453,
+  "limitations": "Hyperparameters and original decoder previously developed on these training trips/CV; this is a training-only replay, not an untouched nested generalisation estimate."
+}

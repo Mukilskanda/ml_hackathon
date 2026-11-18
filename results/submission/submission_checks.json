@@ -1,0 +1,124 @@
+{
+  "frozen_base_commit": "16bd43d39ee3a8474cd334aee5723f8bb464237f",
+  "frozen_runtime_members": [
+    "artifacts/decoder.json",
+    "artifacts/manifest.json",
+    "artifacts/model.joblib",
+    "backend/__init__.py",
+    "backend/app.py",
+    "pathsnap/__init__.py",
+    "pathsnap/calibration.py",
+    "pathsnap/core.py",
+    "pathsnap/decoder.py",
+    "pathsnap/metrics.py",
+    "pathsnap/service.py",
+    "requirements.lock.txt",
+    "run_backend.cmd",
+    "run_ui.cmd",
+    "setup_backend.cmd",
+    "ui/app.js",
+    "ui/index.html",
+    "ui/style.css"
+  ],
+  "model_and_runtime_unchanged": true,
+  "working_text_secret_findings": [],
+  "sensitive_filename_findings": [],
+  "history_scan": {
+    "text_objects_scanned": 183,
+    "credential_pattern_findings": [],
+    "scope": "Heuristic recognizable-token/private-key scan; not a guarantee against all secrets."
+  },
+  "largest_files": [
+    {
+      "path": "artifacts/ExtraTrees.joblib",
+      "bytes": 13461623
+    },
+    {
+      "path": "artifacts/RandomForest.joblib",
+      "bytes": 9840045
+    },
+    {
+      "path": "results/maps/development_trip_00000007.html",
+      "bytes": 2419356
+    },
+    {
+      "path": "output/pdf/PathSnap_Technical_Report.pdf",
+      "bytes": 1018505
+    },
+    {
+      "path": "results/training_split_manifest.json",
+      "bytes": 486721
+    },
+    {
+      "path": "results/probabilities/DecisionTree_00000056.npy",
+      "bytes": 253440
+    },
+    {
+      "path": "results/probabilities/ExtraTrees_00000056.npy",
+      "bytes": 253440
+    },
+    {
+      "path": "results/probabilities/GaussianNB_00000056.npy",
+      "bytes": 253440
+    },
+    {
+      "path": "results/probabilities/HistGradientBoosting_00000056.npy",
+      "bytes": 253440
+    },
+    {
+      "path": "results/probabilities/HistGradientBoosting_tuned_00000056.npy",
+      "bytes": 253440
+    },
+    {
+      "path": "results/probabilities/HistGradientBoosting_tuned_adaptive_candidates_00000056.npy",
+      "bytes": 253440
+    },
+    {
+      "path": "results/probabilities/LogisticRegression_00000056.npy",
+      "bytes": 253440
+    }
+  ],
+  "files_over_50_MiB": [],
+  "required_direct_dependencies_locked": true,
+  "deployment_checks": [
+    {
+      "archive": "PathSnap_Laptop1_Backend.zip",
+      "runtime_members_compared": [
+        "pathsnap/__init__.py",
+        "pathsnap/calibration.py",
+        "pathsnap/core.py",
+        "pathsnap/decoder.py",
+        "pathsnap/metrics.py",
+        "pathsnap/service.py",
+        "backend/__init__.py",
+        "backend/app.py",
+        "ui/app.js",
+        "ui/index.html",
+        "ui/style.css",
+        "artifacts/model.joblib",
+        "artifacts/manifest.json",
+        "artifacts/decoder.json",
+        "requirements.lock.txt",
+        "setup_backend.cmd",
+        "run_backend.cmd"
+      ],
+      "matches_frozen_implementation": true
+    },
+    {
+      "archive": "PathSnap_Laptop2_UI.zip",
+      "runtime_members_compared": [
+        "ui/app.js",
+        "ui/index.html",
+        "ui/style.css",
+        "run_ui.cmd"
+      ],
+      "matches_frozen_implementation": true
+    }
+  ],
+  "report_final_numbers_present": true,
+  "report_pages": 26,
+  "final_tests_passed": 28,
+  "publication_policy": "Curated snapshot excludes raw inputs, per-point arrays, location-bearing generated outputs and private development history.",
+  "public_publication_verified": false,
+  "physical_two_laptop_verified": false
+}

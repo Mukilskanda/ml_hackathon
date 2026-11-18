@@ -1,0 +1,65 @@
+[
+  {
+    "model": "LogisticRegression",
+    "max_metric_difference": 1.1102230246251565e-16,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 2.889778699987801
+  },
+  {
+    "model": "GaussianNB",
+    "max_metric_difference": 5.551115123125783e-17,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 1.4401038000069093
+  },
+  {
+    "model": "DecisionTree",
+    "max_metric_difference": 1.1102230246251565e-16,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 13.843923000007635
+  },
+  {
+    "model": "RandomForest",
+    "max_metric_difference": 1.1102230246251565e-16,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 56.767969099993934
+  },
+  {
+    "model": "ExtraTrees",
+    "max_metric_difference": 1.1102230246251565e-16,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 15.820587399997748
+  },
+  {
+    "model": "HistGradientBoosting",
+    "max_metric_difference": 1.1102230246251565e-16,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 8.675585400007549
+  },
+  {
+    "model": "MLP",
+    "max_metric_difference": 1.1102230246251565e-16,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 36.41254679999838
+  },
+  {
+    "model": "HistGradientBoosting_tuned",
+    "max_metric_difference": 1.1102230246251565e-16,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 6.108415899987449
+  },
+  {
+    "model": "HistGradientBoosting_tuned_adaptive_candidates",
+    "max_metric_difference": 1.1102230246251565e-16,
+    "saved_probabilities_reproduced": true,
+    "cv_replayed": true,
+    "elapsed_s": 6.170072199995047
+  }
+]

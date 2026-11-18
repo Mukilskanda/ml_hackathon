@@ -1,0 +1,58 @@
+{
+  "method": "Sigmoid calibration",
+  "base_model": "HistGradientBoosting_tuned",
+  "candidate_strategy": "nearest",
+  "cv_metrics": {
+    "candidate_accuracy": 0.97236440938715,
+    "precision": 0.8938904865308998,
+    "recall": 0.8766043165467626,
+    "macro_f1": 0.9347275841415064,
+    "log_loss": 0.07542296935248716,
+    "top1_accuracy": 0.8731504013873738,
+    "candidate_miss_rate": 0.027999216805124332,
+    "confusion_matrix": [
+      [
+        247642,
+        3616
+      ],
+      [
+        4288,
+        30462
+      ]
+    ]
+  },
+  "test_metrics": {
+    "candidate_accuracy": 0.9716466597077245,
+    "precision": 0.8908213585025717,
+    "recall": 0.8801802273798921,
+    "macro_f1": 0.9346447369120048,
+    "log_loss": 0.06977637686296494,
+    "top1_accuracy": 0.8925887265135699,
+    "candidate_miss_rate": 0.0038100208768267222,
+    "confusion_matrix": [
+      [
+        132134,
+        2059
+      ],
+      [
+        2287,
+        16800
+      ]
+    ],
+    "inference_s": 0.5779120000224793
+  },
+  "base_cv_log_loss": 0.0738207489932504,
+  "base_test_log_loss": 0.0698489869168076,
+  "protocol": "Outer 3-fold GroupKFold; each outer training fold split by trip into 75% fit / 25% calibration. Final calibrator fits group-OOF scores, base refit uses all sampled training trips.",
+  "caution": "Calibrated CV base models use fewer fit trips than uncalibrated CV; compare with this limitation.",
+  "calibrator_coefficient": [
+    [
+      1.0142857211433438
+    ]
+  ],
+  "calibrator_intercept": [
+    -0.013819597421398284
+  ],
+  "adopted": false,
+  "decision": "Retained as a probability-quality experiment; production model selection remains the originally declared grouped-CV candidate objective."
+}

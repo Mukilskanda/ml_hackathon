@@ -1,0 +1,7 @@
+{
+  "adopted": false,
+  "strategy": "Distance plus 18 m * heading-reliability * (1-heading cosine), retaining 8 candidates, re-sorted by distance.",
+  "adaptive_mean_accuracy": 0.9530947281184068,
+  "baseline_mean_accuracy": 0.9470464461743585,
+  "decision": "Experimental inference-time candidate reranking only. Preserve the training-matched nearest candidate distribution unless a separate training-matched comparison supports replacement."
+}

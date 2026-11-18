@@ -1,0 +1,46 @@
+{
+  "memory": null,
+  "steps": [
+    [
+      "standardscaler",
+      "StandardScaler()"
+    ],
+    [
+      "mlpclassifier",
+      "MLPClassifier(batch_size=1024, hidden_layer_sizes=(32, 16), max_iter=45,\n              random_state=42)"
+    ]
+  ],
+  "transform_input": null,
+  "verbose": false,
+  "standardscaler": "StandardScaler()",
+  "mlpclassifier": "MLPClassifier(batch_size=1024, hidden_layer_sizes=(32, 16), max_iter=45,\n              random_state=42)",
+  "standardscaler__copy": true,
+  "standardscaler__with_mean": true,
+  "standardscaler__with_std": true,
+  "mlpclassifier__activation": "relu",
+  "mlpclassifier__alpha": 0.0001,
+  "mlpclassifier__batch_size": 1024,
+  "mlpclassifier__beta_1": 0.9,
+  "mlpclassifier__beta_2": 0.999,
+  "mlpclassifier__early_stopping": false,
+  "mlpclassifier__epsilon": 1e-08,
+  "mlpclassifier__hidden_layer_sizes": [
+    32,
+    16
+  ],
+  "mlpclassifier__learning_rate": "constant",
+  "mlpclassifier__learning_rate_init": 0.001,
+  "mlpclassifier__max_fun": 15000,
+  "mlpclassifier__max_iter": 45,
+  "mlpclassifier__momentum": 0.9,
+  "mlpclassifier__n_iter_no_change": 10,
+  "mlpclassifier__nesterovs_momentum": true,
+  "mlpclassifier__power_t": 0.5,
+  "mlpclassifier__random_state": 42,
+  "mlpclassifier__shuffle": true,
+  "mlpclassifier__solver": "adam",
+  "mlpclassifier__tol": 0.0001,
+  "mlpclassifier__validation_fraction": 0.1,
+  "mlpclassifier__verbose": false,
+  "mlpclassifier__warm_start": false
+}
